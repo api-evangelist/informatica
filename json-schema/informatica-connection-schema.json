@@ -1,0 +1,258 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/json-schema/informatica-connection-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Informatica IICS Connection",
+  "description": "Schema for an Informatica Intelligent Cloud Services (IICS) connection resource. Connections define the configuration required to access data sources and targets including databases, flat files, cloud applications, and SaaS services through the Platform REST API.",
+  "type": "object",
+  "required": [
+    "name",
+    "type",
+    "runtimeEnvironmentId"
+  ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "const": "connection",
+      "description": "The resource type identifier for the IICS REST API. Always set to 'connection' for connection resources."
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the connection, assigned by the platform upon creation.",
+      "readOnly": true
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns this connection.",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the connection. Must be unique within the organization. Spaces in the name are encoded as %20 when used in URI paths.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the connection and its purpose.",
+      "maxLength": 4000
+    },
+    "type": {
+      "type": "string",
+      "description": "The connection type that determines which data source or target the connection accesses. Each type requires specific configuration properties.",
+      "enum": [
+        "CSVFile",
+        "FTP",
+        "SFTP",
+        "MS_ACCESS",
+        "MSD",
+        "MySQL",
+        "ODBC",
+        "Oracle",
+        "OCOD",
+        "Salesforce",
+        "SqlServer",
+        "SqlServer2000",
+        "SqlServer2005",
+        "SqlServer2008",
+        "SqlServer2012",
+        "SqlServer2014",
+        "SqlServer2016",
+        "SqlServer2017",
+        "TOOLKIT",
+        "WebServicesConsumer",
+        "SAP_ALE_IDoc_Reader",
+        "SAP_ALE_IDoc_Writer"
+      ]
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the connection was created.",
+      "readOnly": true
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the connection was last updated.",
+      "readOnly": true
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The username of the user who created the connection.",
+      "readOnly": true
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The username of the user who last updated the connection.",
+      "readOnly": true
+    },
+    "agentId": {
+      "type": "string",
+      "description": "The ID of the Secure Agent associated with the connection. The Secure Agent provides the runtime execution environment on-premises or in a private cloud."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The ID of the runtime environment associated with the connection. Determines where connection operations are executed."
+    },
+    "host": {
+      "type": "string",
+      "description": "The hostname or IP address of the data source server. Required for database and server-based connection types such as Oracle, MySQL, and SqlServer.",
+      "examples": [
+        "db-server.example.com",
+        "192.168.1.100"
+      ]
+    },
+    "port": {
+      "type": "integer",
+      "description": "The port number for the data source server. Required for database connections.",
+      "minimum": 1,
+      "maximum": 65535,
+      "examples": [
+        1521,
+        3306,
+        1433
+      ]
+    },
+    "database": {
+      "type": "string",
+      "description": "The database name, service name, or SID for the connection. The meaning varies by connection type: for Oracle this is the service name or SID, for MySQL and SqlServer this is the database name.",
+      "examples": [
+        "ORCL",
+        "mydb",
+        "AdventureWorks"
+      ]
+    },
+    "schema": {
+      "type": "string",
+      "description": "The database schema name. Used to narrow the scope of accessible objects within the database.",
+      "examples": [
+        "dbo",
+        "public",
+        "HR"
+      ]
+    },
+    "username": {
+      "type": "string",
+      "description": "The username for authenticating with the data source."
+    },
+    "password": {
+      "type": "string",
+      "description": "The password for authenticating with the data source. This value is write-only and is not returned in GET responses.",
+      "writeOnly": true
+    },
+    "authenticationType": {
+      "type": "string",
+      "description": "The authentication method used by the connection. Available values depend on the connection type.",
+      "examples": [
+        "Basic",
+        "OAuth2",
+        "Kerberos",
+        "WindowsAuthentication"
+      ]
+    },
+    "serviceUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The service endpoint URL. Required for web service and cloud application connections such as Salesforce, WebServicesConsumer, and TOOLKIT connections.",
+      "examples": [
+        "https://login.salesforce.com",
+        "https://api.example.com/service"
+      ]
+    },
+    "codepage": {
+      "type": "string",
+      "description": "The character encoding used for the connection. Determines how character data is read from and written to the source or target.",
+      "default": "UTF-8",
+      "examples": [
+        "UTF-8",
+        "ISO-8859-1",
+        "MS1252"
+      ]
+    },
+    "connParams": {
+      "type": "object",
+      "description": "Additional connection parameters specific to the connection type. Contains configuration attributes that are not represented as top-level properties. The available parameters vary by connection type.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "fetchSize": "2000",
+          "useSSL": "true",
+          "truststorePath": "/opt/certs/truststore.jks"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "Oracle",
+              "MySQL",
+              "SqlServer",
+              "SqlServer2000",
+              "SqlServer2005",
+              "SqlServer2008",
+              "SqlServer2012",
+              "SqlServer2014",
+              "SqlServer2016",
+              "SqlServer2017"
+            ]
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "host",
+          "port",
+          "database",
+          "username"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "enum": [
+              "FTP",
+              "SFTP"
+            ]
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "host",
+          "username"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "Salesforce"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "serviceUrl",
+          "username"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

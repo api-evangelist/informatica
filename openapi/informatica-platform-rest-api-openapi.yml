@@ -1,0 +1,1809 @@
+openapi: 3.1.0
+info:
+  title: Informatica IICS Platform REST API
+  description: >-
+    The Informatica Intelligent Cloud Services (IICS) Platform REST API
+    provides programmatic access to platform-level resources including
+    authentication, connections, mappings, mapping tasks, and job
+    management. The API supports version 2 (JSON and XML) and version 3
+    (JSON) resource formats. All authenticated requests require a valid
+    session ID obtained from the login endpoint.
+  version: 2.0.0
+  contact:
+    name: Informatica
+    url: https://www.informatica.com/support.html
+  license:
+    name: Proprietary
+    url: https://www.informatica.com/legal.html
+  termsOfService: https://www.informatica.com/legal.html
+  x-informatica-api-version: v2
+externalDocs:
+  description: Informatica IICS REST API Reference
+  url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+servers:
+  - url: https://dm-us.informaticacloud.com
+    description: North America production pod
+  - url: https://dm-em.informaticacloud.com
+    description: Europe production pod
+  - url: https://dm-ap.informaticacloud.com
+    description: Asia-Pacific production pod
+security:
+  - icSessionId: []
+tags:
+  - name: Authentication
+    description: Login and session management operations.
+  - name: Connections
+    description: >-
+      Manage connections to data sources and targets including databases,
+      flat files, cloud applications, and SaaS services.
+  - name: Mappings
+    description: >-
+      Retrieve mapping definitions and metadata for data integration
+      mappings within the organization.
+  - name: Mapping Tasks
+    description: >-
+      Create, retrieve, update, and delete mapping task configurations
+      that execute mappings with specific runtime parameters.
+  - name: Jobs
+    description: >-
+      Start, stop, and monitor job execution for tasks, taskflows, and
+      other runnable assets.
+  - name: Schedules
+    description: Manage task execution schedules.
+paths:
+  /ma/api/v2/user/login:
+    post:
+      operationId: login
+      summary: Log in to Informatica Intelligent Cloud Services
+      description: >-
+        Authenticates a user and returns a session ID and server URL for
+        subsequent API calls. The session ID expires after 30 minutes of
+        inactivity.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              '@type': login
+              username: user@example.com
+              password: securePassword123
+      responses:
+        '200':
+          description: Successful authentication.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              example:
+                id: 0012ABC000000001
+                orgId: 00DXYZ000000001
+                orgUuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                name: user@example.com
+                firstName: John
+                lastName: Doe
+                serverUrl: https://na4.dm-us.informaticacloud.com/saas
+                icSessionId: abcdef1234567890abcdef1234567890
+                securityQuestion: What is your pet name?
+                securityAnswer: ''
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/user/logout:
+    post:
+      operationId: logout
+      summary: Log out and end the REST API session
+      description: >-
+        Ends the current REST API session. You can also end all active
+        sessions for the organization.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Successfully logged out.
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/connection:
+    get:
+      operationId: listConnections
+      summary: Retrieve all connections in the organization
+      description: >-
+        Returns connection details for all connections configured in the
+        organization. Results can be filtered by agent or runtime
+        environment.
+      tags:
+        - Connections
+      responses:
+        '200':
+          description: A list of connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createConnection
+      summary: Create a new connection
+      description: >-
+        Creates a new connection in the organization with the specified
+        configuration including connection type, credentials, and runtime
+        environment.
+      tags:
+        - Connections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionCreateRequest'
+            example:
+              '@type': connection
+              name: My_Oracle_Connection
+              type: Oracle
+              username: db_user
+              password: db_password
+              host: oracle-server.example.com
+              port: 1521
+              database: ORCL
+              codepage: UTF-8
+              runtimeEnvironmentId: 0012ABC000000099
+      responses:
+        '200':
+          description: Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/connection/{connectionId}:
+    get:
+      operationId: getConnection
+      summary: Retrieve a connection by ID
+      description: Returns the details of a specific connection identified by its ID.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateConnection
+      summary: Update an existing connection
+      description: >-
+        Updates the configuration of an existing connection identified by
+        its ID.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionUpdateRequest'
+      responses:
+        '200':
+          description: Connection updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteConnection
+      summary: Delete a connection
+      description: Deletes the connection identified by its ID.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/connection/name/{connectionName}:
+    get:
+      operationId: getConnectionByName
+      summary: Retrieve a connection by name
+      description: >-
+        Returns the details of a specific connection identified by its
+        name. Spaces in the name must be encoded as %20.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionName'
+      responses:
+        '200':
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/connection/search:
+    get:
+      operationId: searchConnections
+      summary: Search for connections by agent or runtime environment
+      description: >-
+        Searches for connections filtered by Secure Agent ID or runtime
+        environment ID, combined with connection type.
+      tags:
+        - Connections
+      parameters:
+        - name: agentId
+          in: query
+          description: The Secure Agent ID to filter connections.
+          schema:
+            type: string
+        - name: runtimeEnvironmentId
+          in: query
+          description: The runtime environment ID to filter connections.
+          schema:
+            type: string
+        - name: uiType
+          in: query
+          required: true
+          description: >-
+            The connection type to filter by (e.g., Oracle, Salesforce,
+            MySQL).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of matching connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/connection/{connectionId}/test:
+    post:
+      operationId: testConnection
+      summary: Test a connection
+      description: >-
+        Tests the connection identified by its ID to verify that the
+        credentials and configuration are valid.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection test result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the connection test was successful.
+                  message:
+                    type: string
+                    description: Message describing the test result.
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mapping:
+    get:
+      operationId: listMappings
+      summary: Retrieve all mappings in the organization
+      description: >-
+        Returns the mapping object for every mapping in the organization.
+        When retrieving all mappings, parameter details are not included.
+      tags:
+        - Mappings
+      responses:
+        '200':
+          description: A list of mappings.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mapping'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mapping/{mappingId}:
+    get:
+      operationId: getMapping
+      summary: Retrieve a mapping by ID
+      description: >-
+        Returns the details of a specific mapping identified by its ID,
+        including parameter details.
+      tags:
+        - Mappings
+      parameters:
+        - $ref: '#/components/parameters/mappingId'
+      responses:
+        '200':
+          description: Mapping details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mapping'
+        '404':
+          description: Mapping not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mapping/name/{mappingName}:
+    get:
+      operationId: getMappingByName
+      summary: Retrieve a mapping by name
+      description: >-
+        Returns the details of a specific mapping identified by its
+        name.
+      tags:
+        - Mappings
+      parameters:
+        - $ref: '#/components/parameters/mappingName'
+      responses:
+        '200':
+          description: Mapping details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mapping'
+        '404':
+          description: Mapping not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mapping/search:
+    get:
+      operationId: searchMappings
+      summary: Search for mappings by name
+      description: Searches for mappings matching the specified name pattern.
+      tags:
+        - Mappings
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: The mapping name or name pattern to search for.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of matching mappings.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mapping'
+  /saas/api/v2/mttask:
+    get:
+      operationId: listMappingTasks
+      summary: Retrieve all mapping tasks in the organization
+      description: >-
+        Returns summary information for all mapping tasks configured in
+        the organization.
+      tags:
+        - Mapping Tasks
+      responses:
+        '200':
+          description: A list of mapping tasks.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MappingTask'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createMappingTask
+      summary: Create a new mapping task
+      description: >-
+        Creates a new mapping task in the organization. The request body
+        must include the mapping reference, source and target connection
+        configurations, and runtime parameters.
+      tags:
+        - Mapping Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MappingTaskCreateRequest'
+      responses:
+        '200':
+          description: Mapping task created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingTask'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mttask/{taskId}:
+    get:
+      operationId: getMappingTask
+      summary: Retrieve a mapping task by ID
+      description: Returns the full details of a mapping task identified by its ID.
+      tags:
+        - Mapping Tasks
+      parameters:
+        - $ref: '#/components/parameters/taskId'
+      responses:
+        '200':
+          description: Mapping task details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingTask'
+        '404':
+          description: Mapping task not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateMappingTask
+      summary: Update an existing mapping task
+      description: Updates the configuration of a mapping task identified by its ID.
+      tags:
+        - Mapping Tasks
+      parameters:
+        - $ref: '#/components/parameters/taskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MappingTaskUpdateRequest'
+      responses:
+        '200':
+          description: Mapping task updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingTask'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Mapping task not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteMappingTask
+      summary: Delete a mapping task
+      description: Deletes the mapping task identified by its ID.
+      tags:
+        - Mapping Tasks
+      parameters:
+        - $ref: '#/components/parameters/taskId'
+      responses:
+        '200':
+          description: Mapping task deleted successfully.
+        '404':
+          description: Mapping task not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/mttask/name/{taskName}:
+    get:
+      operationId: getMappingTaskByName
+      summary: Retrieve a mapping task by name
+      description: Returns the full details of a mapping task identified by its name.
+      tags:
+        - Mapping Tasks
+      parameters:
+        - $ref: '#/components/parameters/taskName'
+      responses:
+        '200':
+          description: Mapping task details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingTask'
+        '404':
+          description: Mapping task not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/job:
+    post:
+      operationId: startJob
+      summary: Start a job for a task or taskflow
+      description: >-
+        Starts a job for a task identified by task ID or task name.
+        Supports mapping tasks, synchronization tasks, data replication
+        tasks, taskflows, and PowerCenter tasks.
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobStartRequest'
+            example:
+              '@type': job
+              taskId: 0012ABC000000042
+              taskType: MTT
+              callbackUrl: https://example.com/callback
+      responses:
+        '200':
+          description: Job started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartResponse'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/job/stop:
+    post:
+      operationId: stopJob
+      summary: Stop a running job
+      description: >-
+        Stops a running job. You can perform an immediate stop or a
+        clean stop that allows the job to finish processing the current
+        row.
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobStopRequest'
+            example:
+              '@type': job
+              taskId: 0012ABC000000042
+              taskType: MTT
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/activity/activityLog:
+    get:
+      operationId: getActivityLog
+      summary: Retrieve activity log entries for jobs
+      description: >-
+        Returns activity log entries for completed and running jobs in
+        the organization. Results can be filtered by run ID, task ID,
+        or other criteria.
+      tags:
+        - Jobs
+      parameters:
+        - name: runId
+          in: query
+          description: Filter by the job run ID.
+          schema:
+            type: integer
+            format: int64
+        - name: taskId
+          in: query
+          description: Filter by the task ID.
+          schema:
+            type: string
+        - name: taskType
+          in: query
+          description: >-
+            Filter by task type (e.g., MTT for mapping task, WORKFLOW
+            for taskflow).
+          schema:
+            type: string
+        - name: startTimeUTC
+          in: query
+          description: >-
+            Filter for jobs started after this UTC timestamp in ISO 8601
+            format.
+          schema:
+            type: string
+            format: date-time
+        - name: endTimeUTC
+          in: query
+          description: >-
+            Filter for jobs completed before this UTC timestamp in ISO
+            8601 format.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Activity log entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityLogEntry'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /saas/api/v2/schedule:
+    get:
+      operationId: listSchedules
+      summary: Retrieve all schedules
+      description: Returns a list of all schedules in the organization.
+      tags:
+        - Schedules
+      responses:
+        '200':
+          description: A list of schedules.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+    post:
+      operationId: createSchedule
+      summary: Create a new schedule
+      description: Creates a new schedule in the organization.
+      tags:
+        - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreateRequest'
+      responses:
+        '200':
+          description: Schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+  /saas/api/v2/schedule/{scheduleId}:
+    get:
+      operationId: getSchedule
+      summary: Retrieve a schedule by ID
+      description: Returns the details of a schedule identified by its ID.
+      tags:
+        - Schedules
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          description: The unique identifier of the schedule.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Schedule details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+    put:
+      operationId: updateSchedule
+      summary: Update an existing schedule
+      description: Updates the configuration of a schedule identified by its ID.
+      tags:
+        - Schedules
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          description: The unique identifier of the schedule.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreateRequest'
+      responses:
+        '200':
+          description: Schedule updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+    delete:
+      operationId: deleteSchedule
+      summary: Delete a schedule
+      description: Deletes the schedule identified by its ID.
+      tags:
+        - Schedules
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          description: The unique identifier of the schedule.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Schedule deleted successfully.
+components:
+  securitySchemes:
+    icSessionId:
+      type: apiKey
+      name: icSessionId
+      in: header
+      description: >-
+        The REST API session ID returned by the login endpoint. Include
+        this value in the icSessionId header for all authenticated
+        requests. The session expires after 30 minutes of inactivity.
+  parameters:
+    connectionId:
+      name: connectionId
+      in: path
+      required: true
+      description: The unique identifier of the connection.
+      schema:
+        type: string
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: >-
+        The name of the connection. Spaces must be encoded as %20.
+      schema:
+        type: string
+    mappingId:
+      name: mappingId
+      in: path
+      required: true
+      description: The unique identifier of the mapping.
+      schema:
+        type: string
+    mappingName:
+      name: mappingName
+      in: path
+      required: true
+      description: The name of the mapping.
+      schema:
+        type: string
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      description: The unique identifier of the mapping task.
+      schema:
+        type: string
+    taskName:
+      name: taskName
+      in: path
+      required: true
+      description: The name of the mapping task.
+      schema:
+        type: string
+  schemas:
+    LoginRequest:
+      type: object
+      description: Request body for the login endpoint.
+      required:
+        - '@type'
+        - username
+        - password
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "login".
+          enum:
+            - login
+        username:
+          type: string
+          description: The Informatica Intelligent Cloud Services username.
+        password:
+          type: string
+          format: password
+          description: The account password.
+    LoginResponse:
+      type: object
+      description: >-
+        Successful login response containing the session ID and server
+        URL for subsequent API calls.
+      properties:
+        id:
+          type: string
+          description: The user ID.
+        orgId:
+          type: string
+          description: The organization ID.
+        orgUuid:
+          type: string
+          format: uuid
+          description: The organization UUID.
+        name:
+          type: string
+          description: The username used to log in.
+        firstName:
+          type: string
+          description: The first name of the user.
+        lastName:
+          type: string
+          description: The last name of the user.
+        title:
+          type: string
+          description: The job title of the user.
+        phone:
+          type: string
+          description: The phone number of the user.
+        emails:
+          type: string
+          description: The email address of the user.
+        timezone:
+          type: string
+          description: >-
+            The time zone of the user (e.g., America/Los_Angeles).
+        serverUrl:
+          type: string
+          format: uri
+          description: >-
+            The base URL to use in version 2 REST API calls. Use this
+            URL as the base for all subsequent v2 API requests.
+        icSessionId:
+          type: string
+          description: >-
+            The REST API session ID. Include this value in the
+            icSessionId header for all subsequent requests. Expires
+            after 30 minutes of inactivity.
+        securityQuestion:
+          type: string
+          description: The security question for the user account.
+        securityAnswer:
+          type: string
+          description: The security answer (returned as empty string).
+        createTime:
+          type: string
+          format: date-time
+          description: The time the user account was created.
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the user account was last updated.
+    Connection:
+      type: object
+      description: >-
+        Represents a connection to a data source or target in
+        Informatica Intelligent Cloud Services.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: connection
+        id:
+          type: string
+          description: The unique identifier for the connection.
+        orgId:
+          type: string
+          description: The organization ID that owns the connection.
+        name:
+          type: string
+          description: The name of the connection.
+        description:
+          type: string
+          description: A description of the connection.
+        type:
+          type: string
+          description: >-
+            The connection type (e.g., Oracle, Salesforce, MySQL,
+            SqlServer, FTP, CSVFile).
+          enum:
+            - CSVFile
+            - FTP
+            - SFTP
+            - MS_ACCESS
+            - MSD
+            - MySQL
+            - ODBC
+            - Oracle
+            - OCOD
+            - Salesforce
+            - SqlServer
+            - SqlServer2000
+            - SqlServer2005
+            - SqlServer2008
+            - SqlServer2012
+            - SqlServer2014
+            - SqlServer2016
+            - SqlServer2017
+            - TOOLKIT
+            - WebServicesConsumer
+            - SAP_ALE_IDoc_Reader
+            - SAP_ALE_IDoc_Writer
+        createTime:
+          type: string
+          format: date-time
+          description: The time the connection was created.
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the connection was last updated.
+        createdBy:
+          type: string
+          description: The user who created the connection.
+        updatedBy:
+          type: string
+          description: The user who last updated the connection.
+        agentId:
+          type: string
+          description: >-
+            The ID of the Secure Agent associated with the connection.
+        runtimeEnvironmentId:
+          type: string
+          description: >-
+            The ID of the runtime environment associated with the
+            connection.
+        host:
+          type: string
+          description: >-
+            The hostname or IP address for the connection. Applicable
+            to database and server-based connections.
+        port:
+          type: integer
+          description: >-
+            The port number for the connection. Applicable to database
+            and server-based connections.
+        database:
+          type: string
+          description: >-
+            The database name or service name for the connection.
+        schema:
+          type: string
+          description: The database schema name.
+        username:
+          type: string
+          description: The username for authentication.
+        password:
+          type: string
+          format: password
+          description: The password for authentication.
+        authenticationType:
+          type: string
+          description: The authentication method used by the connection.
+        serviceUrl:
+          type: string
+          format: uri
+          description: >-
+            The service endpoint URL. Applicable to web service and
+            cloud application connections.
+        codepage:
+          type: string
+          description: >-
+            The character encoding for the connection (e.g., UTF-8).
+        connParams:
+          type: object
+          description: >-
+            Additional connection parameters specific to the connection
+            type. Contains attributes not listed as top-level fields.
+          additionalProperties: true
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new connection.
+      required:
+        - '@type'
+        - name
+        - type
+        - runtimeEnvironmentId
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "connection".
+          const: connection
+        name:
+          type: string
+          description: The name for the new connection.
+        description:
+          type: string
+          description: A description of the connection.
+        type:
+          type: string
+          description: The connection type.
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment ID for the connection.
+        host:
+          type: string
+          description: The hostname or IP address.
+        port:
+          type: integer
+          description: The port number.
+        database:
+          type: string
+          description: The database name or service name.
+        schema:
+          type: string
+          description: The database schema.
+        username:
+          type: string
+          description: The username for authentication.
+        password:
+          type: string
+          format: password
+          description: The password for authentication.
+        authenticationType:
+          type: string
+          description: The authentication method.
+        serviceUrl:
+          type: string
+          format: uri
+          description: The service endpoint URL.
+        codepage:
+          type: string
+          description: The character encoding.
+        connParams:
+          type: object
+          description: Additional connection-type-specific parameters.
+          additionalProperties: true
+    ConnectionUpdateRequest:
+      type: object
+      description: Request body for updating an existing connection.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "connection".
+          const: connection
+        name:
+          type: string
+          description: The updated name for the connection.
+        description:
+          type: string
+          description: An updated description of the connection.
+        host:
+          type: string
+          description: The updated hostname or IP address.
+        port:
+          type: integer
+          description: The updated port number.
+        database:
+          type: string
+          description: The updated database name.
+        schema:
+          type: string
+          description: The updated database schema.
+        username:
+          type: string
+          description: The updated username.
+        password:
+          type: string
+          format: password
+          description: The updated password.
+        authenticationType:
+          type: string
+          description: The updated authentication method.
+        serviceUrl:
+          type: string
+          format: uri
+          description: The updated service endpoint URL.
+        codepage:
+          type: string
+          description: The updated character encoding.
+        connParams:
+          type: object
+          description: Updated connection-type-specific parameters.
+          additionalProperties: true
+    Mapping:
+      type: object
+      description: >-
+        Represents a data integration mapping definition that specifies
+        data transformation logic between sources and targets.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: mapping
+        id:
+          type: string
+          description: The unique identifier for the mapping.
+        orgId:
+          type: string
+          description: The organization ID that owns the mapping.
+        name:
+          type: string
+          description: The name of the mapping.
+        description:
+          type: string
+          description: A description of the mapping.
+        createTime:
+          type: string
+          format: date-time
+          description: The time the mapping was created.
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the mapping was last updated.
+        createdBy:
+          type: string
+          description: The user who created the mapping.
+        updatedBy:
+          type: string
+          description: The user who last updated the mapping.
+        bundleObjectId:
+          type: string
+          description: The associated bundle ID if applicable.
+        bundleVersion:
+          type: string
+          description: The associated bundle version.
+        templateId:
+          type: string
+          description: The internal template identifier.
+        deployTime:
+          type: string
+          format: date-time
+          description: The time the mapping was deployed.
+        hasParameters:
+          type: boolean
+          description: Whether the mapping includes parameters.
+        valid:
+          type: boolean
+          description: Whether the mapping is in a valid state.
+        fixedConnection:
+          type: boolean
+          description: Whether the mapping uses fixed connections.
+        hasParametersDeployed:
+          type: boolean
+          description: Whether parameters are deployed.
+        fixedConnectionDeployed:
+          type: boolean
+          description: Whether fixed connections are deployed.
+        deployedTemplateId:
+          type: string
+          description: The internal deployed template identifier.
+        tasks:
+          type: integer
+          description: The count of tasks using this mapping.
+        parameters:
+          type: array
+          description: The collection of mapping parameters.
+          items:
+            $ref: '#/components/schemas/MappingParameter'
+        inOutParameters:
+          type: array
+          description: The collection of in-out parameters.
+          items:
+            $ref: '#/components/schemas/MappingInOutParameter'
+        references:
+          type: array
+          description: References to related objects.
+          items:
+            type: object
+            properties:
+              refObjectId:
+                type: string
+                description: The ID of the referenced object.
+              refType:
+                type: string
+                description: The type of reference.
+    MappingParameter:
+      type: object
+      description: A parameter defined within a mapping.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The parameter identifier.
+        name:
+          type: string
+          description: The parameter name.
+        type:
+          type: string
+          description: The parameter data type.
+        description:
+          type: string
+          description: A description of the parameter.
+        customFuncId:
+          type: string
+          description: The mapplet ID for mapplet-type parameters.
+        uiProperties:
+          type: string
+          description: >-
+            Display configuration including connection type, logical
+            connection, order, visibility, editability, and control type.
+    MappingInOutParameter:
+      type: object
+      description: An in-out parameter defined within a mapping.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The parameter ID.
+        name:
+          type: string
+          description: The parameter name.
+        description:
+          type: string
+          description: A description of the parameter.
+        initialValue:
+          type: string
+          description: The starting value for the parameter.
+        datatype:
+          type: string
+          description: The data type of the parameter.
+        precision:
+          type: string
+          description: The numeric precision.
+        scale:
+          type: string
+          description: The decimal scale.
+        retentionPolicy:
+          type: string
+          description: The value retention policy.
+        aggregationType:
+          type: string
+          description: The method for determining the final value.
+        currentValue:
+          type: string
+          description: The current parameter value.
+    MappingTask:
+      type: object
+      description: >-
+        Represents a mapping task that executes a mapping with specific
+        source and target connections and runtime parameters.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: mttask
+        id:
+          type: string
+          description: The unique identifier for the mapping task.
+        orgId:
+          type: string
+          description: The organization ID that owns the task.
+        name:
+          type: string
+          description: The name of the mapping task.
+        description:
+          type: string
+          description: A description of the mapping task.
+        createTime:
+          type: string
+          format: date-time
+          description: The time the mapping task was created.
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the mapping task was last updated.
+        createdBy:
+          type: string
+          description: The user who created the mapping task.
+        updatedBy:
+          type: string
+          description: The user who last updated the mapping task.
+        mappingId:
+          type: string
+          description: The ID of the mapping that this task executes.
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment to use for execution.
+        scheduleId:
+          type: string
+          description: The schedule ID if the task is scheduled.
+        preProcessingCmd:
+          type: string
+          description: The command to run before the task executes.
+        postProcessingCmd:
+          type: string
+          description: The command to run after the task executes.
+        parameters:
+          type: array
+          description: >-
+            The parameter values for this task execution. Overrides
+            default mapping parameters.
+          items:
+            $ref: '#/components/schemas/MappingParameter'
+        sourceConnectionId:
+          type: string
+          description: The source connection ID for the mapping task.
+        targetConnectionId:
+          type: string
+          description: The target connection ID for the mapping task.
+        frsId:
+          type: string
+          description: The federated task ID.
+        active:
+          type: boolean
+          description: Whether the mapping task is active.
+    MappingTaskCreateRequest:
+      type: object
+      description: Request body for creating a new mapping task.
+      required:
+        - '@type'
+        - name
+        - mappingId
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: mttask
+        name:
+          type: string
+          description: The name for the new mapping task.
+        description:
+          type: string
+          description: A description of the mapping task.
+        mappingId:
+          type: string
+          description: The ID of the mapping to execute.
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment to use for execution.
+        scheduleId:
+          type: string
+          description: The schedule to associate with the task.
+        preProcessingCmd:
+          type: string
+          description: The command to run before the task.
+        postProcessingCmd:
+          type: string
+          description: The command to run after the task.
+        sourceConnectionId:
+          type: string
+          description: The source connection ID.
+        targetConnectionId:
+          type: string
+          description: The target connection ID.
+        parameters:
+          type: array
+          description: Parameter value overrides.
+          items:
+            $ref: '#/components/schemas/MappingParameter'
+    MappingTaskUpdateRequest:
+      type: object
+      description: Request body for updating an existing mapping task.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: mttask
+        name:
+          type: string
+          description: The updated name.
+        description:
+          type: string
+          description: The updated description.
+        runtimeEnvironmentId:
+          type: string
+          description: The updated runtime environment.
+        scheduleId:
+          type: string
+          description: The updated schedule ID.
+        preProcessingCmd:
+          type: string
+          description: The updated pre-processing command.
+        postProcessingCmd:
+          type: string
+          description: The updated post-processing command.
+        sourceConnectionId:
+          type: string
+          description: The updated source connection ID.
+        targetConnectionId:
+          type: string
+          description: The updated target connection ID.
+        parameters:
+          type: array
+          description: Updated parameter values.
+          items:
+            $ref: '#/components/schemas/MappingParameter'
+    JobStartRequest:
+      type: object
+      description: >-
+        Request body for starting a job. You can identify the task by
+        taskId or taskName, and must specify the task type.
+      required:
+        - '@type'
+        - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+        taskId:
+          type: string
+          description: >-
+            The ID of the task to run. Either taskId or taskName must
+            be provided.
+        taskName:
+          type: string
+          description: >-
+            The name of the task to run. Either taskId or taskName
+            must be provided.
+        taskType:
+          type: string
+          description: >-
+            The type of the task to run. Supported values include MTT
+            (mapping task), WORKFLOW (taskflow), DSS (synchronization
+            task), DRS (data replication task), and PCS (PowerCenter
+            task).
+          enum:
+            - MTT
+            - WORKFLOW
+            - DSS
+            - DRS
+            - PCS
+        callbackUrl:
+          type: string
+          format: uri
+          description: >-
+            An optional URL that receives a callback when the job
+            completes.
+        runtime:
+          type: object
+          description: >-
+            Optional runtime configuration for the job execution.
+          properties:
+            '@type':
+              type: string
+              description: The runtime object type identifier.
+            runtimeEnvironmentId:
+              type: string
+              description: Override the runtime environment for this execution.
+    JobStartResponse:
+      type: object
+      description: Response returned when a job is successfully started.
+      properties:
+        taskId:
+          type: string
+          description: The ID of the task that was started.
+        taskType:
+          type: string
+          description: The type of the task.
+        runId:
+          type: integer
+          format: int64
+          description: >-
+            The unique run ID for this job execution. Use this ID to
+            track job status.
+    JobStopRequest:
+      type: object
+      description: Request body for stopping a running job.
+      required:
+        - '@type'
+        - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+        taskId:
+          type: string
+          description: >-
+            The ID of the task to stop. Either taskId or taskName must
+            be provided.
+        taskName:
+          type: string
+          description: >-
+            The name of the task to stop. Either taskId or taskName
+            must be provided.
+        taskType:
+          type: string
+          description: The type of the task to stop.
+          enum:
+            - MTT
+            - WORKFLOW
+            - DSS
+            - DRS
+            - PCS
+        cleanStop:
+          type: boolean
+          description: >-
+            When true, allows the job to finish processing the current
+            row before stopping. When false, stops the job immediately.
+          default: false
+    ActivityLogEntry:
+      type: object
+      description: >-
+        An entry in the activity log representing the execution status
+        of a job.
+      properties:
+        id:
+          type: string
+          description: The activity log entry ID.
+        type:
+          type: string
+          description: The type of activity.
+        objectId:
+          type: string
+          description: The ID of the task or object.
+        objectName:
+          type: string
+          description: The name of the task or object.
+        runId:
+          type: integer
+          format: int64
+          description: The job run ID.
+        agentId:
+          type: string
+          description: The Secure Agent that ran the job.
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment used.
+        startTime:
+          type: string
+          format: date-time
+          description: The time the job started.
+        endTime:
+          type: string
+          format: date-time
+          description: The time the job completed.
+        state:
+          type: integer
+          description: >-
+            The job execution state. Common values are 1 (success),
+            2 (warning), 3 (error).
+        failedSourceRows:
+          type: integer
+          format: int64
+          description: The number of source rows that failed.
+        successSourceRows:
+          type: integer
+          format: int64
+          description: The number of source rows processed successfully.
+        failedTargetRows:
+          type: integer
+          format: int64
+          description: The number of target rows that failed.
+        successTargetRows:
+          type: integer
+          format: int64
+          description: The number of target rows written successfully.
+        totalSuccessRows:
+          type: integer
+          format: int64
+          description: The total number of rows processed successfully.
+        totalErrorRows:
+          type: integer
+          format: int64
+          description: The total number of rows that encountered errors.
+        errorMsg:
+          type: string
+          description: The error message if the job failed.
+        startedBy:
+          type: string
+          description: The user who started the job.
+        runContextType:
+          type: string
+          description: >-
+            The context in which the job was run (e.g., API, SCHEDULER,
+            UI).
+        entries:
+          type: array
+          description: Sub-entries for multi-step jobs.
+          items:
+            type: object
+    Schedule:
+      type: object
+      description: A task execution schedule.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: schedule
+        id:
+          type: string
+          description: The unique identifier for the schedule.
+        orgId:
+          type: string
+          description: The organization ID.
+        name:
+          type: string
+          description: The name of the schedule.
+        description:
+          type: string
+          description: A description of the schedule.
+        createTime:
+          type: string
+          format: date-time
+          description: The time the schedule was created.
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the schedule was last updated.
+        createdBy:
+          type: string
+          description: The user who created the schedule.
+        updatedBy:
+          type: string
+          description: The user who last updated the schedule.
+        startTime:
+          type: string
+          format: date-time
+          description: The scheduled start time.
+        endTime:
+          type: string
+          format: date-time
+          description: The scheduled end time.
+        interval:
+          type: string
+          description: >-
+            The recurrence interval (e.g., None, Daily, Weekly,
+            Monthly).
+        frequency:
+          type: integer
+          description: How often the schedule repeats within the interval.
+        timezone:
+          type: string
+          description: The time zone for the schedule.
+        rangeStartTime:
+          type: string
+          format: date-time
+          description: The start of the time range within each day.
+        rangeEndTime:
+          type: string
+          format: date-time
+          description: The end of the time range within each day.
+        dayOfWeek:
+          type: string
+          description: >-
+            The day(s) of the week for weekly schedules (e.g., Mon,
+            Tue, Wed).
+        dayOfMonth:
+          type: integer
+          description: The day of the month for monthly schedules.
+    ScheduleCreateRequest:
+      type: object
+      description: Request body for creating a new schedule.
+      required:
+        - '@type'
+        - name
+        - startTime
+      properties:
+        '@type':
+          type: string
+          const: schedule
+        name:
+          type: string
+          description: The name for the new schedule.
+        description:
+          type: string
+          description: A description of the schedule.
+        startTime:
+          type: string
+          format: date-time
+          description: The scheduled start time.
+        endTime:
+          type: string
+          format: date-time
+          description: The scheduled end time.
+        interval:
+          type: string
+          description: The recurrence interval.
+        frequency:
+          type: integer
+          description: The repeat frequency.
+        timezone:
+          type: string
+          description: The time zone.
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+        message:
+          type: string
+          description: A human-readable error message.
+        description:
+          type: string
+          description: A detailed description of the error.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.

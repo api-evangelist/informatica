@@ -1,0 +1,370 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "infa": "https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/ns#",
+    "iics": "https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/iics#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+
+    "Connection": {
+      "@id": "infa:Connection",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "orgId": {
+          "@id": "infa:organizationId",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "infa:connectionType",
+          "@type": "xsd:string"
+        },
+        "host": {
+          "@id": "schema:url",
+          "@type": "xsd:string"
+        },
+        "port": {
+          "@id": "infa:port",
+          "@type": "xsd:integer"
+        },
+        "database": {
+          "@id": "infa:database",
+          "@type": "xsd:string"
+        },
+        "schema": {
+          "@id": "infa:databaseSchema",
+          "@type": "xsd:string"
+        },
+        "username": {
+          "@id": "infa:username",
+          "@type": "xsd:string"
+        },
+        "authenticationType": {
+          "@id": "infa:authenticationType",
+          "@type": "xsd:string"
+        },
+        "serviceUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "codepage": {
+          "@id": "infa:codepage",
+          "@type": "xsd:string"
+        },
+        "runtimeEnvironmentId": {
+          "@id": "infa:runtimeEnvironmentId",
+          "@type": "xsd:string"
+        },
+        "agentId": {
+          "@id": "infa:secureAgentId",
+          "@type": "xsd:string"
+        },
+        "createTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updateTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "createdBy": {
+          "@id": "dcterms:creator",
+          "@type": "xsd:string"
+        },
+        "updatedBy": {
+          "@id": "infa:updatedBy",
+          "@type": "xsd:string"
+        },
+        "connParams": {
+          "@id": "infa:connectionParameters",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Mapping": {
+      "@id": "infa:Mapping",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "orgId": {
+          "@id": "infa:organizationId",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "createTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updateTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "createdBy": {
+          "@id": "dcterms:creator",
+          "@type": "xsd:string"
+        },
+        "updatedBy": {
+          "@id": "infa:updatedBy",
+          "@type": "xsd:string"
+        },
+        "templateId": {
+          "@id": "infa:templateId",
+          "@type": "xsd:string"
+        },
+        "deployTime": {
+          "@id": "infa:deployTime",
+          "@type": "xsd:dateTime"
+        },
+        "hasParameters": {
+          "@id": "infa:hasParameters",
+          "@type": "xsd:boolean"
+        },
+        "valid": {
+          "@id": "infa:isValid",
+          "@type": "xsd:boolean"
+        },
+        "fixedConnection": {
+          "@id": "infa:fixedConnection",
+          "@type": "xsd:boolean"
+        },
+        "tasks": {
+          "@id": "infa:taskCount",
+          "@type": "xsd:integer"
+        },
+        "parameters": {
+          "@id": "infa:parameters",
+          "@container": "@list"
+        },
+        "inOutParameters": {
+          "@id": "infa:inOutParameters",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "MappingTask": {
+      "@id": "infa:MappingTask",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "orgId": {
+          "@id": "infa:organizationId",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "mappingId": {
+          "@id": "infa:mappingId",
+          "@type": "xsd:string"
+        },
+        "runtimeEnvironmentId": {
+          "@id": "infa:runtimeEnvironmentId",
+          "@type": "xsd:string"
+        },
+        "scheduleId": {
+          "@id": "infa:scheduleId",
+          "@type": "xsd:string"
+        },
+        "sourceConnectionId": {
+          "@id": "infa:sourceConnectionId",
+          "@type": "xsd:string"
+        },
+        "targetConnectionId": {
+          "@id": "infa:targetConnectionId",
+          "@type": "xsd:string"
+        },
+        "createTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updateTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "active": {
+          "@id": "infa:isActive",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Job": {
+      "@id": "infa:Job",
+      "@context": {
+        "taskId": {
+          "@id": "infa:taskId",
+          "@type": "xsd:string"
+        },
+        "taskName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "taskType": {
+          "@id": "infa:taskType",
+          "@type": "xsd:string"
+        },
+        "runId": {
+          "@id": "infa:runId",
+          "@type": "xsd:integer"
+        },
+        "callbackUrl": {
+          "@id": "infa:callbackUrl",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "ActivityLogEntry": {
+      "@id": "infa:ActivityLogEntry",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "objectId": {
+          "@id": "infa:objectId",
+          "@type": "xsd:string"
+        },
+        "objectName": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "runId": {
+          "@id": "infa:runId",
+          "@type": "xsd:integer"
+        },
+        "startTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "state": {
+          "@id": "infa:executionState",
+          "@type": "xsd:integer"
+        },
+        "successSourceRows": {
+          "@id": "infa:successSourceRows",
+          "@type": "xsd:integer"
+        },
+        "failedSourceRows": {
+          "@id": "infa:failedSourceRows",
+          "@type": "xsd:integer"
+        },
+        "successTargetRows": {
+          "@id": "infa:successTargetRows",
+          "@type": "xsd:integer"
+        },
+        "failedTargetRows": {
+          "@id": "infa:failedTargetRows",
+          "@type": "xsd:integer"
+        },
+        "errorMsg": {
+          "@id": "infa:errorMessage",
+          "@type": "xsd:string"
+        },
+        "startedBy": {
+          "@id": "infa:startedBy",
+          "@type": "xsd:string"
+        },
+        "runContextType": {
+          "@id": "infa:runContextType",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Schedule": {
+      "@id": "infa:Schedule",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "startTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:dateTime"
+        },
+        "interval": {
+          "@id": "schema:repeatFrequency",
+          "@type": "xsd:string"
+        },
+        "frequency": {
+          "@id": "infa:frequency",
+          "@type": "xsd:integer"
+        },
+        "timezone": {
+          "@id": "infa:timezone",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Session": {
+      "@id": "infa:Session",
+      "@context": {
+        "icSessionId": {
+          "@id": "infa:sessionId",
+          "@type": "xsd:string"
+        },
+        "serverUrl": {
+          "@id": "infa:serverUrl",
+          "@type": "@id"
+        },
+        "orgId": {
+          "@id": "infa:organizationId",
+          "@type": "xsd:string"
+        },
+        "userId": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  }
+}
