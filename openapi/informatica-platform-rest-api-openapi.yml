@@ -105,7 +105,7 @@ paths:
   /saas/api/v2/user/logout:
     post:
       operationId: logout
-      summary: Log out and end the REST API session
+      summary: Informatica Log out and end the REST API session
       description: >-
         Ends the current REST API session. You can also end all active
         sessions for the organization.
@@ -123,7 +123,7 @@ paths:
   /saas/api/v2/connection:
     get:
       operationId: listConnections
-      summary: Retrieve all connections in the organization
+      summary: Informatica Retrieve all connections in the organization
       description: >-
         Returns connection details for all connections configured in the
         organization. Results can be filtered by agent or runtime
@@ -147,7 +147,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createConnection
-      summary: Create a new connection
+      summary: Informatica Create a new connection
       description: >-
         Creates a new connection in the organization with the specified
         configuration including connection type, credentials, and runtime
@@ -193,7 +193,7 @@ paths:
   /saas/api/v2/connection/{connectionId}:
     get:
       operationId: getConnection
-      summary: Retrieve a connection by ID
+      summary: Informatica Retrieve a connection by ID
       description: Returns the details of a specific connection identified by its ID.
       tags:
         - Connections
@@ -214,7 +214,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateConnection
-      summary: Update an existing connection
+      summary: Informatica Update an existing connection
       description: >-
         Updates the configuration of an existing connection identified by
         its ID.
@@ -249,7 +249,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteConnection
-      summary: Delete a connection
+      summary: Informatica Delete a connection
       description: Deletes the connection identified by its ID.
       tags:
         - Connections
@@ -267,7 +267,7 @@ paths:
   /saas/api/v2/connection/name/{connectionName}:
     get:
       operationId: getConnectionByName
-      summary: Retrieve a connection by name
+      summary: Informatica Retrieve a connection by name
       description: >-
         Returns the details of a specific connection identified by its
         name. Spaces in the name must be encoded as %20.
@@ -291,7 +291,7 @@ paths:
   /saas/api/v2/connection/search:
     get:
       operationId: searchConnections
-      summary: Search for connections by agent or runtime environment
+      summary: Informatica Search for connections by agent or runtime environment
       description: >-
         Searches for connections filtered by Secure Agent ID or runtime
         environment ID, combined with connection type.
@@ -334,7 +334,7 @@ paths:
   /saas/api/v2/connection/{connectionId}/test:
     post:
       operationId: testConnection
-      summary: Test a connection
+      summary: Informatica Test a connection
       description: >-
         Tests the connection identified by its ID to verify that the
         credentials and configuration are valid.
@@ -365,7 +365,7 @@ paths:
   /saas/api/v2/mapping:
     get:
       operationId: listMappings
-      summary: Retrieve all mappings in the organization
+      summary: Informatica Retrieve all mappings in the organization
       description: >-
         Returns the mapping object for every mapping in the organization.
         When retrieving all mappings, parameter details are not included.
@@ -389,7 +389,7 @@ paths:
   /saas/api/v2/mapping/{mappingId}:
     get:
       operationId: getMapping
-      summary: Retrieve a mapping by ID
+      summary: Informatica Retrieve a mapping by ID
       description: >-
         Returns the details of a specific mapping identified by its ID,
         including parameter details.
@@ -413,7 +413,7 @@ paths:
   /saas/api/v2/mapping/name/{mappingName}:
     get:
       operationId: getMappingByName
-      summary: Retrieve a mapping by name
+      summary: Informatica Retrieve a mapping by name
       description: >-
         Returns the details of a specific mapping identified by its
         name.
@@ -437,7 +437,7 @@ paths:
   /saas/api/v2/mapping/search:
     get:
       operationId: searchMappings
-      summary: Search for mappings by name
+      summary: Informatica Search for mappings by name
       description: Searches for mappings matching the specified name pattern.
       tags:
         - Mappings
@@ -460,7 +460,7 @@ paths:
   /saas/api/v2/mttask:
     get:
       operationId: listMappingTasks
-      summary: Retrieve all mapping tasks in the organization
+      summary: Informatica Retrieve all mapping tasks in the organization
       description: >-
         Returns summary information for all mapping tasks configured in
         the organization.
@@ -483,7 +483,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createMappingTask
-      summary: Create a new mapping task
+      summary: Informatica Create a new mapping task
       description: >-
         Creates a new mapping task in the organization. The request body
         must include the mapping reference, source and target connection
@@ -512,7 +512,7 @@ paths:
   /saas/api/v2/mttask/{taskId}:
     get:
       operationId: getMappingTask
-      summary: Retrieve a mapping task by ID
+      summary: Informatica Retrieve a mapping task by ID
       description: Returns the full details of a mapping task identified by its ID.
       tags:
         - Mapping Tasks
@@ -533,7 +533,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateMappingTask
-      summary: Update an existing mapping task
+      summary: Informatica Update an existing mapping task
       description: Updates the configuration of a mapping task identified by its ID.
       tags:
         - Mapping Tasks
@@ -566,7 +566,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteMappingTask
-      summary: Delete a mapping task
+      summary: Informatica Delete a mapping task
       description: Deletes the mapping task identified by its ID.
       tags:
         - Mapping Tasks
@@ -584,7 +584,7 @@ paths:
   /saas/api/v2/mttask/name/{taskName}:
     get:
       operationId: getMappingTaskByName
-      summary: Retrieve a mapping task by name
+      summary: Informatica Retrieve a mapping task by name
       description: Returns the full details of a mapping task identified by its name.
       tags:
         - Mapping Tasks
@@ -606,7 +606,7 @@ paths:
   /saas/api/v2/job:
     post:
       operationId: startJob
-      summary: Start a job for a task or taskflow
+      summary: Informatica Start a job for a task or taskflow
       description: >-
         Starts a job for a task identified by task ID or task name.
         Supports mapping tasks, synchronization tasks, data replication
@@ -646,7 +646,7 @@ paths:
   /saas/api/v2/job/stop:
     post:
       operationId: stopJob
-      summary: Stop a running job
+      summary: Informatica Stop a running job
       description: >-
         Stops a running job. You can perform an immediate stop or a
         clean stop that allows the job to finish processing the current
@@ -681,7 +681,7 @@ paths:
   /saas/api/v2/activity/activityLog:
     get:
       operationId: getActivityLog
-      summary: Retrieve activity log entries for jobs
+      summary: Informatica Retrieve activity log entries for jobs
       description: >-
         Returns activity log entries for completed and running jobs in
         the organization. Results can be filtered by run ID, task ID,
@@ -741,7 +741,7 @@ paths:
   /saas/api/v2/schedule:
     get:
       operationId: listSchedules
-      summary: Retrieve all schedules
+      summary: Informatica Retrieve all schedules
       description: Returns a list of all schedules in the organization.
       tags:
         - Schedules
@@ -756,7 +756,7 @@ paths:
                   $ref: '#/components/schemas/Schedule'
     post:
       operationId: createSchedule
-      summary: Create a new schedule
+      summary: Informatica Create a new schedule
       description: Creates a new schedule in the organization.
       tags:
         - Schedules
@@ -776,7 +776,7 @@ paths:
   /saas/api/v2/schedule/{scheduleId}:
     get:
       operationId: getSchedule
-      summary: Retrieve a schedule by ID
+      summary: Informatica Retrieve a schedule by ID
       description: Returns the details of a schedule identified by its ID.
       tags:
         - Schedules
@@ -796,7 +796,7 @@ paths:
                 $ref: '#/components/schemas/Schedule'
     put:
       operationId: updateSchedule
-      summary: Update an existing schedule
+      summary: Informatica Update an existing schedule
       description: Updates the configuration of a schedule identified by its ID.
       tags:
         - Schedules
@@ -822,7 +822,7 @@ paths:
                 $ref: '#/components/schemas/Schedule'
     delete:
       operationId: deleteSchedule
-      summary: Delete a schedule
+      summary: Informatica Delete a schedule
       description: Deletes the schedule identified by its ID.
       tags:
         - Schedules
