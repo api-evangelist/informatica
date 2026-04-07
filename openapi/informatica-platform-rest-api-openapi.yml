@@ -36,18 +36,18 @@ tags:
     description: >-
       Manage connections to data sources and targets including databases,
       flat files, cloud applications, and SaaS services.
-  - name: Mappings
-    description: >-
-      Retrieve mapping definitions and metadata for data integration
-      mappings within the organization.
-  - name: Mapping Tasks
-    description: >-
-      Create, retrieve, update, and delete mapping task configurations
-      that execute mappings with specific runtime parameters.
   - name: Jobs
     description: >-
       Start, stop, and monitor job execution for tasks, taskflows, and
       other runnable assets.
+  - name: Mapping Tasks
+    description: >-
+      Create, retrieve, update, and delete mapping task configurations
+      that execute mappings with specific runtime parameters.
+  - name: Mappings
+    description: >-
+      Retrieve mapping definitions and metadata for data integration
+      mappings within the organization.
   - name: Schedules
     description: Manage task execution schedules.
 paths:
