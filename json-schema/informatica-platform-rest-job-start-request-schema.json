@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobStartRequest",
+  "type": "object",
+  "description": "Request body for starting a job. You can identify the task by taskId or taskName, and must specify the task type.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"job\"."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "The ID of the task to run. Either taskId or taskName must be provided."
+    },
+    "taskName": {
+      "type": "string",
+      "description": "The name of the task to run. Either taskId or taskName must be provided."
+    },
+    "taskType": {
+      "type": "string",
+      "description": "The type of the task to run. Supported values include MTT (mapping task), WORKFLOW (taskflow), DSS (synchronization task), DRS (data replication task), and PCS (PowerCenter task)."
+    },
+    "callbackUrl": {
+      "type": "string",
+      "description": "An optional URL that receives a callback when the job completes."
+    },
+    "runtime": {
+      "type": "object",
+      "description": "Optional runtime configuration for the job execution."
+    }
+  }
+}

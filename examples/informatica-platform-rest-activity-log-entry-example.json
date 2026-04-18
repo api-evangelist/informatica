@@ -1,0 +1,22 @@
+{
+  "id": "abc123",
+  "type": "example_value",
+  "objectId": "500123",
+  "objectName": "example_value",
+  "runId": "500123",
+  "agentId": "500123",
+  "runtimeEnvironmentId": "500123",
+  "startTime": "example_value",
+  "endTime": "example_value",
+  "state": 10,
+  "failedSourceRows": 10,
+  "successSourceRows": 10,
+  "failedTargetRows": 10,
+  "successTargetRows": 10,
+  "totalSuccessRows": 10,
+  "totalErrorRows": 10,
+  "errorMsg": "example_value",
+  "startedBy": "example_value",
+  "runContextType": "example_value",
+  "entries": []
+}

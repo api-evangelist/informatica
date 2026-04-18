@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Schedule",
+  "type": "object",
+  "properties": {
+    "@type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "updatedBy": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "interval": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "integer"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "rangeStartTime": {
+      "type": "string"
+    },
+    "rangeEndTime": {
+      "type": "string"
+    },
+    "dayOfWeek": {
+      "type": "string"
+    },
+    "dayOfMonth": {
+      "type": "integer"
+    }
+  }
+}

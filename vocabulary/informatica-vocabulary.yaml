@@ -1,0 +1,13 @@
+name: informatica API Vocabulary
+provider: informatica
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 28
+schemas: 18
+tags:
+- Authentication
+- Connections
+- Jobs
+- Mapping Tasks
+- Mappings
+- Schedules

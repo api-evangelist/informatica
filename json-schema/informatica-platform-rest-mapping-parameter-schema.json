@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MappingParameter",
+  "type": "object",
+  "description": "A parameter defined within a mapping.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The parameter identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The parameter name."
+    },
+    "type": {
+      "type": "string",
+      "description": "The parameter data type."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the parameter."
+    },
+    "customFuncId": {
+      "type": "string",
+      "description": "The mapplet ID for mapplet-type parameters."
+    },
+    "uiProperties": {
+      "type": "string",
+      "description": "Display configuration including connection type, logical connection, order, visibility, editability, and control type."
+    }
+  }
+}

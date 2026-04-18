@@ -1,0 +1,20 @@
+{
+  "@type": "example_value",
+  "id": "abc123",
+  "orgId": "500123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "createTime": "example_value",
+  "updateTime": "example_value",
+  "createdBy": "example_value",
+  "updatedBy": "example_value",
+  "startTime": "example_value",
+  "endTime": "example_value",
+  "interval": "example_value",
+  "frequency": 10,
+  "timezone": "example_value",
+  "rangeStartTime": "example_value",
+  "rangeEndTime": "example_value",
+  "dayOfWeek": "example_value",
+  "dayOfMonth": 10
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ConnectionUpdateRequest",
+  "type": "object",
+  "description": "Request body for updating an existing connection.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"connection\"."
+    },
+    "name": {
+      "type": "string",
+      "description": "The updated name for the connection."
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description of the connection."
+    },
+    "host": {
+      "type": "string",
+      "description": "The updated hostname or IP address."
+    },
+    "port": {
+      "type": "integer",
+      "description": "The updated port number."
+    },
+    "database": {
+      "type": "string",
+      "description": "The updated database name."
+    },
+    "schema": {
+      "type": "string",
+      "description": "The updated database schema."
+    },
+    "username": {
+      "type": "string",
+      "description": "The updated username."
+    },
+    "password": {
+      "type": "string",
+      "description": "The updated password."
+    },
+    "authenticationType": {
+      "type": "string",
+      "description": "The updated authentication method."
+    },
+    "serviceUrl": {
+      "type": "string",
+      "description": "The updated service endpoint URL."
+    },
+    "codepage": {
+      "type": "string",
+      "description": "The updated character encoding."
+    },
+    "connParams": {
+      "type": "object",
+      "description": "Updated connection-type-specific parameters."
+    }
+  }
+}

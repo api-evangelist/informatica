@@ -21,35 +21,35 @@ externalDocs:
   description: Informatica IICS REST API Reference
   url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
 servers:
-  - url: https://dm-us.informaticacloud.com
-    description: North America production pod
-  - url: https://dm-em.informaticacloud.com
-    description: Europe production pod
-  - url: https://dm-ap.informaticacloud.com
-    description: Asia-Pacific production pod
+- url: https://dm-us.informaticacloud.com
+  description: North America production pod
+- url: https://dm-em.informaticacloud.com
+  description: Europe production pod
+- url: https://dm-ap.informaticacloud.com
+  description: Asia-Pacific production pod
 security:
-  - icSessionId: []
+- icSessionId: []
 tags:
-  - name: Authentication
-    description: Login and session management operations.
-  - name: Connections
-    description: >-
-      Manage connections to data sources and targets including databases,
-      flat files, cloud applications, and SaaS services.
-  - name: Jobs
-    description: >-
-      Start, stop, and monitor job execution for tasks, taskflows, and
-      other runnable assets.
-  - name: Mapping Tasks
-    description: >-
-      Create, retrieve, update, and delete mapping task configurations
-      that execute mappings with specific runtime parameters.
-  - name: Mappings
-    description: >-
-      Retrieve mapping definitions and metadata for data integration
-      mappings within the organization.
-  - name: Schedules
-    description: Manage task execution schedules.
+- name: Authentication
+  description: Login and session management operations.
+- name: Connections
+  description: >-
+    Manage connections to data sources and targets including databases,
+    flat files, cloud applications, and SaaS services.
+- name: Jobs
+  description: >-
+    Start, stop, and monitor job execution for tasks, taskflows, and
+    other runnable assets.
+- name: Mapping Tasks
+  description: >-
+    Create, retrieve, update, and delete mapping task configurations
+    that execute mappings with specific runtime parameters.
+- name: Mappings
+  description: >-
+    Retrieve mapping definitions and metadata for data integration
+    mappings within the organization.
+- name: Schedules
+  description: Manage task execution schedules.
 paths:
   /ma/api/v2/user/login:
     post:
@@ -60,7 +60,7 @@ paths:
         subsequent API calls. The session ID expires after 30 minutes of
         inactivity.
       tags:
-        - Authentication
+      - Authentication
       security: []
       requestBody:
         required: true
@@ -96,21 +96,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Login401Example:
+                  summary: Default login 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '500':
           description: Internal server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Login500Example:
+                  summary: Default login 500 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/user/logout:
     post:
       operationId: logout
-      summary: Informatica Log out and end the REST API session
+      summary: Informatica Log Out and End the Rest Api Session
       description: >-
         Ends the current REST API session. You can also end all active
         sessions for the organization.
       tags:
-        - Authentication
+      - Authentication
       responses:
         '200':
           description: Successfully logged out.
@@ -120,16 +143,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Logout401Example:
+                  summary: Default logout 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/connection:
     get:
       operationId: listConnections
-      summary: Informatica Retrieve all connections in the organization
+      summary: Informatica Retrieve All Connections in the Organization
       description: >-
         Returns connection details for all connections configured in the
         organization. Results can be filtered by agent or runtime
         environment.
       tags:
-        - Connections
+      - Connections
       responses:
         '200':
           description: A list of connections.
@@ -139,21 +175,61 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Connection'
+              examples:
+                Listconnections200Example:
+                  summary: Default listConnections 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Listconnections401Example:
+                  summary: Default listConnections 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createConnection
-      summary: Informatica Create a new connection
+      summary: Informatica Create a New Connection
       description: >-
         Creates a new connection in the organization with the specified
         configuration including connection type, credentials, and runtime
         environment.
       tags:
-        - Connections
+      - Connections
       requestBody:
         required: true
         content:
@@ -178,27 +254,77 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
+              examples:
+                Createconnection200Example:
+                  summary: Default createConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '400':
           description: Invalid request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createconnection400Example:
+                  summary: Default createConnection 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createconnection401Example:
+                  summary: Default createConnection 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/connection/{connectionId}:
     get:
       operationId: getConnection
-      summary: Informatica Retrieve a connection by ID
+      summary: Informatica Retrieve a Connection by Id
       description: Returns the details of a specific connection identified by its ID.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - $ref: '#/components/parameters/connectionId'
+      - $ref: '#/components/parameters/connectionId'
       responses:
         '200':
           description: Connection details.
@@ -206,28 +332,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
+              examples:
+                Getconnection200Example:
+                  summary: Default getConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '404':
           description: Connection not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getconnection404Example:
+                  summary: Default getConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateConnection
-      summary: Informatica Update an existing connection
+      summary: Informatica Update an Existing Connection
       description: >-
         Updates the configuration of an existing connection identified by
         its ID.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - $ref: '#/components/parameters/connectionId'
+      - $ref: '#/components/parameters/connectionId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ConnectionUpdateRequest'
+            examples:
+              UpdateconnectionRequestExample:
+                summary: Default updateConnection request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  host: example_value
+                  port: 10
+                  database: example_value
+                  schema: example_value
+                  username: example_value
+                  password: example_value
+                  authenticationType: example_value
+                  serviceUrl: https://www.example.com
+                  codepage: example_value
+                  connParams: example_value
       responses:
         '200':
           description: Connection updated successfully.
@@ -235,26 +419,76 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
+              examples:
+                Updateconnection200Example:
+                  summary: Default updateConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '400':
           description: Invalid request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updateconnection400Example:
+                  summary: Default updateConnection 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '404':
           description: Connection not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updateconnection404Example:
+                  summary: Default updateConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteConnection
-      summary: Informatica Delete a connection
+      summary: Informatica Delete a Connection
       description: Deletes the connection identified by its ID.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - $ref: '#/components/parameters/connectionId'
+      - $ref: '#/components/parameters/connectionId'
       responses:
         '200':
           description: Connection deleted successfully.
@@ -264,17 +498,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Deleteconnection404Example:
+                  summary: Default deleteConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/connection/name/{connectionName}:
     get:
       operationId: getConnectionByName
-      summary: Informatica Retrieve a connection by name
+      summary: Informatica Retrieve a Connection by Name
       description: >-
         Returns the details of a specific connection identified by its
         name. Spaces in the name must be encoded as %20.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - $ref: '#/components/parameters/connectionName'
+      - $ref: '#/components/parameters/connectionName'
       responses:
         '200':
           description: Connection details.
@@ -282,40 +529,83 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Connection'
+              examples:
+                Getconnectionbyname200Example:
+                  summary: Default getConnectionByName 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '404':
           description: Connection not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getconnectionbyname404Example:
+                  summary: Default getConnectionByName 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/connection/search:
     get:
       operationId: searchConnections
-      summary: Informatica Search for connections by agent or runtime environment
+      summary: Informatica Search for Connections by Agent or Runtime Environment
       description: >-
         Searches for connections filtered by Secure Agent ID or runtime
         environment ID, combined with connection type.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - name: agentId
-          in: query
-          description: The Secure Agent ID to filter connections.
-          schema:
-            type: string
-        - name: runtimeEnvironmentId
-          in: query
-          description: The runtime environment ID to filter connections.
-          schema:
-            type: string
-        - name: uiType
-          in: query
-          required: true
-          description: >-
-            The connection type to filter by (e.g., Oracle, Salesforce,
-            MySQL).
-          schema:
-            type: string
+      - name: agentId
+        in: query
+        description: The Secure Agent ID to filter connections.
+        schema:
+          type: string
+        example: '500123'
+      - name: runtimeEnvironmentId
+        in: query
+        description: The runtime environment ID to filter connections.
+        schema:
+          type: string
+        example: '500123'
+      - name: uiType
+        in: query
+        required: true
+        description: >-
+          The connection type to filter by (e.g., Oracle, Salesforce,
+          MySQL).
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: A list of matching connections.
@@ -325,23 +615,63 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Connection'
+              examples:
+                Searchconnections200Example:
+                  summary: Default searchConnections 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Searchconnections401Example:
+                  summary: Default searchConnections 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/connection/{connectionId}/test:
     post:
       operationId: testConnection
-      summary: Informatica Test a connection
+      summary: Informatica Test a Connection
       description: >-
         Tests the connection identified by its ID to verify that the
         credentials and configuration are valid.
       tags:
-        - Connections
+      - Connections
       parameters:
-        - $ref: '#/components/parameters/connectionId'
+      - $ref: '#/components/parameters/connectionId'
       responses:
         '200':
           description: Connection test result.
@@ -356,21 +686,41 @@ paths:
                   message:
                     type: string
                     description: Message describing the test result.
+              examples:
+                Testconnection200Example:
+                  summary: Default testConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+                    message: example_value
         '404':
           description: Connection not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Testconnection404Example:
+                  summary: Default testConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mapping:
     get:
       operationId: listMappings
-      summary: Informatica Retrieve all mappings in the organization
+      summary: Informatica Retrieve All Mappings in the Organization
       description: >-
         Returns the mapping object for every mapping in the organization.
         When retrieving all mappings, parameter details are not included.
       tags:
-        - Mappings
+      - Mappings
       responses:
         '200':
           description: A list of mappings.
@@ -380,23 +730,68 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Mapping'
+              examples:
+                Listmappings200Example:
+                  summary: Default listMappings 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    bundleObjectId: '500123'
+                    bundleVersion: example_value
+                    templateId: '500123'
+                    deployTime: '2026-01-15T10:30:00Z'
+                    hasParameters: true
+                    valid: '500123'
+                    fixedConnection: true
+                    hasParametersDeployed: true
+                    fixedConnectionDeployed: true
+                    deployedTemplateId: '500123'
+                    tasks: 10
+                    parameters:
+                    - {}
+                    inOutParameters:
+                    - {}
+                    references:
+                    - refObjectId: '500123'
+                      refType: example_value
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Listmappings401Example:
+                  summary: Default listMappings 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mapping/{mappingId}:
     get:
       operationId: getMapping
-      summary: Informatica Retrieve a mapping by ID
+      summary: Informatica Retrieve a Mapping by Id
       description: >-
         Returns the details of a specific mapping identified by its ID,
         including parameter details.
       tags:
-        - Mappings
+      - Mappings
       parameters:
-        - $ref: '#/components/parameters/mappingId'
+      - $ref: '#/components/parameters/mappingId'
       responses:
         '200':
           description: Mapping details.
@@ -404,23 +799,82 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mapping'
+              examples:
+                Getmapping200Example:
+                  summary: Default getMapping 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    bundleObjectId: '500123'
+                    bundleVersion: example_value
+                    templateId: '500123'
+                    deployTime: '2026-01-15T10:30:00Z'
+                    hasParameters: true
+                    valid: '500123'
+                    fixedConnection: true
+                    hasParametersDeployed: true
+                    fixedConnectionDeployed: true
+                    deployedTemplateId: '500123'
+                    tasks: 10
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    inOutParameters:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      initialValue: example_value
+                      datatype: example_value
+                      precision: example_value
+                      scale: example_value
+                      retentionPolicy: example_value
+                      aggregationType: example_value
+                      currentValue: example_value
+                    references:
+                    - refObjectId: '500123'
+                      refType: example_value
         '404':
           description: Mapping not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getmapping404Example:
+                  summary: Default getMapping 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mapping/name/{mappingName}:
     get:
       operationId: getMappingByName
-      summary: Informatica Retrieve a mapping by name
+      summary: Informatica Retrieve a Mapping by Name
       description: >-
         Returns the details of a specific mapping identified by its
         name.
       tags:
-        - Mappings
+      - Mappings
       parameters:
-        - $ref: '#/components/parameters/mappingName'
+      - $ref: '#/components/parameters/mappingName'
       responses:
         '200':
           description: Mapping details.
@@ -428,26 +882,86 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Mapping'
+              examples:
+                Getmappingbyname200Example:
+                  summary: Default getMappingByName 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    bundleObjectId: '500123'
+                    bundleVersion: example_value
+                    templateId: '500123'
+                    deployTime: '2026-01-15T10:30:00Z'
+                    hasParameters: true
+                    valid: '500123'
+                    fixedConnection: true
+                    hasParametersDeployed: true
+                    fixedConnectionDeployed: true
+                    deployedTemplateId: '500123'
+                    tasks: 10
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    inOutParameters:
+                    - id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      initialValue: example_value
+                      datatype: example_value
+                      precision: example_value
+                      scale: example_value
+                      retentionPolicy: example_value
+                      aggregationType: example_value
+                      currentValue: example_value
+                    references:
+                    - refObjectId: '500123'
+                      refType: example_value
         '404':
           description: Mapping not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getmappingbyname404Example:
+                  summary: Default getMappingByName 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mapping/search:
     get:
       operationId: searchMappings
-      summary: Informatica Search for mappings by name
+      summary: Informatica Search for Mappings by Name
       description: Searches for mappings matching the specified name pattern.
       tags:
-        - Mappings
+      - Mappings
       parameters:
-        - name: name
-          in: query
-          required: true
-          description: The mapping name or name pattern to search for.
-          schema:
-            type: string
+      - name: name
+        in: query
+        required: true
+        description: The mapping name or name pattern to search for.
+        schema:
+          type: string
+        example: Example Title
       responses:
         '200':
           description: A list of matching mappings.
@@ -457,15 +971,50 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Mapping'
+              examples:
+                Searchmappings200Example:
+                  summary: Default searchMappings 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    bundleObjectId: '500123'
+                    bundleVersion: example_value
+                    templateId: '500123'
+                    deployTime: '2026-01-15T10:30:00Z'
+                    hasParameters: true
+                    valid: '500123'
+                    fixedConnection: true
+                    hasParametersDeployed: true
+                    fixedConnectionDeployed: true
+                    deployedTemplateId: '500123'
+                    tasks: 10
+                    parameters:
+                    - {}
+                    inOutParameters:
+                    - {}
+                    references:
+                    - refObjectId: '500123'
+                      refType: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mttask:
     get:
       operationId: listMappingTasks
-      summary: Informatica Retrieve all mapping tasks in the organization
+      summary: Informatica Retrieve All Mapping Tasks in the Organization
       description: >-
         Returns summary information for all mapping tasks configured in
         the organization.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       responses:
         '200':
           description: A list of mapping tasks.
@@ -475,27 +1024,87 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MappingTask'
+              examples:
+                Listmappingtasks200Example:
+                  summary: Default listMappingTasks 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    mappingId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    scheduleId: '500123'
+                    preProcessingCmd: example_value
+                    postProcessingCmd: example_value
+                    parameters:
+                    - {}
+                    sourceConnectionId: '500123'
+                    targetConnectionId: '500123'
+                    frsId: '500123'
+                    active: true
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Listmappingtasks401Example:
+                  summary: Default listMappingTasks 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createMappingTask
-      summary: Informatica Create a new mapping task
+      summary: Informatica Create a New Mapping Task
       description: >-
         Creates a new mapping task in the organization. The request body
         must include the mapping reference, source and target connection
         configurations, and runtime parameters.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MappingTaskCreateRequest'
+            examples:
+              CreatemappingtaskRequestExample:
+                summary: Default createMappingTask request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  mappingId: '500123'
+                  runtimeEnvironmentId: '500123'
+                  scheduleId: '500123'
+                  preProcessingCmd: example_value
+                  postProcessingCmd: example_value
+                  sourceConnectionId: '500123'
+                  targetConnectionId: '500123'
+                  parameters:
+                  - id: abc123
+                    name: Example Title
+                    type: example_value
+                    description: A sample description.
+                    customFuncId: '500123'
+                    uiProperties: example_value
       responses:
         '200':
           description: Mapping task created successfully.
@@ -503,21 +1112,64 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingTask'
+              examples:
+                Createmappingtask200Example:
+                  summary: Default createMappingTask 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    mappingId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    scheduleId: '500123'
+                    preProcessingCmd: example_value
+                    postProcessingCmd: example_value
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    sourceConnectionId: '500123'
+                    targetConnectionId: '500123'
+                    frsId: '500123'
+                    active: true
         '400':
           description: Invalid request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createmappingtask400Example:
+                  summary: Default createMappingTask 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mttask/{taskId}:
     get:
       operationId: getMappingTask
-      summary: Informatica Retrieve a mapping task by ID
+      summary: Informatica Retrieve a Mapping Task by Id
       description: Returns the full details of a mapping task identified by its ID.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       parameters:
-        - $ref: '#/components/parameters/taskId'
+      - $ref: '#/components/parameters/taskId'
       responses:
         '200':
           description: Mapping task details.
@@ -525,26 +1177,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingTask'
+              examples:
+                Getmappingtask200Example:
+                  summary: Default getMappingTask 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    mappingId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    scheduleId: '500123'
+                    preProcessingCmd: example_value
+                    postProcessingCmd: example_value
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    sourceConnectionId: '500123'
+                    targetConnectionId: '500123'
+                    frsId: '500123'
+                    active: true
         '404':
           description: Mapping task not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getmappingtask404Example:
+                  summary: Default getMappingTask 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateMappingTask
-      summary: Informatica Update an existing mapping task
+      summary: Informatica Update an Existing Mapping Task
       description: Updates the configuration of a mapping task identified by its ID.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       parameters:
-        - $ref: '#/components/parameters/taskId'
+      - $ref: '#/components/parameters/taskId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MappingTaskUpdateRequest'
+            examples:
+              UpdatemappingtaskRequestExample:
+                summary: Default updateMappingTask request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  runtimeEnvironmentId: '500123'
+                  scheduleId: '500123'
+                  preProcessingCmd: example_value
+                  postProcessingCmd: example_value
+                  sourceConnectionId: '500123'
+                  targetConnectionId: '500123'
+                  parameters:
+                  - id: abc123
+                    name: Example Title
+                    type: example_value
+                    description: A sample description.
+                    customFuncId: '500123'
+                    uiProperties: example_value
       responses:
         '200':
           description: Mapping task updated successfully.
@@ -552,26 +1268,79 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingTask'
+              examples:
+                Updatemappingtask200Example:
+                  summary: Default updateMappingTask 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    mappingId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    scheduleId: '500123'
+                    preProcessingCmd: example_value
+                    postProcessingCmd: example_value
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    sourceConnectionId: '500123'
+                    targetConnectionId: '500123'
+                    frsId: '500123'
+                    active: true
         '400':
           description: Invalid request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updatemappingtask400Example:
+                  summary: Default updateMappingTask 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '404':
           description: Mapping task not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updatemappingtask404Example:
+                  summary: Default updateMappingTask 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteMappingTask
-      summary: Informatica Delete a mapping task
+      summary: Informatica Delete a Mapping Task
       description: Deletes the mapping task identified by its ID.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       parameters:
-        - $ref: '#/components/parameters/taskId'
+      - $ref: '#/components/parameters/taskId'
       responses:
         '200':
           description: Mapping task deleted successfully.
@@ -581,15 +1350,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Deletemappingtask404Example:
+                  summary: Default deleteMappingTask 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/mttask/name/{taskName}:
     get:
       operationId: getMappingTaskByName
-      summary: Informatica Retrieve a mapping task by name
+      summary: Informatica Retrieve a Mapping Task by Name
       description: Returns the full details of a mapping task identified by its name.
       tags:
-        - Mapping Tasks
+      - Mapping Tasks
       parameters:
-        - $ref: '#/components/parameters/taskName'
+      - $ref: '#/components/parameters/taskName'
       responses:
         '200':
           description: Mapping task details.
@@ -597,22 +1379,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MappingTask'
+              examples:
+                Getmappingtaskbyname200Example:
+                  summary: Default getMappingTaskByName 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    mappingId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    scheduleId: '500123'
+                    preProcessingCmd: example_value
+                    postProcessingCmd: example_value
+                    parameters:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                      description: A sample description.
+                      customFuncId: '500123'
+                      uiProperties: example_value
+                    sourceConnectionId: '500123'
+                    targetConnectionId: '500123'
+                    frsId: '500123'
+                    active: true
         '404':
           description: Mapping task not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getmappingtaskbyname404Example:
+                  summary: Default getMappingTaskByName 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/job:
     post:
       operationId: startJob
-      summary: Informatica Start a job for a task or taskflow
+      summary: Informatica Start a Job for a Task or Taskflow
       description: >-
         Starts a job for a task identified by task ID or task name.
         Supports mapping tasks, synchronization tasks, data replication
         tasks, taskflows, and PowerCenter tasks.
       tags:
-        - Jobs
+      - Jobs
       requestBody:
         required: true
         content:
@@ -631,28 +1456,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/JobStartResponse'
+              examples:
+                Startjob200Example:
+                  summary: Default startJob 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: '500123'
+                    taskType: example_value
+                    runId: '500123'
         '400':
           description: Invalid request.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Startjob400Example:
+                  summary: Default startJob 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Startjob401Example:
+                  summary: Default startJob 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/job/stop:
     post:
       operationId: stopJob
-      summary: Informatica Stop a running job
+      summary: Informatica Stop a Running Job
       description: >-
         Stops a running job. You can perform an immediate stop or a
         clean stop that allows the job to finish processing the current
         row.
       tags:
-        - Jobs
+      - Jobs
       requestBody:
         required: true
         content:
@@ -672,57 +1528,85 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Stopjob400Example:
+                  summary: Default stopJob 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
         '404':
           description: Job not found.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Stopjob404Example:
+                  summary: Default stopJob 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/activity/activityLog:
     get:
       operationId: getActivityLog
-      summary: Informatica Retrieve activity log entries for jobs
+      summary: Informatica Retrieve Activity Log Entries for Jobs
       description: >-
         Returns activity log entries for completed and running jobs in
         the organization. Results can be filtered by run ID, task ID,
         or other criteria.
       tags:
-        - Jobs
+      - Jobs
       parameters:
-        - name: runId
-          in: query
-          description: Filter by the job run ID.
-          schema:
-            type: integer
-            format: int64
-        - name: taskId
-          in: query
-          description: Filter by the task ID.
-          schema:
-            type: string
-        - name: taskType
-          in: query
-          description: >-
-            Filter by task type (e.g., MTT for mapping task, WORKFLOW
-            for taskflow).
-          schema:
-            type: string
-        - name: startTimeUTC
-          in: query
-          description: >-
-            Filter for jobs started after this UTC timestamp in ISO 8601
-            format.
-          schema:
-            type: string
-            format: date-time
-        - name: endTimeUTC
-          in: query
-          description: >-
-            Filter for jobs completed before this UTC timestamp in ISO
-            8601 format.
-          schema:
-            type: string
-            format: date-time
+      - name: runId
+        in: query
+        description: Filter by the job run ID.
+        schema:
+          type: integer
+          format: int64
+        example: '500123'
+      - name: taskId
+        in: query
+        description: Filter by the task ID.
+        schema:
+          type: string
+        example: '500123'
+      - name: taskType
+        in: query
+        description: >-
+          Filter by task type (e.g., MTT for mapping task, WORKFLOW
+          for taskflow).
+        schema:
+          type: string
+        example: example_value
+      - name: startTimeUTC
+        in: query
+        description: >-
+          Filter for jobs started after this UTC timestamp in ISO 8601
+          format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: endTimeUTC
+        in: query
+        description: >-
+          Filter for jobs completed before this UTC timestamp in ISO
+          8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Activity log entries.
@@ -732,19 +1616,58 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ActivityLogEntry'
+              examples:
+                Getactivitylog200Example:
+                  summary: Default getActivityLog 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    type: example_value
+                    objectId: '500123'
+                    objectName: example_value
+                    runId: '500123'
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    state: 10
+                    failedSourceRows: 10
+                    successSourceRows: 10
+                    failedTargetRows: 10
+                    successTargetRows: 10
+                    totalSuccessRows: 10
+                    totalErrorRows: 10
+                    errorMsg: example_value
+                    startedBy: example_value
+                    runContextType: example_value
+                    entries:
+                    - {}
         '401':
           description: Unauthorized or session expired.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getactivitylog401Example:
+                  summary: Default getActivityLog 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/schedule:
     get:
       operationId: listSchedules
-      summary: Informatica Retrieve all schedules
+      summary: Informatica Retrieve All Schedules
       description: Returns a list of all schedules in the organization.
       tags:
-        - Schedules
+      - Schedules
       responses:
         '200':
           description: A list of schedules.
@@ -754,18 +1677,57 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Schedule'
+              examples:
+                Listschedules200Example:
+                  summary: Default listSchedules 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createSchedule
-      summary: Informatica Create a new schedule
+      summary: Informatica Create a New Schedule
       description: Creates a new schedule in the organization.
       tags:
-        - Schedules
+      - Schedules
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ScheduleCreateRequest'
+            examples:
+              CreatescheduleRequestExample:
+                summary: Default createSchedule request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  startTime: '2026-01-15T10:30:00Z'
+                  endTime: '2026-01-15T10:30:00Z'
+                  interval: example_value
+                  frequency: 10
+                  timezone: example_value
       responses:
         '200':
           description: Schedule created successfully.
@@ -773,20 +1735,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Schedule'
+              examples:
+                Createschedule200Example:
+                  summary: Default createSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /saas/api/v2/schedule/{scheduleId}:
     get:
       operationId: getSchedule
-      summary: Informatica Retrieve a schedule by ID
+      summary: Informatica Retrieve a Schedule by Id
       description: Returns the details of a schedule identified by its ID.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - name: scheduleId
-          in: path
-          required: true
-          description: The unique identifier of the schedule.
-          schema:
-            type: string
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Schedule details.
@@ -794,25 +1783,65 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Schedule'
+              examples:
+                Getschedule200Example:
+                  summary: Default getSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateSchedule
-      summary: Informatica Update an existing schedule
+      summary: Informatica Update an Existing Schedule
       description: Updates the configuration of a schedule identified by its ID.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - name: scheduleId
-          in: path
-          required: true
-          description: The unique identifier of the schedule.
-          schema:
-            type: string
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ScheduleCreateRequest'
+            examples:
+              UpdatescheduleRequestExample:
+                summary: Default updateSchedule request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  startTime: '2026-01-15T10:30:00Z'
+                  endTime: '2026-01-15T10:30:00Z'
+                  interval: example_value
+                  frequency: 10
+                  timezone: example_value
       responses:
         '200':
           description: Schedule updated successfully.
@@ -820,22 +1849,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Schedule'
+              examples:
+                Updateschedule200Example:
+                  summary: Default updateSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteSchedule
-      summary: Informatica Delete a schedule
+      summary: Informatica Delete a Schedule
       description: Deletes the schedule identified by its ID.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - name: scheduleId
-          in: path
-          required: true
-          description: The unique identifier of the schedule.
-          schema:
-            type: string
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Schedule deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     icSessionId:
@@ -895,22 +1954,25 @@ components:
       type: object
       description: Request body for the login endpoint.
       required:
-        - '@type'
-        - username
-        - password
+      - '@type'
+      - username
+      - password
       properties:
         '@type':
           type: string
           description: The resource type identifier. Must be set to "login".
           enum:
-            - login
+          - login
+          example: login
         username:
           type: string
           description: The Informatica Intelligent Cloud Services username.
+          example: example_value
         password:
           type: string
           format: password
           description: The account password.
+          example: example_value
     LoginResponse:
       type: object
       description: >-
@@ -920,61 +1982,77 @@ components:
         id:
           type: string
           description: The user ID.
+          example: abc123
         orgId:
           type: string
           description: The organization ID.
+          example: '500123'
         orgUuid:
           type: string
           format: uuid
           description: The organization UUID.
+          example: '500123'
         name:
           type: string
           description: The username used to log in.
+          example: Example Title
         firstName:
           type: string
           description: The first name of the user.
+          example: example_value
         lastName:
           type: string
           description: The last name of the user.
+          example: example_value
         title:
           type: string
           description: The job title of the user.
+          example: Example Title
         phone:
           type: string
           description: The phone number of the user.
+          example: example_value
         emails:
           type: string
           description: The email address of the user.
+          example: user@example.com
         timezone:
           type: string
           description: >-
             The time zone of the user (e.g., America/Los_Angeles).
+          example: example_value
         serverUrl:
           type: string
           format: uri
           description: >-
             The base URL to use in version 2 REST API calls. Use this
             URL as the base for all subsequent v2 API requests.
+          example: https://www.example.com
         icSessionId:
           type: string
           description: >-
             The REST API session ID. Include this value in the
             icSessionId header for all subsequent requests. Expires
             after 30 minutes of inactivity.
+          example: '500123'
         securityQuestion:
           type: string
           description: The security question for the user account.
+          example: example_value
         securityAnswer:
           type: string
           description: The security answer (returned as empty string).
+          example: example_value
         createTime:
           type: string
           format: date-time
           description: The time the user account was created.
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           description: The time the user account was last updated.
+          example: '2026-01-15T10:30:00Z'
     Connection:
       type: object
       description: >-
@@ -985,170 +2063,207 @@ components:
           type: string
           description: The resource type identifier.
           const: connection
+          example: example_value
         id:
           type: string
           description: The unique identifier for the connection.
+          example: abc123
         orgId:
           type: string
           description: The organization ID that owns the connection.
+          example: '500123'
         name:
           type: string
           description: The name of the connection.
+          example: Example Title
         description:
           type: string
           description: A description of the connection.
+          example: A sample description.
         type:
           type: string
           description: >-
             The connection type (e.g., Oracle, Salesforce, MySQL,
             SqlServer, FTP, CSVFile).
           enum:
-            - CSVFile
-            - FTP
-            - SFTP
-            - MS_ACCESS
-            - MSD
-            - MySQL
-            - ODBC
-            - Oracle
-            - OCOD
-            - Salesforce
-            - SqlServer
-            - SqlServer2000
-            - SqlServer2005
-            - SqlServer2008
-            - SqlServer2012
-            - SqlServer2014
-            - SqlServer2016
-            - SqlServer2017
-            - TOOLKIT
-            - WebServicesConsumer
-            - SAP_ALE_IDoc_Reader
-            - SAP_ALE_IDoc_Writer
+          - CSVFile
+          - FTP
+          - SFTP
+          - MS_ACCESS
+          - MSD
+          - MySQL
+          - ODBC
+          - Oracle
+          - OCOD
+          - Salesforce
+          - SqlServer
+          - SqlServer2000
+          - SqlServer2005
+          - SqlServer2008
+          - SqlServer2012
+          - SqlServer2014
+          - SqlServer2016
+          - SqlServer2017
+          - TOOLKIT
+          - WebServicesConsumer
+          - SAP_ALE_IDoc_Reader
+          - SAP_ALE_IDoc_Writer
+          example: CSVFile
         createTime:
           type: string
           format: date-time
           description: The time the connection was created.
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           description: The time the connection was last updated.
+          example: '2026-01-15T10:30:00Z'
         createdBy:
           type: string
           description: The user who created the connection.
+          example: example_value
         updatedBy:
           type: string
           description: The user who last updated the connection.
+          example: example_value
         agentId:
           type: string
           description: >-
             The ID of the Secure Agent associated with the connection.
+          example: '500123'
         runtimeEnvironmentId:
           type: string
           description: >-
             The ID of the runtime environment associated with the
             connection.
+          example: '500123'
         host:
           type: string
           description: >-
             The hostname or IP address for the connection. Applicable
             to database and server-based connections.
+          example: example_value
         port:
           type: integer
           description: >-
             The port number for the connection. Applicable to database
             and server-based connections.
+          example: 10
         database:
           type: string
           description: >-
             The database name or service name for the connection.
+          example: example_value
         schema:
           type: string
           description: The database schema name.
+          example: example_value
         username:
           type: string
           description: The username for authentication.
+          example: example_value
         password:
           type: string
           format: password
           description: The password for authentication.
+          example: example_value
         authenticationType:
           type: string
           description: The authentication method used by the connection.
+          example: example_value
         serviceUrl:
           type: string
           format: uri
           description: >-
             The service endpoint URL. Applicable to web service and
             cloud application connections.
+          example: https://www.example.com
         codepage:
           type: string
           description: >-
             The character encoding for the connection (e.g., UTF-8).
+          example: example_value
         connParams:
           type: object
           description: >-
             Additional connection parameters specific to the connection
             type. Contains attributes not listed as top-level fields.
           additionalProperties: true
+          example: example_value
     ConnectionCreateRequest:
       type: object
       description: Request body for creating a new connection.
       required:
-        - '@type'
-        - name
-        - type
-        - runtimeEnvironmentId
+      - '@type'
+      - name
+      - type
+      - runtimeEnvironmentId
       properties:
         '@type':
           type: string
           description: The resource type identifier. Must be set to "connection".
           const: connection
+          example: example_value
         name:
           type: string
           description: The name for the new connection.
+          example: Example Title
         description:
           type: string
           description: A description of the connection.
+          example: A sample description.
         type:
           type: string
           description: The connection type.
+          example: example_value
         runtimeEnvironmentId:
           type: string
           description: The runtime environment ID for the connection.
+          example: '500123'
         host:
           type: string
           description: The hostname or IP address.
+          example: example_value
         port:
           type: integer
           description: The port number.
+          example: 10
         database:
           type: string
           description: The database name or service name.
+          example: example_value
         schema:
           type: string
           description: The database schema.
+          example: example_value
         username:
           type: string
           description: The username for authentication.
+          example: example_value
         password:
           type: string
           format: password
           description: The password for authentication.
+          example: example_value
         authenticationType:
           type: string
           description: The authentication method.
+          example: example_value
         serviceUrl:
           type: string
           format: uri
           description: The service endpoint URL.
+          example: https://www.example.com
         codepage:
           type: string
           description: The character encoding.
+          example: example_value
         connParams:
           type: object
           description: Additional connection-type-specific parameters.
           additionalProperties: true
+          example: example_value
     ConnectionUpdateRequest:
       type: object
       description: Request body for updating an existing connection.
@@ -1157,45 +2272,58 @@ components:
           type: string
           description: The resource type identifier. Must be set to "connection".
           const: connection
+          example: example_value
         name:
           type: string
           description: The updated name for the connection.
+          example: Example Title
         description:
           type: string
           description: An updated description of the connection.
+          example: A sample description.
         host:
           type: string
           description: The updated hostname or IP address.
+          example: example_value
         port:
           type: integer
           description: The updated port number.
+          example: 10
         database:
           type: string
           description: The updated database name.
+          example: example_value
         schema:
           type: string
           description: The updated database schema.
+          example: example_value
         username:
           type: string
           description: The updated username.
+          example: example_value
         password:
           type: string
           format: password
           description: The updated password.
+          example: example_value
         authenticationType:
           type: string
           description: The updated authentication method.
+          example: example_value
         serviceUrl:
           type: string
           format: uri
           description: The updated service endpoint URL.
+          example: https://www.example.com
         codepage:
           type: string
           description: The updated character encoding.
+          example: example_value
         connParams:
           type: object
           description: Updated connection-type-specific parameters.
           additionalProperties: true
+          example: example_value
     Mapping:
       type: object
       description: >-
@@ -1206,76 +2334,98 @@ components:
           type: string
           description: The resource type identifier.
           const: mapping
+          example: example_value
         id:
           type: string
           description: The unique identifier for the mapping.
+          example: abc123
         orgId:
           type: string
           description: The organization ID that owns the mapping.
+          example: '500123'
         name:
           type: string
           description: The name of the mapping.
+          example: Example Title
         description:
           type: string
           description: A description of the mapping.
+          example: A sample description.
         createTime:
           type: string
           format: date-time
           description: The time the mapping was created.
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           description: The time the mapping was last updated.
+          example: '2026-01-15T10:30:00Z'
         createdBy:
           type: string
           description: The user who created the mapping.
+          example: example_value
         updatedBy:
           type: string
           description: The user who last updated the mapping.
+          example: example_value
         bundleObjectId:
           type: string
           description: The associated bundle ID if applicable.
+          example: '500123'
         bundleVersion:
           type: string
           description: The associated bundle version.
+          example: example_value
         templateId:
           type: string
           description: The internal template identifier.
+          example: '500123'
         deployTime:
           type: string
           format: date-time
           description: The time the mapping was deployed.
+          example: '2026-01-15T10:30:00Z'
         hasParameters:
           type: boolean
           description: Whether the mapping includes parameters.
+          example: true
         valid:
           type: boolean
           description: Whether the mapping is in a valid state.
+          example: '500123'
         fixedConnection:
           type: boolean
           description: Whether the mapping uses fixed connections.
+          example: true
         hasParametersDeployed:
           type: boolean
           description: Whether parameters are deployed.
+          example: true
         fixedConnectionDeployed:
           type: boolean
           description: Whether fixed connections are deployed.
+          example: true
         deployedTemplateId:
           type: string
           description: The internal deployed template identifier.
+          example: '500123'
         tasks:
           type: integer
           description: The count of tasks using this mapping.
+          example: 10
         parameters:
           type: array
           description: The collection of mapping parameters.
           items:
             $ref: '#/components/schemas/MappingParameter'
+          example: []
         inOutParameters:
           type: array
           description: The collection of in-out parameters.
           items:
             $ref: '#/components/schemas/MappingInOutParameter'
+          example: []
         references:
           type: array
           description: References to related objects.
@@ -1288,6 +2438,7 @@ components:
               refType:
                 type: string
                 description: The type of reference.
+          example: []
     MappingParameter:
       type: object
       description: A parameter defined within a mapping.
@@ -1296,23 +2447,29 @@ components:
           type: integer
           format: int64
           description: The parameter identifier.
+          example: abc123
         name:
           type: string
           description: The parameter name.
+          example: Example Title
         type:
           type: string
           description: The parameter data type.
+          example: example_value
         description:
           type: string
           description: A description of the parameter.
+          example: A sample description.
         customFuncId:
           type: string
           description: The mapplet ID for mapplet-type parameters.
+          example: '500123'
         uiProperties:
           type: string
           description: >-
             Display configuration including connection type, logical
             connection, order, visibility, editability, and control type.
+          example: example_value
     MappingInOutParameter:
       type: object
       description: An in-out parameter defined within a mapping.
@@ -1321,33 +2478,43 @@ components:
           type: integer
           format: int64
           description: The parameter ID.
+          example: abc123
         name:
           type: string
           description: The parameter name.
+          example: Example Title
         description:
           type: string
           description: A description of the parameter.
+          example: A sample description.
         initialValue:
           type: string
           description: The starting value for the parameter.
+          example: example_value
         datatype:
           type: string
           description: The data type of the parameter.
+          example: example_value
         precision:
           type: string
           description: The numeric precision.
+          example: example_value
         scale:
           type: string
           description: The decimal scale.
+          example: example_value
         retentionPolicy:
           type: string
           description: The value retention policy.
+          example: example_value
         aggregationType:
           type: string
           description: The method for determining the final value.
+          example: example_value
         currentValue:
           type: string
           description: The current parameter value.
+          example: example_value
     MappingTask:
       type: object
       description: >-
@@ -1358,47 +2525,61 @@ components:
           type: string
           description: The resource type identifier.
           const: mttask
+          example: example_value
         id:
           type: string
           description: The unique identifier for the mapping task.
+          example: abc123
         orgId:
           type: string
           description: The organization ID that owns the task.
+          example: '500123'
         name:
           type: string
           description: The name of the mapping task.
+          example: Example Title
         description:
           type: string
           description: A description of the mapping task.
+          example: A sample description.
         createTime:
           type: string
           format: date-time
           description: The time the mapping task was created.
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           description: The time the mapping task was last updated.
+          example: '2026-01-15T10:30:00Z'
         createdBy:
           type: string
           description: The user who created the mapping task.
+          example: example_value
         updatedBy:
           type: string
           description: The user who last updated the mapping task.
+          example: example_value
         mappingId:
           type: string
           description: The ID of the mapping that this task executes.
+          example: '500123'
         runtimeEnvironmentId:
           type: string
           description: The runtime environment to use for execution.
+          example: '500123'
         scheduleId:
           type: string
           description: The schedule ID if the task is scheduled.
+          example: '500123'
         preProcessingCmd:
           type: string
           description: The command to run before the task executes.
+          example: example_value
         postProcessingCmd:
           type: string
           description: The command to run after the task executes.
+          example: example_value
         parameters:
           type: array
           description: >-
@@ -1406,62 +2587,78 @@ components:
             default mapping parameters.
           items:
             $ref: '#/components/schemas/MappingParameter'
+          example: []
         sourceConnectionId:
           type: string
           description: The source connection ID for the mapping task.
+          example: '500123'
         targetConnectionId:
           type: string
           description: The target connection ID for the mapping task.
+          example: '500123'
         frsId:
           type: string
           description: The federated task ID.
+          example: '500123'
         active:
           type: boolean
           description: Whether the mapping task is active.
+          example: true
     MappingTaskCreateRequest:
       type: object
       description: Request body for creating a new mapping task.
       required:
-        - '@type'
-        - name
-        - mappingId
+      - '@type'
+      - name
+      - mappingId
       properties:
         '@type':
           type: string
           description: The resource type identifier.
           const: mttask
+          example: example_value
         name:
           type: string
           description: The name for the new mapping task.
+          example: Example Title
         description:
           type: string
           description: A description of the mapping task.
+          example: A sample description.
         mappingId:
           type: string
           description: The ID of the mapping to execute.
+          example: '500123'
         runtimeEnvironmentId:
           type: string
           description: The runtime environment to use for execution.
+          example: '500123'
         scheduleId:
           type: string
           description: The schedule to associate with the task.
+          example: '500123'
         preProcessingCmd:
           type: string
           description: The command to run before the task.
+          example: example_value
         postProcessingCmd:
           type: string
           description: The command to run after the task.
+          example: example_value
         sourceConnectionId:
           type: string
           description: The source connection ID.
+          example: '500123'
         targetConnectionId:
           type: string
           description: The target connection ID.
+          example: '500123'
         parameters:
           type: array
           description: Parameter value overrides.
           items:
             $ref: '#/components/schemas/MappingParameter'
+          example: []
     MappingTaskUpdateRequest:
       type: object
       description: Request body for updating an existing mapping task.
@@ -1470,58 +2667,71 @@ components:
           type: string
           description: The resource type identifier.
           const: mttask
+          example: example_value
         name:
           type: string
           description: The updated name.
+          example: Example Title
         description:
           type: string
           description: The updated description.
+          example: A sample description.
         runtimeEnvironmentId:
           type: string
           description: The updated runtime environment.
+          example: '500123'
         scheduleId:
           type: string
           description: The updated schedule ID.
+          example: '500123'
         preProcessingCmd:
           type: string
           description: The updated pre-processing command.
+          example: example_value
         postProcessingCmd:
           type: string
           description: The updated post-processing command.
+          example: example_value
         sourceConnectionId:
           type: string
           description: The updated source connection ID.
+          example: '500123'
         targetConnectionId:
           type: string
           description: The updated target connection ID.
+          example: '500123'
         parameters:
           type: array
           description: Updated parameter values.
           items:
             $ref: '#/components/schemas/MappingParameter'
+          example: []
     JobStartRequest:
       type: object
       description: >-
         Request body for starting a job. You can identify the task by
         taskId or taskName, and must specify the task type.
       required:
-        - '@type'
-        - taskType
+      - '@type'
+      - taskType
       properties:
         '@type':
           type: string
           description: The resource type identifier. Must be set to "job".
           const: job
+          example: example_value
         taskId:
           type: string
           description: >-
             The ID of the task to run. Either taskId or taskName must
             be provided.
+          example: '500123'
         taskName:
           type: string
           description: >-
             The name of the task to run. Either taskId or taskName
             must be provided.
+          example: example_value
         taskType:
           type: string
           description: >-
@@ -1530,17 +2740,19 @@ components:
             task), DRS (data replication task), and PCS (PowerCenter
             task).
           enum:
-            - MTT
-            - WORKFLOW
-            - DSS
-            - DRS
-            - PCS
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
         callbackUrl:
           type: string
           format: uri
           description: >-
             An optional URL that receives a callback when the job
             completes.
+          example: https://www.example.com
         runtime:
           type: object
           description: >-
@@ -1552,6 +2764,7 @@ components:
             runtimeEnvironmentId:
               type: string
               description: Override the runtime environment for this execution.
+          example: example_value
     JobStartResponse:
       type: object
       description: Response returned when a job is successfully started.
@@ -1559,51 +2772,59 @@ components:
         taskId:
           type: string
           description: The ID of the task that was started.
+          example: '500123'
         taskType:
           type: string
           description: The type of the task.
+          example: example_value
         runId:
           type: integer
           format: int64
           description: >-
             The unique run ID for this job execution. Use this ID to
             track job status.
+          example: '500123'
     JobStopRequest:
       type: object
       description: Request body for stopping a running job.
       required:
-        - '@type'
-        - taskType
+      - '@type'
+      - taskType
       properties:
         '@type':
           type: string
           description: The resource type identifier. Must be set to "job".
           const: job
+          example: example_value
         taskId:
           type: string
           description: >-
             The ID of the task to stop. Either taskId or taskName must
             be provided.
+          example: '500123'
         taskName:
           type: string
           description: >-
             The name of the task to stop. Either taskId or taskName
             must be provided.
+          example: example_value
         taskType:
           type: string
           description: The type of the task to stop.
           enum:
-            - MTT
-            - WORKFLOW
-            - DSS
-            - DRS
-            - PCS
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
         cleanStop:
           type: boolean
           description: >-
             When true, allows the job to finish processing the current
             row before stopping. When false, stops the job immediately.
           default: false
+          example: true
     ActivityLogEntry:
       type: object
       description: >-
@@ -1613,78 +2834,98 @@ components:
         id:
           type: string
           description: The activity log entry ID.
+          example: abc123
         type:
           type: string
           description: The type of activity.
+          example: example_value
         objectId:
           type: string
           description: The ID of the task or object.
+          example: '500123'
         objectName:
           type: string
           description: The name of the task or object.
+          example: example_value
         runId:
           type: integer
           format: int64
           description: The job run ID.
+          example: '500123'
         agentId:
           type: string
           description: The Secure Agent that ran the job.
+          example: '500123'
         runtimeEnvironmentId:
           type: string
           description: The runtime environment used.
+          example: '500123'
         startTime:
           type: string
           format: date-time
           description: The time the job started.
+          example: '2026-01-15T10:30:00Z'
         endTime:
           type: string
           format: date-time
           description: The time the job completed.
+          example: '2026-01-15T10:30:00Z'
         state:
           type: integer
           description: >-
             The job execution state. Common values are 1 (success),
             2 (warning), 3 (error).
+          example: 10
         failedSourceRows:
           type: integer
           format: int64
           description: The number of source rows that failed.
+          example: 10
         successSourceRows:
           type: integer
           format: int64
           description: The number of source rows processed successfully.
+          example: 10
         failedTargetRows:
           type: integer
           format: int64
           description: The number of target rows that failed.
+          example: 10
         successTargetRows:
           type: integer
           format: int64
           description: The number of target rows written successfully.
+          example: 10
         totalSuccessRows:
           type: integer
           format: int64
           description: The total number of rows processed successfully.
+          example: 10
         totalErrorRows:
           type: integer
           format: int64
           description: The total number of rows that encountered errors.
+          example: 10
         errorMsg:
           type: string
           description: The error message if the job failed.
+          example: example_value
         startedBy:
           type: string
           description: The user who started the job.
+          example: example_value
         runContextType:
           type: string
           description: >-
             The context in which the job was run (e.g., API, SCHEDULER,
             UI).
+          example: example_value
         entries:
           type: array
           description: Sub-entries for multi-step jobs.
           items:
             type: object
+          example: []
     Schedule:
       type: object
       description: A task execution schedule.
@@ -1693,101 +2934,127 @@ components:
           type: string
           description: The resource type identifier.
           const: schedule
+          example: example_value
         id:
           type: string
           description: The unique identifier for the schedule.
+          example: abc123
         orgId:
           type: string
           description: The organization ID.
+          example: '500123'
         name:
           type: string
           description: The name of the schedule.
+          example: Example Title
         description:
           type: string
           description: A description of the schedule.
+          example: A sample description.
         createTime:
           type: string
           format: date-time
           description: The time the schedule was created.
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           description: The time the schedule was last updated.
+          example: '2026-01-15T10:30:00Z'
         createdBy:
           type: string
           description: The user who created the schedule.
+          example: example_value
         updatedBy:
           type: string
           description: The user who last updated the schedule.
+          example: example_value
         startTime:
           type: string
           format: date-time
           description: The scheduled start time.
+          example: '2026-01-15T10:30:00Z'
         endTime:
           type: string
           format: date-time
           description: The scheduled end time.
+          example: '2026-01-15T10:30:00Z'
         interval:
           type: string
           description: >-
             The recurrence interval (e.g., None, Daily, Weekly,
             Monthly).
+          example: example_value
         frequency:
           type: integer
           description: How often the schedule repeats within the interval.
+          example: 10
         timezone:
           type: string
           description: The time zone for the schedule.
+          example: example_value
         rangeStartTime:
           type: string
           format: date-time
           description: The start of the time range within each day.
+          example: '2026-01-15T10:30:00Z'
         rangeEndTime:
           type: string
           format: date-time
           description: The end of the time range within each day.
+          example: '2026-01-15T10:30:00Z'
         dayOfWeek:
           type: string
           description: >-
             The day(s) of the week for weekly schedules (e.g., Mon,
             Tue, Wed).
+          example: example_value
         dayOfMonth:
           type: integer
           description: The day of the month for monthly schedules.
+          example: 10
     ScheduleCreateRequest:
       type: object
       description: Request body for creating a new schedule.
       required:
-        - '@type'
-        - name
-        - startTime
+      - '@type'
+      - name
+      - startTime
       properties:
         '@type':
           type: string
           const: schedule
+          example: example_value
         name:
           type: string
           description: The name for the new schedule.
+          example: Example Title
         description:
           type: string
           description: A description of the schedule.
+          example: A sample description.
         startTime:
           type: string
           format: date-time
           description: The scheduled start time.
+          example: '2026-01-15T10:30:00Z'
         endTime:
           type: string
           format: date-time
           description: The scheduled end time.
+          example: '2026-01-15T10:30:00Z'
         interval:
           type: string
           description: The recurrence interval.
+          example: example_value
         frequency:
           type: integer
           description: The repeat frequency.
+          example: 10
         timezone:
           type: string
           description: The time zone.
+          example: example_value
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -1795,15 +3062,20 @@ components:
         '@type':
           type: string
           description: The error type identifier.
+          example: example_value
         statusCode:
           type: integer
           description: The HTTP status code.
+          example: 10
         message:
           type: string
           description: A human-readable error message.
+          example: example_value
         description:
           type: string
           description: A detailed description of the error.
+          example: A sample description.
         requestId:
           type: string
           description: The unique request ID for troubleshooting.
+          example: '500123'

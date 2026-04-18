@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "LoginResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    },
+    "orgUuid": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "emails": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "serverUrl": {
+      "type": "string"
+    },
+    "icSessionId": {
+      "type": "string"
+    },
+    "securityQuestion": {
+      "type": "string"
+    },
+    "securityAnswer": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    }
+  }
+}

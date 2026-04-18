@@ -1,0 +1,8 @@
+{
+  "@type": "example_value",
+  "taskId": "500123",
+  "taskName": "example_value",
+  "taskType": "example_value",
+  "callbackUrl": "https://www.example.com",
+  "runtime": "example_value"
+}

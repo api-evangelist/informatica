@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobStopRequest",
+  "type": "object",
+  "description": "Request body for stopping a running job.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"job\"."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "The ID of the task to stop. Either taskId or taskName must be provided."
+    },
+    "taskName": {
+      "type": "string",
+      "description": "The name of the task to stop. Either taskId or taskName must be provided."
+    },
+    "taskType": {
+      "type": "string",
+      "description": "The type of the task to stop."
+    },
+    "cleanStop": {
+      "type": "boolean",
+      "description": "When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately."
+    }
+  }
+}

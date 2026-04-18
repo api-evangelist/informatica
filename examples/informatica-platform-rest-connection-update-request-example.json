@@ -1,0 +1,15 @@
+{
+  "@type": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "host": "example_value",
+  "port": 10,
+  "database": "example_value",
+  "schema": "example_value",
+  "username": "example_value",
+  "password": "example_value",
+  "authenticationType": "example_value",
+  "serviceUrl": "https://www.example.com",
+  "codepage": "example_value",
+  "connParams": "example_value"
+}

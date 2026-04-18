@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScheduleCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new schedule.",
+  "properties": {
+    "@type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name for the new schedule."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the schedule."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "The scheduled start time."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "The scheduled end time."
+    },
+    "interval": {
+      "type": "string",
+      "description": "The recurrence interval."
+    },
+    "frequency": {
+      "type": "integer",
+      "description": "The repeat frequency."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone."
+    }
+  }
+}

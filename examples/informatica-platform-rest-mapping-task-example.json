@@ -1,0 +1,21 @@
+{
+  "@type": "example_value",
+  "id": "abc123",
+  "orgId": "500123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "createTime": "example_value",
+  "updateTime": "example_value",
+  "createdBy": "example_value",
+  "updatedBy": "example_value",
+  "mappingId": "500123",
+  "runtimeEnvironmentId": "500123",
+  "scheduleId": "500123",
+  "preProcessingCmd": "example_value",
+  "postProcessingCmd": "example_value",
+  "parameters": [],
+  "sourceConnectionId": "500123",
+  "targetConnectionId": "500123",
+  "frsId": "500123",
+  "active": true
+}

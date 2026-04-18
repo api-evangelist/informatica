@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MappingTask",
+  "type": "object",
+  "description": "Represents a mapping task that executes a mapping with specific source and target connections and runtime parameters.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the mapping task."
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns the task."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the mapping task."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping task."
+    },
+    "createTime": {
+      "type": "string",
+      "description": "The time the mapping task was created."
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The time the mapping task was last updated."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the mapping task."
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the mapping task."
+    },
+    "mappingId": {
+      "type": "string",
+      "description": "The ID of the mapping that this task executes."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment to use for execution."
+    },
+    "scheduleId": {
+      "type": "string",
+      "description": "The schedule ID if the task is scheduled."
+    },
+    "preProcessingCmd": {
+      "type": "string",
+      "description": "The command to run before the task executes."
+    },
+    "postProcessingCmd": {
+      "type": "string",
+      "description": "The command to run after the task executes."
+    },
+    "parameters": {
+      "type": "array",
+      "description": "The parameter values for this task execution. Overrides default mapping parameters."
+    },
+    "sourceConnectionId": {
+      "type": "string",
+      "description": "The source connection ID for the mapping task."
+    },
+    "targetConnectionId": {
+      "type": "string",
+      "description": "The target connection ID for the mapping task."
+    },
+    "frsId": {
+      "type": "string",
+      "description": "The federated task ID."
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the mapping task is active."
+    }
+  }
+}

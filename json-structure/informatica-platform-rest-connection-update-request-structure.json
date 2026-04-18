@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ConnectionUpdateRequest",
+  "type": "object",
+  "properties": {
+    "@type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "database": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "authenticationType": {
+      "type": "string"
+    },
+    "serviceUrl": {
+      "type": "string"
+    },
+    "codepage": {
+      "type": "string"
+    },
+    "connParams": {
+      "type": "object"
+    }
+  }
+}

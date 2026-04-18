@@ -1,0 +1,10 @@
+{
+  "@type": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "startTime": "example_value",
+  "endTime": "example_value",
+  "interval": "example_value",
+  "frequency": 10,
+  "timezone": "example_value"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LoginResponse",
+  "type": "object",
+  "description": "Successful login response containing the session ID and server URL for subsequent API calls.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The user ID."
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID."
+    },
+    "orgUuid": {
+      "type": "string",
+      "description": "The organization UUID."
+    },
+    "name": {
+      "type": "string",
+      "description": "The username used to log in."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The first name of the user."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The last name of the user."
+    },
+    "title": {
+      "type": "string",
+      "description": "The job title of the user."
+    },
+    "phone": {
+      "type": "string",
+      "description": "The phone number of the user."
+    },
+    "emails": {
+      "type": "string",
+      "description": "The email address of the user."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone of the user (e.g., America/Los_Angeles)."
+    },
+    "serverUrl": {
+      "type": "string",
+      "description": "The base URL to use in version 2 REST API calls. Use this URL as the base for all subsequent v2 API requests."
+    },
+    "icSessionId": {
+      "type": "string",
+      "description": "The REST API session ID. Include this value in the icSessionId header for all subsequent requests. Expires after 30 minutes of inactivity."
+    },
+    "securityQuestion": {
+      "type": "string",
+      "description": "The security question for the user account."
+    },
+    "securityAnswer": {
+      "type": "string",
+      "description": "The security answer (returned as empty string)."
+    },
+    "createTime": {
+      "type": "string",
+      "description": "The time the user account was created."
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The time the user account was last updated."
+    }
+  }
+}

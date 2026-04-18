@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ActivityLogEntry",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "objectId": {
+      "type": "string"
+    },
+    "objectName": {
+      "type": "string"
+    },
+    "runId": {
+      "type": "integer"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "state": {
+      "type": "integer"
+    },
+    "failedSourceRows": {
+      "type": "integer"
+    },
+    "successSourceRows": {
+      "type": "integer"
+    },
+    "failedTargetRows": {
+      "type": "integer"
+    },
+    "successTargetRows": {
+      "type": "integer"
+    },
+    "totalSuccessRows": {
+      "type": "integer"
+    },
+    "totalErrorRows": {
+      "type": "integer"
+    },
+    "errorMsg": {
+      "type": "string"
+    },
+    "startedBy": {
+      "type": "string"
+    },
+    "runContextType": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array"
+    }
+  }
+}

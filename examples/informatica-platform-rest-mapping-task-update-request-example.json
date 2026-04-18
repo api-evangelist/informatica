@@ -1,0 +1,12 @@
+{
+  "@type": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "runtimeEnvironmentId": "500123",
+  "scheduleId": "500123",
+  "preProcessingCmd": "example_value",
+  "postProcessingCmd": "example_value",
+  "sourceConnectionId": "500123",
+  "targetConnectionId": "500123",
+  "parameters": []
+}

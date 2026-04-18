@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Connection",
+  "type": "object",
+  "properties": {
+    "@type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "updatedBy": {
+      "type": "string"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "database": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "authenticationType": {
+      "type": "string"
+    },
+    "serviceUrl": {
+      "type": "string"
+    },
+    "codepage": {
+      "type": "string"
+    },
+    "connParams": {
+      "type": "object"
+    }
+  }
+}

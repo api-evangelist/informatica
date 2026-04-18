@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schedule",
+  "type": "object",
+  "description": "A task execution schedule.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the schedule."
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the schedule."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the schedule."
+    },
+    "createTime": {
+      "type": "string",
+      "description": "The time the schedule was created."
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The time the schedule was last updated."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the schedule."
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the schedule."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "The scheduled start time."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "The scheduled end time."
+    },
+    "interval": {
+      "type": "string",
+      "description": "The recurrence interval (e.g., None, Daily, Weekly, Monthly)."
+    },
+    "frequency": {
+      "type": "integer",
+      "description": "How often the schedule repeats within the interval."
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone for the schedule."
+    },
+    "rangeStartTime": {
+      "type": "string",
+      "description": "The start of the time range within each day."
+    },
+    "rangeEndTime": {
+      "type": "string",
+      "description": "The end of the time range within each day."
+    },
+    "dayOfWeek": {
+      "type": "string",
+      "description": "The day(s) of the week for weekly schedules (e.g., Mon, Tue, Wed)."
+    },
+    "dayOfMonth": {
+      "type": "integer",
+      "description": "The day of the month for monthly schedules."
+    }
+  }
+}

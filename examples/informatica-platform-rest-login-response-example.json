@@ -1,0 +1,18 @@
+{
+  "id": "abc123",
+  "orgId": "500123",
+  "orgUuid": "500123",
+  "name": "Example Title",
+  "firstName": "example_value",
+  "lastName": "example_value",
+  "title": "Example Title",
+  "phone": "example_value",
+  "emails": "user@example.com",
+  "timezone": "example_value",
+  "serverUrl": "https://www.example.com",
+  "icSessionId": "500123",
+  "securityQuestion": "example_value",
+  "securityAnswer": "example_value",
+  "createTime": "example_value",
+  "updateTime": "example_value"
+}

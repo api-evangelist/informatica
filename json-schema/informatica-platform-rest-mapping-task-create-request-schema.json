@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MappingTaskCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new mapping task.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name for the new mapping task."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping task."
+    },
+    "mappingId": {
+      "type": "string",
+      "description": "The ID of the mapping to execute."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment to use for execution."
+    },
+    "scheduleId": {
+      "type": "string",
+      "description": "The schedule to associate with the task."
+    },
+    "preProcessingCmd": {
+      "type": "string",
+      "description": "The command to run before the task."
+    },
+    "postProcessingCmd": {
+      "type": "string",
+      "description": "The command to run after the task."
+    },
+    "sourceConnectionId": {
+      "type": "string",
+      "description": "The source connection ID."
+    },
+    "targetConnectionId": {
+      "type": "string",
+      "description": "The target connection ID."
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Parameter value overrides."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobStartResponse",
+  "type": "object",
+  "description": "Response returned when a job is successfully started.",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "The ID of the task that was started."
+    },
+    "taskType": {
+      "type": "string",
+      "description": "The type of the task."
+    },
+    "runId": {
+      "type": "integer",
+      "description": "The unique run ID for this job execution. Use this ID to track job status."
+    }
+  }
+}

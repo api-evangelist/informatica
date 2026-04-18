@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MappingTask",
+  "type": "object",
+  "properties": {
+    "@type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "updatedBy": {
+      "type": "string"
+    },
+    "mappingId": {
+      "type": "string"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string"
+    },
+    "scheduleId": {
+      "type": "string"
+    },
+    "preProcessingCmd": {
+      "type": "string"
+    },
+    "postProcessingCmd": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "array"
+    },
+    "sourceConnectionId": {
+      "type": "string"
+    },
+    "targetConnectionId": {
+      "type": "string"
+    },
+    "frsId": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mapping",
+  "type": "object",
+  "description": "Represents a data integration mapping definition that specifies data transformation logic between sources and targets.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the mapping."
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns the mapping."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the mapping."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping."
+    },
+    "createTime": {
+      "type": "string",
+      "description": "The time the mapping was created."
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The time the mapping was last updated."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the mapping."
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the mapping."
+    },
+    "bundleObjectId": {
+      "type": "string",
+      "description": "The associated bundle ID if applicable."
+    },
+    "bundleVersion": {
+      "type": "string",
+      "description": "The associated bundle version."
+    },
+    "templateId": {
+      "type": "string",
+      "description": "The internal template identifier."
+    },
+    "deployTime": {
+      "type": "string",
+      "description": "The time the mapping was deployed."
+    },
+    "hasParameters": {
+      "type": "boolean",
+      "description": "Whether the mapping includes parameters."
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the mapping is in a valid state."
+    },
+    "fixedConnection": {
+      "type": "boolean",
+      "description": "Whether the mapping uses fixed connections."
+    },
+    "hasParametersDeployed": {
+      "type": "boolean",
+      "description": "Whether parameters are deployed."
+    },
+    "fixedConnectionDeployed": {
+      "type": "boolean",
+      "description": "Whether fixed connections are deployed."
+    },
+    "deployedTemplateId": {
+      "type": "string",
+      "description": "The internal deployed template identifier."
+    },
+    "tasks": {
+      "type": "integer",
+      "description": "The count of tasks using this mapping."
+    },
+    "parameters": {
+      "type": "array",
+      "description": "The collection of mapping parameters."
+    },
+    "inOutParameters": {
+      "type": "array",
+      "description": "The collection of in-out parameters."
+    },
+    "references": {
+      "type": "array",
+      "description": "References to related objects."
+    }
+  }
+}

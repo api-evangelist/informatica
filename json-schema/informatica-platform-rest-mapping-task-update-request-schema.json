@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MappingTaskUpdateRequest",
+  "type": "object",
+  "description": "Request body for updating an existing mapping task.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The updated name."
+    },
+    "description": {
+      "type": "string",
+      "description": "The updated description."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The updated runtime environment."
+    },
+    "scheduleId": {
+      "type": "string",
+      "description": "The updated schedule ID."
+    },
+    "preProcessingCmd": {
+      "type": "string",
+      "description": "The updated pre-processing command."
+    },
+    "postProcessingCmd": {
+      "type": "string",
+      "description": "The updated post-processing command."
+    },
+    "sourceConnectionId": {
+      "type": "string",
+      "description": "The updated source connection ID."
+    },
+    "targetConnectionId": {
+      "type": "string",
+      "description": "The updated target connection ID."
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Updated parameter values."
+    }
+  }
+}

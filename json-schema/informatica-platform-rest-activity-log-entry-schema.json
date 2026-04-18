@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ActivityLogEntry",
+  "type": "object",
+  "description": "An entry in the activity log representing the execution status of a job.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The activity log entry ID."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of activity."
+    },
+    "objectId": {
+      "type": "string",
+      "description": "The ID of the task or object."
+    },
+    "objectName": {
+      "type": "string",
+      "description": "The name of the task or object."
+    },
+    "runId": {
+      "type": "integer",
+      "description": "The job run ID."
+    },
+    "agentId": {
+      "type": "string",
+      "description": "The Secure Agent that ran the job."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment used."
+    },
+    "startTime": {
+      "type": "string",
+      "description": "The time the job started."
+    },
+    "endTime": {
+      "type": "string",
+      "description": "The time the job completed."
+    },
+    "state": {
+      "type": "integer",
+      "description": "The job execution state. Common values are 1 (success), 2 (warning), 3 (error)."
+    },
+    "failedSourceRows": {
+      "type": "integer",
+      "description": "The number of source rows that failed."
+    },
+    "successSourceRows": {
+      "type": "integer",
+      "description": "The number of source rows processed successfully."
+    },
+    "failedTargetRows": {
+      "type": "integer",
+      "description": "The number of target rows that failed."
+    },
+    "successTargetRows": {
+      "type": "integer",
+      "description": "The number of target rows written successfully."
+    },
+    "totalSuccessRows": {
+      "type": "integer",
+      "description": "The total number of rows processed successfully."
+    },
+    "totalErrorRows": {
+      "type": "integer",
+      "description": "The total number of rows that encountered errors."
+    },
+    "errorMsg": {
+      "type": "string",
+      "description": "The error message if the job failed."
+    },
+    "startedBy": {
+      "type": "string",
+      "description": "The user who started the job."
+    },
+    "runContextType": {
+      "type": "string",
+      "description": "The context in which the job was run (e.g., API, SCHEDULER, UI)."
+    },
+    "entries": {
+      "type": "array",
+      "description": "Sub-entries for multi-step jobs."
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Connection",
+  "type": "object",
+  "description": "Represents a connection to a data source or target in Informatica Intelligent Cloud Services.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier."
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the connection."
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns the connection."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the connection."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the connection."
+    },
+    "type": {
+      "type": "string",
+      "description": "The connection type (e.g., Oracle, Salesforce, MySQL, SqlServer, FTP, CSVFile)."
+    },
+    "createTime": {
+      "type": "string",
+      "description": "The time the connection was created."
+    },
+    "updateTime": {
+      "type": "string",
+      "description": "The time the connection was last updated."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the connection."
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the connection."
+    },
+    "agentId": {
+      "type": "string",
+      "description": "The ID of the Secure Agent associated with the connection."
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The ID of the runtime environment associated with the connection."
+    },
+    "host": {
+      "type": "string",
+      "description": "The hostname or IP address for the connection. Applicable to database and server-based connections."
+    },
+    "port": {
+      "type": "integer",
+      "description": "The port number for the connection. Applicable to database and server-based connections."
+    },
+    "database": {
+      "type": "string",
+      "description": "The database name or service name for the connection."
+    },
+    "schema": {
+      "type": "string",
+      "description": "The database schema name."
+    },
+    "username": {
+      "type": "string",
+      "description": "The username for authentication."
+    },
+    "password": {
+      "type": "string",
+      "description": "The password for authentication."
+    },
+    "authenticationType": {
+      "type": "string",
+      "description": "The authentication method used by the connection."
+    },
+    "serviceUrl": {
+      "type": "string",
+      "description": "The service endpoint URL. Applicable to web service and cloud application connections."
+    },
+    "codepage": {
+      "type": "string",
+      "description": "The character encoding for the connection (e.g., UTF-8)."
+    },
+    "connParams": {
+      "type": "object",
+      "description": "Additional connection parameters specific to the connection type. Contains attributes not listed as top-level fields."
+    }
+  }
+}
