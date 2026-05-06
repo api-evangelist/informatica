@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,41 +9,38 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Informatica
 providerId: informatica
-publisherName: Informatica
-serviceCategory: API
+publisherName: Informatica LLC
+serviceCategory: Data Integration + Management
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Address Verification
-  - B2B Gateway
-  - Cloud Services
-  - Data Governance
   - Data Integration
-  - Data Profiling
-  - Data Quality
-  - Enterprise Software
-  - ETL
+  - iPaaS
   - IDMC
-  - IICS
-  - Master Data Management
-  - Reference Data Management
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Informatica API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: FOCUS-aligned FinOps shape for Informatica IDMC. Billing is consumption-based via Informatica
+  Processing Units (IPUs) drawn from a pre-purchased pool, with MDM additionally metered per-domain
+  records. The single fungible meter (IPU) maps cleanly to FOCUS Usage charges and supports per-service
+  attribution.
+notes: Per-IPU dollar amount not publicly disclosed; the IPU itself is the canonical meter. Reconcile
+  against the customer's Cloud and Product Description Schedule and IDMC Consumption dashboard.
+sources:
+  - https://www.informatica.com/products/cloud-integration/pricing.html
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Use the IDMC Consumption Dashboard and the Audit Log API to see per-service IPU consumption
+      and project burn-rate against the pre-purchased pool.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Tag projects, folders, and runtime environments by team / business unit so IPU consumption
+      can be attributed; export consumption to FinOps tooling via the Cloud Audit Log API.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Tune CDI-e job parallelism, prefer push-down compute, retire low-value scheduled jobs,
+      and right-size Secure Agents to lower IPU burn-rate per job.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Designate a data-engineering FinOps owner with monthly IPU-burn review; set IPU consumption
+      thresholds and alerts in the admin UI to flag anomalies before pool exhaustion.
 domains:
   - name: Understand Usage and Cost
     capabilities:
@@ -62,18 +60,15 @@ domains:
       - Architecting for Cloud
       - Rate Optimization
       - Workload Optimization
-      - Cloud Sustainability
       - Licensing and SaaS
   - name: Manage the FinOps Practice
     capabilities:
       - FinOps Practice Operations
-      - FinOps Education and Enablement
       - Invoicing and Chargeback
       - Onboarding Workloads
-      - Intersecting Disciplines
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Pay-As-You-Go + Committed Use
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
     - Usage
@@ -83,103 +78,55 @@ billingModel:
     - Adjustment
   chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Informatica
-  ServiceCategory: Developer Tools / API
+  ServiceName: Informatica IDMC
+  ServiceCategory: Data Integration + Management
   ProviderName: Informatica
-  PublisherName: Informatica
-  InvoiceIssuerName: Informatica
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Informatica LLC
+  InvoiceIssuerName: Informatica LLC
+  PricingCategory: Pay-As-You-Go
+  PricingUnit: IPU
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: ipu_consumption
+    description: Informatica Processing Units consumed across IDMC services
+    unit: IPU
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
+      - service
+      - org
+      - project
+      - runtime_environment
+  - name: mdm_records
+    description: Mastered records under management per MDM domain
+    unit: record-month
+    aggregation: max
+    dimensions:
+      - domain
+      - environment
+  - name: secure_agents
+    description: Secure Agents in operation
+    unit: agent-month
+    aggregation: max
+    dimensions:
+      - runtime_environment
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
 apis:
-  - name: Informatica Platform REST API
-    baseURL: ''
-    tags:
-      - Authentication
-      - Platform
-      - Roles
-      - Users
-    serviceName: Informatica Platform REST API
+  - name: Informatica IDMC REST API
+    baseURL: https://{pod}.informaticacloud.com
     serviceCategory: API
-  - name: Informatica Data Integration REST API
-    baseURL: ''
-    tags:
-      - Connections
-      - Data Integration
-      - ETL
-      - Mappings
-    serviceName: Informatica Data Integration REST API
+  - name: Informatica API & App Integration
+    baseURL: https://{pod}.informaticacloud.com
     serviceCategory: API
-  - name: Informatica Cloud Data Governance and Catalog API
-    baseURL: ''
-    tags:
-      - Data Catalog
-      - Data Governance
-    serviceName: Informatica Cloud Data Governance and Catalog API
-    serviceCategory: API
-  - name: Informatica Cloud Data Profiling REST API
-    baseURL: ''
-    tags:
-      - Data Profiling
-      - Data Quality
-    serviceName: Informatica Cloud Data Profiling REST API
-    serviceCategory: API
-  - name: Informatica Cloud Address Verification API
-    baseURL: ''
-    tags:
-      - Address Verification
-      - Data Quality
-    serviceName: Informatica Cloud Address Verification API
-    serviceCategory: API
-  - name: Informatica B2B Gateway REST API
-    baseURL: ''
-    tags:
-      - B2B
-      - EDI
-      - Gateway
-    serviceName: Informatica B2B Gateway REST API
-    serviceCategory: API
-  - name: Informatica Reference 360 REST API
-    baseURL: ''
-    tags:
-      - Master Data Management
-      - Reference Data
-    serviceName: Informatica Reference 360 REST API
+  - name: Informatica Cloud Data Integration
+    baseURL: https://{pod}.informaticacloud.com
     serviceCategory: API
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
+  - name: IPU Cost per Job-Minute
+    metric: billed_cost / job_minutes
     target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: IPU Cost per Mastered Record
+    metric: billed_cost / mdm_records
     target: TBD
 maintainers:
   - FN: Kin Lane

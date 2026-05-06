@@ -4,124 +4,51 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Informatica
 providerId: informatica
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Address Verification
-  - B2B Gateway
-  - Cloud Services
-  - Data Governance
   - Data Integration
-  - Data Profiling
-  - Data Quality
-  - Enterprise Software
-  - ETL
+  - iPaaS
   - IDMC
-  - IICS
-  - Master Data Management
-  - Reference Data Management
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Informatica API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Informatica IDMC governs throughput primarily via the IPU consumption ceiling and per-service
+  Secure Agent / runtime concurrency limits rather than published per-second HTTP rate limits. API & App
+  Integration processes have configurable concurrency on the Cloud Server runtime; mass ingestion and
+  data integration jobs scale by Secure Agent capacity. Specific per-second TPS values are tenant- and
+  pod-dependent.
+notes: No public Informatica IDMC rate-limit table. Customers should consult their pod's Cloud Application
+  Integration / Cloud Data Integration administration UI for concurrency limits.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
+  - name: IDMC API throughput
+    scope: org
+    metric: varies
+    limit: governed by Secure Agent capacity, runtime concurrency, and IPU consumption ceiling
     applies:
-      - Informatica Platform REST API
-      - Informatica Data Integration REST API
-      - Informatica Cloud Data Governance and Catalog API
-      - Informatica Cloud Data Profiling REST API
-      - Informatica Cloud Address Verification API
-      - Informatica B2B Gateway REST API
-      - Informatica Reference 360 REST API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
+      - Informatica IDMC REST API
+      - Informatica API & App Integration
+      - Informatica Cloud Data Integration
+  - name: Cloud Application Integration process concurrency
+    scope: org
+    metric: concurrent_processes
+    limit: configurable on the Cloud Server / Secure Agent runtime
     applies:
-      - Informatica Platform REST API
-      - Informatica Data Integration REST API
-      - Informatica Cloud Data Governance and Catalog API
-      - Informatica Cloud Data Profiling REST API
-      - Informatica Cloud Address Verification API
-      - Informatica B2B Gateway REST API
-      - Informatica Reference 360 REST API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Informatica Platform REST API
-      - Informatica Data Integration REST API
-      - Informatica Cloud Data Governance and Catalog API
-      - Informatica Cloud Data Profiling REST API
-      - Informatica Cloud Address Verification API
-      - Informatica B2B Gateway REST API
-      - Informatica Reference 360 REST API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Informatica Platform REST API
-      - Informatica Data Integration REST API
-      - Informatica Cloud Data Governance and Catalog API
-      - Informatica Cloud Data Profiling REST API
-      - Informatica Cloud Address Verification API
-      - Informatica B2B Gateway REST API
-      - Informatica Reference 360 REST API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Informatica Platform REST API
-      - Informatica Data Integration REST API
-      - Informatica Cloud Data Governance and Catalog API
-      - Informatica Cloud Data Profiling REST API
-      - Informatica Cloud Address Verification API
-      - Informatica B2B Gateway REST API
-      - Informatica Reference 360 REST API
+      - Informatica API & App Integration
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
+    description: Clients receiving 429 or 503 should implement exponential backoff with jitter and honor
+      Retry-After when present.
+  - name: IPU Consumption Alerting
+    description: Set IPU consumption thresholds in the IDMC admin UI to receive alerts before pool exhaustion
+      throttles new job submissions.
+  - name: Runtime Sizing
+    description: Throughput is bounded by Secure Agent / runtime sizing; scale by adding agents or moving
+      to a Cloud Server runtime.
   - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Informatica reserves the right to throttle traffic that materially impacts shared pod
+      infrastructure.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
