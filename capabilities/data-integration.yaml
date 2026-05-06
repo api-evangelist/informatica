@@ -1,328 +1,657 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Informatica Data Integration"
-  description: "Unified workflow for managing data integration pipelines including connections, mappings, mapping tasks, job execution, scheduling, and activity monitoring. Used by data engineers and ETL developers."
+  label: Informatica Data Integration
+  description: Unified workflow for managing data integration pipelines including connections, mappings, mapping tasks, job
+    execution, scheduling, and activity monitoring. Used by data engineers and ETL developers.
   tags:
-    - Informatica
-    - Data Integration
-    - ETL
-    - Pipeline Management
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Informatica
+  - Data Integration
+  - ETL
+  - Pipeline Management
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      INFORMATICA_USERNAME: INFORMATICA_USERNAME
-      INFORMATICA_PASSWORD: INFORMATICA_PASSWORD
-
+- namespace: env
+  keys:
+    INFORMATICA_USERNAME: INFORMATICA_USERNAME
+    INFORMATICA_PASSWORD: INFORMATICA_PASSWORD
 capability:
   consumes:
-    - import: informatica-platform
-      location: ./shared/platform-rest-api.yaml
-
+  - type: http
+    namespace: informatica-platform
+    baseUri: https://dm-us.informaticacloud.com
+    description: Informatica IICS Platform REST API for data integration management.
+    authentication:
+      type: apikey
+      key: icSessionId
+      value: '{{INFORMATICA_SESSION_ID}}'
+      placement: header
+    resources:
+    - name: authentication
+      path: /ma/api/v2/user
+      description: Authentication and session management.
+      operations:
+      - name: login
+        method: POST
+        description: Authenticate and obtain a session ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': login
+            username: '{{tools.username}}'
+            password: '{{tools.password}}'
+      - name: logout
+        method: POST
+        description: End the current REST API session.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: connections
+      path: /saas/api/v2/connection
+      description: Manage data source connections.
+      operations:
+      - name: list-connections
+        method: GET
+        description: Retrieve all connections in the organization.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-connection
+        method: POST
+        description: Create a new connection.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': connection
+            name: '{{tools.name}}'
+            type: '{{tools.type}}'
+    - name: connection-details
+      path: /saas/api/v2/connection/{connectionId}
+      description: Manage individual connections.
+      operations:
+      - name: get-connection
+        method: GET
+        description: Retrieve a connection by ID.
+        inputParameters:
+        - name: connectionId
+          in: path
+          type: string
+          required: true
+          description: Connection ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-connection
+        method: PUT
+        description: Update an existing connection.
+        inputParameters:
+        - name: connectionId
+          in: path
+          type: string
+          required: true
+          description: Connection ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+      - name: delete-connection
+        method: DELETE
+        description: Delete a connection.
+        inputParameters:
+        - name: connectionId
+          in: path
+          type: string
+          required: true
+          description: Connection ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mappings
+      path: /saas/api/v2/mapping
+      description: Manage data integration mappings.
+      operations:
+      - name: list-mappings
+        method: GET
+        description: Retrieve all mappings in the organization.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mapping-details
+      path: /saas/api/v2/mapping/{mappingId}
+      description: Manage individual mappings.
+      operations:
+      - name: get-mapping
+        method: GET
+        description: Retrieve a mapping by ID.
+        inputParameters:
+        - name: mappingId
+          in: path
+          type: string
+          required: true
+          description: Mapping ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mapping-tasks
+      path: /saas/api/v2/mttask
+      description: Manage mapping tasks.
+      operations:
+      - name: list-mapping-tasks
+        method: GET
+        description: Retrieve all mapping tasks.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-mapping-task
+        method: POST
+        description: Create a new mapping task.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': mtTask
+            name: '{{tools.name}}'
+    - name: mapping-task-details
+      path: /saas/api/v2/mttask/{taskId}
+      description: Manage individual mapping tasks.
+      operations:
+      - name: get-mapping-task
+        method: GET
+        description: Retrieve a mapping task by ID.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          required: true
+          description: Task ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-mapping-task
+        method: PUT
+        description: Update a mapping task.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          required: true
+          description: Task ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+      - name: delete-mapping-task
+        method: DELETE
+        description: Delete a mapping task.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          required: true
+          description: Task ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs
+      path: /saas/api/v2/job
+      description: Manage job execution.
+      operations:
+      - name: start-job
+        method: POST
+        description: Start a job for a task or taskflow.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': job
+            taskId: '{{tools.taskId}}'
+            taskType: '{{tools.taskType}}'
+      - name: stop-job
+        method: POST
+        description: Stop a running job.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': job
+            taskId: '{{tools.taskId}}'
+    - name: activity-log
+      path: /saas/api/v2/activity/activityLog
+      description: View activity logs.
+      operations:
+      - name: get-activity-log
+        method: GET
+        description: Retrieve the activity log.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schedules
+      path: /saas/api/v2/schedule
+      description: Manage task schedules.
+      operations:
+      - name: list-schedules
+        method: GET
+        description: List all schedules.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-schedule
+        method: POST
+        description: Create a new schedule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            '@type': schedule
+            name: '{{tools.name}}'
+    - name: schedule-details
+      path: /saas/api/v2/schedule/{scheduleId}
+      description: Manage individual schedules.
+      operations:
+      - name: get-schedule
+        method: GET
+        description: Retrieve a schedule by ID.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          required: true
+          description: Schedule ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-schedule
+        method: PUT
+        description: Update a schedule.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          required: true
+          description: Schedule ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+      - name: delete-schedule
+        method: DELETE
+        description: Delete a schedule.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          required: true
+          description: Schedule ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: informatica-integration-api
-      description: "Unified REST API for Informatica data integration management."
-      resources:
-        - path: /v1/connections
-          name: connections
-          description: "Data source connection management."
-          operations:
-            - method: GET
-              name: list-connections
-              description: "List all connections."
-              call: "informatica-platform.list-connections"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-connection
-              description: "Create a new connection."
-              call: "informatica-platform.create-connection"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/connections/{id}
-          name: connection-details
-          description: "Individual connection management."
-          operations:
-            - method: GET
-              name: get-connection
-              description: "Get connection details."
-              call: "informatica-platform.get-connection"
-              with:
-                connectionId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-connection
-              description: "Update a connection."
-              call: "informatica-platform.update-connection"
-              with:
-                connectionId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-connection
-              description: "Delete a connection."
-              call: "informatica-platform.delete-connection"
-              with:
-                connectionId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/mappings
-          name: mappings
-          description: "Data mapping management."
-          operations:
-            - method: GET
-              name: list-mappings
-              description: "List all mappings."
-              call: "informatica-platform.list-mappings"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/mapping-tasks
-          name: mapping-tasks
-          description: "Mapping task management."
-          operations:
-            - method: GET
-              name: list-mapping-tasks
-              description: "List all mapping tasks."
-              call: "informatica-platform.list-mapping-tasks"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-mapping-task
-              description: "Create a new mapping task."
-              call: "informatica-platform.create-mapping-task"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/jobs
-          name: jobs
-          description: "Job execution management."
-          operations:
-            - method: POST
-              name: start-job
-              description: "Start a job."
-              call: "informatica-platform.start-job"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: informatica-integration-mcp
-      transport: http
-      description: "MCP server for AI-assisted Informatica data integration management."
-      tools:
-        - name: login
-          description: "Authenticate and obtain a session ID."
-          hints:
-            readOnly: false
-          call: "informatica-platform.login"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-connections
-          description: "List all data source connections."
-          hints:
-            readOnly: true
-          call: "informatica-platform.list-connections"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-connection
-          description: "Get connection details by ID."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "informatica-platform.get-connection"
-          with:
-            connectionId: "tools.connectionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-connection
-          description: "Create a new data source connection."
-          hints:
-            readOnly: false
-          call: "informatica-platform.create-connection"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-connection
-          description: "Update an existing connection."
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "informatica-platform.update-connection"
-          with:
-            connectionId: "tools.connectionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-connection
-          description: "Delete a connection."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "informatica-platform.delete-connection"
-          with:
-            connectionId: "tools.connectionId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-mappings
-          description: "List all data mappings."
-          hints:
-            readOnly: true
-          call: "informatica-platform.list-mappings"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-mapping
-          description: "Get mapping details by ID."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "informatica-platform.get-mapping"
-          with:
-            mappingId: "tools.mappingId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-mapping-tasks
-          description: "List all mapping tasks."
-          hints:
-            readOnly: true
-          call: "informatica-platform.list-mapping-tasks"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-mapping-task
-          description: "Create a new mapping task."
-          hints:
-            readOnly: false
-          call: "informatica-platform.create-mapping-task"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-mapping-task
-          description: "Get mapping task details by ID."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "informatica-platform.get-mapping-task"
-          with:
-            taskId: "tools.taskId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-mapping-task
-          description: "Update a mapping task."
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "informatica-platform.update-mapping-task"
-          with:
-            taskId: "tools.taskId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-mapping-task
-          description: "Delete a mapping task."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "informatica-platform.delete-mapping-task"
-          with:
-            taskId: "tools.taskId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: start-job
-          description: "Start a job for a task or taskflow."
-          hints:
-            readOnly: false
-          call: "informatica-platform.start-job"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: stop-job
-          description: "Stop a running job."
-          hints:
-            readOnly: false
-            destructive: true
-          call: "informatica-platform.stop-job"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-activity-log
-          description: "Retrieve the activity log."
-          hints:
-            readOnly: true
-          call: "informatica-platform.get-activity-log"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-schedules
-          description: "List all task schedules."
-          hints:
-            readOnly: true
-          call: "informatica-platform.list-schedules"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-schedule
-          description: "Create a new schedule."
-          hints:
-            readOnly: false
-          call: "informatica-platform.create-schedule"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-schedule
-          description: "Get schedule details by ID."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "informatica-platform.get-schedule"
-          with:
-            scheduleId: "tools.scheduleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-schedule
-          description: "Update a schedule."
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "informatica-platform.update-schedule"
-          with:
-            scheduleId: "tools.scheduleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-schedule
-          description: "Delete a schedule."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "informatica-platform.delete-schedule"
-          with:
-            scheduleId: "tools.scheduleId"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: informatica-integration-api
+    description: Unified REST API for Informatica data integration management.
+    resources:
+    - path: /v1/connections
+      name: connections
+      description: Data source connection management.
+      operations:
+      - method: GET
+        name: list-connections
+        description: List all connections.
+        call: informatica-platform.list-connections
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-connection
+        description: Create a new connection.
+        call: informatica-platform.create-connection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connections/{id}
+      name: connection-details
+      description: Individual connection management.
+      operations:
+      - method: GET
+        name: get-connection
+        description: Get connection details.
+        call: informatica-platform.get-connection
+        with:
+          connectionId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-connection
+        description: Update a connection.
+        call: informatica-platform.update-connection
+        with:
+          connectionId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-connection
+        description: Delete a connection.
+        call: informatica-platform.delete-connection
+        with:
+          connectionId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mappings
+      name: mappings
+      description: Data mapping management.
+      operations:
+      - method: GET
+        name: list-mappings
+        description: List all mappings.
+        call: informatica-platform.list-mappings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/mapping-tasks
+      name: mapping-tasks
+      description: Mapping task management.
+      operations:
+      - method: GET
+        name: list-mapping-tasks
+        description: List all mapping tasks.
+        call: informatica-platform.list-mapping-tasks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-mapping-task
+        description: Create a new mapping task.
+        call: informatica-platform.create-mapping-task
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs
+      name: jobs
+      description: Job execution management.
+      operations:
+      - method: POST
+        name: start-job
+        description: Start a job.
+        call: informatica-platform.start-job
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: informatica-integration-mcp
+    transport: http
+    description: MCP server for AI-assisted Informatica data integration management.
+    tools:
+    - name: login
+      description: Authenticate and obtain a session ID.
+      hints:
+        readOnly: false
+      call: informatica-platform.login
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-connections
+      description: List all data source connections.
+      hints:
+        readOnly: true
+      call: informatica-platform.list-connections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-connection
+      description: Get connection details by ID.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: informatica-platform.get-connection
+      with:
+        connectionId: tools.connectionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-connection
+      description: Create a new data source connection.
+      hints:
+        readOnly: false
+      call: informatica-platform.create-connection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-connection
+      description: Update an existing connection.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: informatica-platform.update-connection
+      with:
+        connectionId: tools.connectionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-connection
+      description: Delete a connection.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: informatica-platform.delete-connection
+      with:
+        connectionId: tools.connectionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-mappings
+      description: List all data mappings.
+      hints:
+        readOnly: true
+      call: informatica-platform.list-mappings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-mapping
+      description: Get mapping details by ID.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: informatica-platform.get-mapping
+      with:
+        mappingId: tools.mappingId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-mapping-tasks
+      description: List all mapping tasks.
+      hints:
+        readOnly: true
+      call: informatica-platform.list-mapping-tasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-mapping-task
+      description: Create a new mapping task.
+      hints:
+        readOnly: false
+      call: informatica-platform.create-mapping-task
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-mapping-task
+      description: Get mapping task details by ID.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: informatica-platform.get-mapping-task
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-mapping-task
+      description: Update a mapping task.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: informatica-platform.update-mapping-task
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-mapping-task
+      description: Delete a mapping task.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: informatica-platform.delete-mapping-task
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-job
+      description: Start a job for a task or taskflow.
+      hints:
+        readOnly: false
+      call: informatica-platform.start-job
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-job
+      description: Stop a running job.
+      hints:
+        readOnly: false
+        destructive: true
+      call: informatica-platform.stop-job
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-activity-log
+      description: Retrieve the activity log.
+      hints:
+        readOnly: true
+      call: informatica-platform.get-activity-log
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedules
+      description: List all task schedules.
+      hints:
+        readOnly: true
+      call: informatica-platform.list-schedules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-schedule
+      description: Create a new schedule.
+      hints:
+        readOnly: false
+      call: informatica-platform.create-schedule
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-schedule
+      description: Get schedule details by ID.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: informatica-platform.get-schedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule
+      description: Update a schedule.
+      hints:
+        readOnly: false
+        idempotent: true
+      call: informatica-platform.update-schedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule
+      description: Delete a schedule.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: informatica-platform.delete-schedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
