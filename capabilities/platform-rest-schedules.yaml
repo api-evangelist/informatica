@@ -1,0 +1,226 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Informatica IICS Platform REST API — Schedules
+  description: 'Informatica IICS Platform REST API — Schedules. 5 operations. Lead operation: Informatica Retrieve All Schedules.
+    Self-contained Naftiko capability covering one Informatica business surface.'
+  tags:
+  - Informatica
+  - Schedules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    INFORMATICA_API_KEY: INFORMATICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-schedules
+    baseUri: https://dm-us.informaticacloud.com
+    description: Informatica IICS Platform REST API — Schedules business capability. Self-contained, no shared references.
+    resources:
+    - name: saas-api-v2-schedule
+      path: /saas/api/v2/schedule
+      operations:
+      - name: listschedules
+        method: GET
+        description: Informatica Retrieve All Schedules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createschedule
+        method: POST
+        description: Informatica Create a New Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: saas-api-v2-schedule-scheduleId
+      path: /saas/api/v2/schedule/{scheduleId}
+      operations:
+      - name: getschedule
+        method: GET
+        description: Informatica Retrieve a Schedule by Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          description: The unique identifier of the schedule.
+          required: true
+      - name: updateschedule
+        method: PUT
+        description: Informatica Update an Existing Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          description: The unique identifier of the schedule.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteschedule
+        method: DELETE
+        description: Informatica Delete a Schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scheduleId
+          in: path
+          type: string
+          description: The unique identifier of the schedule.
+          required: true
+    authentication:
+      type: apikey
+      key: icSessionId
+      value: '{{env.INFORMATICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: platform-rest-schedules-rest
+    port: 8080
+    description: REST adapter for Informatica IICS Platform REST API — Schedules. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/saas/api/v2/schedule
+      name: saas-api-v2-schedule
+      description: REST surface for saas-api-v2-schedule.
+      operations:
+      - method: GET
+        name: listschedules
+        description: Informatica Retrieve All Schedules
+        call: platform-rest-schedules.listschedules
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createschedule
+        description: Informatica Create a New Schedule
+        call: platform-rest-schedules.createschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/saas/api/v2/schedule/{scheduleid}
+      name: saas-api-v2-schedule-scheduleid
+      description: REST surface for saas-api-v2-schedule-scheduleId.
+      operations:
+      - method: GET
+        name: getschedule
+        description: Informatica Retrieve a Schedule by Id
+        call: platform-rest-schedules.getschedule
+        with:
+          scheduleId: rest.scheduleId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateschedule
+        description: Informatica Update an Existing Schedule
+        call: platform-rest-schedules.updateschedule
+        with:
+          scheduleId: rest.scheduleId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteschedule
+        description: Informatica Delete a Schedule
+        call: platform-rest-schedules.deleteschedule
+        with:
+          scheduleId: rest.scheduleId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-schedules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Informatica IICS Platform REST API — Schedules. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: informatica-retrieve-all-schedules
+      description: Informatica Retrieve All Schedules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-schedules.listschedules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-create-new-schedule
+      description: Informatica Create a New Schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-schedules.createschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-retrieve-schedule-id
+      description: Informatica Retrieve a Schedule by Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-schedules.getschedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-update-existing-schedule
+      description: Informatica Update an Existing Schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-rest-schedules.updateschedule
+      with:
+        scheduleId: tools.scheduleId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-delete-schedule
+      description: Informatica Delete a Schedule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-rest-schedules.deleteschedule
+      with:
+        scheduleId: tools.scheduleId
+      outputParameters:
+      - type: object
+        mapping: $.

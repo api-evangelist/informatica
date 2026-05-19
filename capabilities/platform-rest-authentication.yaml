@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Informatica IICS Platform REST API — Authentication
+  description: 'Informatica IICS Platform REST API — Authentication. 2 operations. Lead operation: Log in to Informatica Intelligent
+    Cloud Services. Self-contained Naftiko capability covering one Informatica business surface.'
+  tags:
+  - Informatica
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    INFORMATICA_API_KEY: INFORMATICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-authentication
+    baseUri: https://dm-us.informaticacloud.com
+    description: Informatica IICS Platform REST API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: ma-api-v2-user-login
+      path: /ma/api/v2/user/login
+      operations:
+      - name: login
+        method: POST
+        description: Log in to Informatica Intelligent Cloud Services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: saas-api-v2-user-logout
+      path: /saas/api/v2/user/logout
+      operations:
+      - name: logout
+        method: POST
+        description: Informatica Log Out and End the Rest Api Session
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: icSessionId
+      value: '{{env.INFORMATICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: platform-rest-authentication-rest
+    port: 8080
+    description: REST adapter for Informatica IICS Platform REST API — Authentication. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/ma/api/v2/user/login
+      name: ma-api-v2-user-login
+      description: REST surface for ma-api-v2-user-login.
+      operations:
+      - method: POST
+        name: login
+        description: Log in to Informatica Intelligent Cloud Services
+        call: platform-rest-authentication.login
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/saas/api/v2/user/logout
+      name: saas-api-v2-user-logout
+      description: REST surface for saas-api-v2-user-logout.
+      operations:
+      - method: POST
+        name: logout
+        description: Informatica Log Out and End the Rest Api Session
+        call: platform-rest-authentication.logout
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Informatica IICS Platform REST API — Authentication. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: log-informatica-intelligent-cloud-services
+      description: Log in to Informatica Intelligent Cloud Services
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-authentication.login
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-log-out-and-end
+      description: Informatica Log Out and End the Rest Api Session
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-authentication.logout
+      outputParameters:
+      - type: object
+        mapping: $.

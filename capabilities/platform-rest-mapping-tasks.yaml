@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Informatica IICS Platform REST API — Mapping Tasks
+  description: 'Informatica IICS Platform REST API — Mapping Tasks. 6 operations. Lead operation: Informatica Retrieve All
+    Mapping Tasks in the Organization. Self-contained Naftiko capability covering one Informatica business surface.'
+  tags:
+  - Informatica
+  - Mapping Tasks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    INFORMATICA_API_KEY: INFORMATICA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-mapping-tasks
+    baseUri: https://dm-us.informaticacloud.com
+    description: Informatica IICS Platform REST API — Mapping Tasks business capability. Self-contained, no shared references.
+    resources:
+    - name: saas-api-v2-mttask
+      path: /saas/api/v2/mttask
+      operations:
+      - name: listmappingtasks
+        method: GET
+        description: Informatica Retrieve All Mapping Tasks in the Organization
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createmappingtask
+        method: POST
+        description: Informatica Create a New Mapping Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: saas-api-v2-mttask-name-taskName
+      path: /saas/api/v2/mttask/name/{taskName}
+      operations:
+      - name: getmappingtaskbyname
+        method: GET
+        description: Informatica Retrieve a Mapping Task by Name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: saas-api-v2-mttask-taskId
+      path: /saas/api/v2/mttask/{taskId}
+      operations:
+      - name: getmappingtask
+        method: GET
+        description: Informatica Retrieve a Mapping Task by Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatemappingtask
+        method: PUT
+        description: Informatica Update an Existing Mapping Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletemappingtask
+        method: DELETE
+        description: Informatica Delete a Mapping Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: icSessionId
+      value: '{{env.INFORMATICA_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: platform-rest-mapping-tasks-rest
+    port: 8080
+    description: REST adapter for Informatica IICS Platform REST API — Mapping Tasks. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/saas/api/v2/mttask
+      name: saas-api-v2-mttask
+      description: REST surface for saas-api-v2-mttask.
+      operations:
+      - method: GET
+        name: listmappingtasks
+        description: Informatica Retrieve All Mapping Tasks in the Organization
+        call: platform-rest-mapping-tasks.listmappingtasks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmappingtask
+        description: Informatica Create a New Mapping Task
+        call: platform-rest-mapping-tasks.createmappingtask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/saas/api/v2/mttask/name/{taskname}
+      name: saas-api-v2-mttask-name-taskname
+      description: REST surface for saas-api-v2-mttask-name-taskName.
+      operations:
+      - method: GET
+        name: getmappingtaskbyname
+        description: Informatica Retrieve a Mapping Task by Name
+        call: platform-rest-mapping-tasks.getmappingtaskbyname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/saas/api/v2/mttask/{taskid}
+      name: saas-api-v2-mttask-taskid
+      description: REST surface for saas-api-v2-mttask-taskId.
+      operations:
+      - method: GET
+        name: getmappingtask
+        description: Informatica Retrieve a Mapping Task by Id
+        call: platform-rest-mapping-tasks.getmappingtask
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatemappingtask
+        description: Informatica Update an Existing Mapping Task
+        call: platform-rest-mapping-tasks.updatemappingtask
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemappingtask
+        description: Informatica Delete a Mapping Task
+        call: platform-rest-mapping-tasks.deletemappingtask
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-mapping-tasks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Informatica IICS Platform REST API — Mapping Tasks. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: informatica-retrieve-all-mapping-tasks
+      description: Informatica Retrieve All Mapping Tasks in the Organization
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-mapping-tasks.listmappingtasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-create-new-mapping-task
+      description: Informatica Create a New Mapping Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-mapping-tasks.createmappingtask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-retrieve-mapping-task-name
+      description: Informatica Retrieve a Mapping Task by Name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-mapping-tasks.getmappingtaskbyname
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-retrieve-mapping-task-id
+      description: Informatica Retrieve a Mapping Task by Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-mapping-tasks.getmappingtask
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-update-existing-mapping-task
+      description: Informatica Update an Existing Mapping Task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-rest-mapping-tasks.updatemappingtask
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: informatica-delete-mapping-task
+      description: Informatica Delete a Mapping Task
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-rest-mapping-tasks.deletemappingtask
+      outputParameters:
+      - type: object
+        mapping: $.
