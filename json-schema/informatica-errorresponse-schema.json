@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Error response returned when a request fails.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The error type identifier.",
+      "example": "example_value"
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "The HTTP status code.",
+      "example": 10
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable error message.",
+      "example": "example_value"
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the error.",
+      "example": "A sample description."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "The unique request ID for troubleshooting.",
+      "example": "500123"
+    }
+  }
+}

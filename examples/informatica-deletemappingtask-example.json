@@ -1,0 +1,21 @@
+{
+  "operationId": "deleteMappingTask",
+  "method": "DELETE",
+  "path": "/saas/api/v2/mttask/{taskId}",
+  "summary": "Informatica Delete a Mapping Task",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "Deletemappingtask404Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

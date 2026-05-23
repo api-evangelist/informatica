@@ -1,0 +1,30 @@
+{
+  "operationId": "testConnection",
+  "method": "POST",
+  "path": "/saas/api/v2/connection/{connectionId}/test",
+  "summary": "Informatica Test a Connection",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Testconnection200Example",
+      "example": {
+        "success": true,
+        "message": "example_value"
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "Testconnection404Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

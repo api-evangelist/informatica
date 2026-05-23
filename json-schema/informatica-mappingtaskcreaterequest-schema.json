@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MappingTaskCreateRequest",
+  "title": "MappingTaskCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new mapping task.",
+  "required": [
+    "@type",
+    "name",
+    "mappingId"
+  ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier.",
+      "const": "mttask",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name for the new mapping task.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping task.",
+      "example": "A sample description."
+    },
+    "mappingId": {
+      "type": "string",
+      "description": "The ID of the mapping to execute.",
+      "example": "500123"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment to use for execution.",
+      "example": "500123"
+    },
+    "scheduleId": {
+      "type": "string",
+      "description": "The schedule to associate with the task.",
+      "example": "500123"
+    },
+    "preProcessingCmd": {
+      "type": "string",
+      "description": "The command to run before the task.",
+      "example": "example_value"
+    },
+    "postProcessingCmd": {
+      "type": "string",
+      "description": "The command to run after the task.",
+      "example": "example_value"
+    },
+    "sourceConnectionId": {
+      "type": "string",
+      "description": "The source connection ID.",
+      "example": "500123"
+    },
+    "targetConnectionId": {
+      "type": "string",
+      "description": "The target connection ID.",
+      "example": "500123"
+    },
+    "parameters": {
+      "type": "array",
+      "description": "Parameter value overrides.",
+      "items": {
+        "$ref": "#/components/schemas/MappingParameter"
+      },
+      "example": []
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Mapping",
+  "title": "Mapping",
+  "type": "object",
+  "description": "Represents a data integration mapping definition that specifies data transformation logic between sources and targets.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier.",
+      "const": "mapping",
+      "example": "example_value"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the mapping.",
+      "example": "abc123"
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns the mapping.",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the mapping.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping.",
+      "example": "A sample description."
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the mapping was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the mapping was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the mapping.",
+      "example": "example_value"
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the mapping.",
+      "example": "example_value"
+    },
+    "bundleObjectId": {
+      "type": "string",
+      "description": "The associated bundle ID if applicable.",
+      "example": "500123"
+    },
+    "bundleVersion": {
+      "type": "string",
+      "description": "The associated bundle version.",
+      "example": "example_value"
+    },
+    "templateId": {
+      "type": "string",
+      "description": "The internal template identifier.",
+      "example": "500123"
+    },
+    "deployTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the mapping was deployed.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "hasParameters": {
+      "type": "boolean",
+      "description": "Whether the mapping includes parameters.",
+      "example": true
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the mapping is in a valid state.",
+      "example": "500123"
+    },
+    "fixedConnection": {
+      "type": "boolean",
+      "description": "Whether the mapping uses fixed connections.",
+      "example": true
+    },
+    "hasParametersDeployed": {
+      "type": "boolean",
+      "description": "Whether parameters are deployed.",
+      "example": true
+    },
+    "fixedConnectionDeployed": {
+      "type": "boolean",
+      "description": "Whether fixed connections are deployed.",
+      "example": true
+    },
+    "deployedTemplateId": {
+      "type": "string",
+      "description": "The internal deployed template identifier.",
+      "example": "500123"
+    },
+    "tasks": {
+      "type": "integer",
+      "description": "The count of tasks using this mapping.",
+      "example": 10
+    },
+    "parameters": {
+      "type": "array",
+      "description": "The collection of mapping parameters.",
+      "items": {
+        "$ref": "#/components/schemas/MappingParameter"
+      },
+      "example": []
+    },
+    "inOutParameters": {
+      "type": "array",
+      "description": "The collection of in-out parameters.",
+      "items": {
+        "$ref": "#/components/schemas/MappingInOutParameter"
+      },
+      "example": []
+    },
+    "references": {
+      "type": "array",
+      "description": "References to related objects.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "refObjectId": {
+            "type": "string",
+            "description": "The ID of the referenced object."
+          },
+          "refType": {
+            "type": "string",
+            "description": "The type of reference."
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

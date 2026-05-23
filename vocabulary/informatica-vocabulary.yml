@@ -1,0 +1,19 @@
+name: Informatica Domain Vocabulary
+provider: Informatica
+providerId: informatica
+description: Tag-derived vocabulary for the Informatica API surface; sourced from openapi/ tags.
+terms:
+- term: Authentication
+  description: Login and session management operations.
+- term: Connections
+  description: Manage connections to data sources and targets including databases, flat files, cloud applications, and SaaS
+    services.
+- term: Jobs
+  description: Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.
+- term: Mapping Tasks
+  description: Create, retrieve, update, and delete mapping task configurations that execute mappings with specific runtime
+    parameters.
+- term: Mappings
+  description: Retrieve mapping definitions and metadata for data integration mappings within the organization.
+- term: Schedules
+  description: Manage task execution schedules.

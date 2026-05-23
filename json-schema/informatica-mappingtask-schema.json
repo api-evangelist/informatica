@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MappingTask",
+  "title": "MappingTask",
+  "type": "object",
+  "description": "Represents a mapping task that executes a mapping with specific source and target connections and runtime parameters.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier.",
+      "const": "mttask",
+      "example": "example_value"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the mapping task.",
+      "example": "abc123"
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID that owns the task.",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the mapping task.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the mapping task.",
+      "example": "A sample description."
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the mapping task was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the mapping task was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the mapping task.",
+      "example": "example_value"
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the mapping task.",
+      "example": "example_value"
+    },
+    "mappingId": {
+      "type": "string",
+      "description": "The ID of the mapping that this task executes.",
+      "example": "500123"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment to use for execution.",
+      "example": "500123"
+    },
+    "scheduleId": {
+      "type": "string",
+      "description": "The schedule ID if the task is scheduled.",
+      "example": "500123"
+    },
+    "preProcessingCmd": {
+      "type": "string",
+      "description": "The command to run before the task executes.",
+      "example": "example_value"
+    },
+    "postProcessingCmd": {
+      "type": "string",
+      "description": "The command to run after the task executes.",
+      "example": "example_value"
+    },
+    "parameters": {
+      "type": "array",
+      "description": "The parameter values for this task execution. Overrides default mapping parameters.",
+      "items": {
+        "$ref": "#/components/schemas/MappingParameter"
+      },
+      "example": []
+    },
+    "sourceConnectionId": {
+      "type": "string",
+      "description": "The source connection ID for the mapping task.",
+      "example": "500123"
+    },
+    "targetConnectionId": {
+      "type": "string",
+      "description": "The target connection ID for the mapping task.",
+      "example": "500123"
+    },
+    "frsId": {
+      "type": "string",
+      "description": "The federated task ID.",
+      "example": "500123"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the mapping task is active.",
+      "example": true
+    }
+  }
+}

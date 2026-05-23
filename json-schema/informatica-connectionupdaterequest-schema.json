@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionUpdateRequest",
+  "title": "ConnectionUpdateRequest",
+  "type": "object",
+  "description": "Request body for updating an existing connection.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"connection\".",
+      "const": "connection",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "The updated name for the connection.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "An updated description of the connection.",
+      "example": "A sample description."
+    },
+    "host": {
+      "type": "string",
+      "description": "The updated hostname or IP address.",
+      "example": "example_value"
+    },
+    "port": {
+      "type": "integer",
+      "description": "The updated port number.",
+      "example": 10
+    },
+    "database": {
+      "type": "string",
+      "description": "The updated database name.",
+      "example": "example_value"
+    },
+    "schema": {
+      "type": "string",
+      "description": "The updated database schema.",
+      "example": "example_value"
+    },
+    "username": {
+      "type": "string",
+      "description": "The updated username.",
+      "example": "example_value"
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "The updated password.",
+      "example": "example_value"
+    },
+    "authenticationType": {
+      "type": "string",
+      "description": "The updated authentication method.",
+      "example": "example_value"
+    },
+    "serviceUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The updated service endpoint URL.",
+      "example": "https://www.example.com"
+    },
+    "codepage": {
+      "type": "string",
+      "description": "The updated character encoding.",
+      "example": "example_value"
+    },
+    "connParams": {
+      "type": "object",
+      "description": "Updated connection-type-specific parameters.",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  }
+}

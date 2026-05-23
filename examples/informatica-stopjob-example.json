@@ -1,0 +1,42 @@
+{
+  "operationId": "stopJob",
+  "method": "POST",
+  "path": "/saas/api/v2/job/stop",
+  "summary": "Informatica Stop a Running Job",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "@type": "job",
+        "taskId": "0012ABC000000042",
+        "taskType": "MTT"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Stopjob400Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "Stopjob404Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

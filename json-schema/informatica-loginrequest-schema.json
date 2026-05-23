@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoginRequest",
+  "title": "LoginRequest",
+  "type": "object",
+  "description": "Request body for the login endpoint.",
+  "required": [
+    "@type",
+    "username",
+    "password"
+  ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"login\".",
+      "enum": [
+        "login"
+      ],
+      "example": "login"
+    },
+    "username": {
+      "type": "string",
+      "description": "The Informatica Intelligent Cloud Services username.",
+      "example": "example_value"
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "The account password.",
+      "example": "example_value"
+    }
+  }
+}

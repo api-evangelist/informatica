@@ -1,0 +1,34 @@
+{
+  "operationId": "getSchedule",
+  "method": "GET",
+  "path": "/saas/api/v2/schedule/{scheduleId}",
+  "summary": "Informatica Retrieve a Schedule by Id",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getschedule200Example",
+      "example": {
+        "@type": "example_value",
+        "id": "abc123",
+        "orgId": "500123",
+        "name": "Example Title",
+        "description": "A sample description.",
+        "createTime": "2026-01-15T10:30:00Z",
+        "updateTime": "2026-01-15T10:30:00Z",
+        "createdBy": "example_value",
+        "updatedBy": "example_value",
+        "startTime": "2026-01-15T10:30:00Z",
+        "endTime": "2026-01-15T10:30:00Z",
+        "interval": "example_value",
+        "frequency": 10,
+        "timezone": "example_value",
+        "rangeStartTime": "2026-01-15T10:30:00Z",
+        "rangeEndTime": "2026-01-15T10:30:00Z",
+        "dayOfWeek": "example_value",
+        "dayOfMonth": 10
+      }
+    }
+  ]
+}

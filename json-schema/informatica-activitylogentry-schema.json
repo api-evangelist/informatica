@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActivityLogEntry",
+  "title": "ActivityLogEntry",
+  "type": "object",
+  "description": "An entry in the activity log representing the execution status of a job.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The activity log entry ID.",
+      "example": "abc123"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of activity.",
+      "example": "example_value"
+    },
+    "objectId": {
+      "type": "string",
+      "description": "The ID of the task or object.",
+      "example": "500123"
+    },
+    "objectName": {
+      "type": "string",
+      "description": "The name of the task or object.",
+      "example": "example_value"
+    },
+    "runId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The job run ID.",
+      "example": "500123"
+    },
+    "agentId": {
+      "type": "string",
+      "description": "The Secure Agent that ran the job.",
+      "example": "500123"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment used.",
+      "example": "500123"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the job started.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the job completed.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "state": {
+      "type": "integer",
+      "description": "The job execution state. Common values are 1 (success), 2 (warning), 3 (error).",
+      "example": 10
+    },
+    "failedSourceRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The number of source rows that failed.",
+      "example": 10
+    },
+    "successSourceRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The number of source rows processed successfully.",
+      "example": 10
+    },
+    "failedTargetRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The number of target rows that failed.",
+      "example": 10
+    },
+    "successTargetRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The number of target rows written successfully.",
+      "example": 10
+    },
+    "totalSuccessRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The total number of rows processed successfully.",
+      "example": 10
+    },
+    "totalErrorRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The total number of rows that encountered errors.",
+      "example": 10
+    },
+    "errorMsg": {
+      "type": "string",
+      "description": "The error message if the job failed.",
+      "example": "example_value"
+    },
+    "startedBy": {
+      "type": "string",
+      "description": "The user who started the job.",
+      "example": "example_value"
+    },
+    "runContextType": {
+      "type": "string",
+      "description": "The context in which the job was run (e.g., API, SCHEDULER, UI).",
+      "example": "example_value"
+    },
+    "entries": {
+      "type": "array",
+      "description": "Sub-entries for multi-step jobs.",
+      "items": {
+        "type": "object"
+      },
+      "example": []
+    }
+  }
+}

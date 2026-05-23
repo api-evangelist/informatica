@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schedule",
+  "title": "Schedule",
+  "type": "object",
+  "description": "A task execution schedule.",
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier.",
+      "const": "schedule",
+      "example": "example_value"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the schedule.",
+      "example": "abc123"
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID.",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the schedule.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the schedule.",
+      "example": "A sample description."
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the schedule was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the schedule was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The user who created the schedule.",
+      "example": "example_value"
+    },
+    "updatedBy": {
+      "type": "string",
+      "description": "The user who last updated the schedule.",
+      "example": "example_value"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The scheduled start time.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The scheduled end time.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "interval": {
+      "type": "string",
+      "description": "The recurrence interval (e.g., None, Daily, Weekly, Monthly).",
+      "example": "example_value"
+    },
+    "frequency": {
+      "type": "integer",
+      "description": "How often the schedule repeats within the interval.",
+      "example": 10
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone for the schedule.",
+      "example": "example_value"
+    },
+    "rangeStartTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The start of the time range within each day.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "rangeEndTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The end of the time range within each day.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "dayOfWeek": {
+      "type": "string",
+      "description": "The day(s) of the week for weekly schedules (e.g., Mon, Tue, Wed).",
+      "example": "example_value"
+    },
+    "dayOfMonth": {
+      "type": "integer",
+      "description": "The day of the month for monthly schedules.",
+      "example": 10
+    }
+  }
+}

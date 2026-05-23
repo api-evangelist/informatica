@@ -1,0 +1,395 @@
+{
+  "provider": "Informatica",
+  "providerId": "informatica",
+  "kind": "json-structure",
+  "description": "Structural overview of the Informatica API surface; extracted from openapi/.",
+  "schemaCount": 18,
+  "operationCount": 28,
+  "schemas": [
+    {
+      "name": "LoginRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "@type",
+        "username",
+        "password"
+      ]
+    },
+    {
+      "name": "LoginResponse",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 22,
+      "required": []
+    },
+    {
+      "name": "ConnectionCreateRequest",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "@type",
+        "name",
+        "type",
+        "runtimeEnvironmentId"
+      ]
+    },
+    {
+      "name": "ConnectionUpdateRequest",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "Mapping",
+      "type": "object",
+      "propertyCount": 23,
+      "required": []
+    },
+    {
+      "name": "MappingParameter",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "MappingInOutParameter",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "MappingTask",
+      "type": "object",
+      "propertyCount": 19,
+      "required": []
+    },
+    {
+      "name": "MappingTaskCreateRequest",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "@type",
+        "name",
+        "mappingId"
+      ]
+    },
+    {
+      "name": "MappingTaskUpdateRequest",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "JobStartRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "@type",
+        "taskType"
+      ]
+    },
+    {
+      "name": "JobStartResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JobStopRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "@type",
+        "taskType"
+      ]
+    },
+    {
+      "name": "ActivityLogEntry",
+      "type": "object",
+      "propertyCount": 20,
+      "required": []
+    },
+    {
+      "name": "Schedule",
+      "type": "object",
+      "propertyCount": 18,
+      "required": []
+    },
+    {
+      "name": "ScheduleCreateRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "@type",
+        "name",
+        "startTime"
+      ]
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/ma/api/v2/user/login",
+      "operationId": "login",
+      "summary": "Log in to Informatica Intelligent Cloud Services",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/user/logout",
+      "operationId": "logout",
+      "summary": "Informatica Log Out and End the Rest Api Session",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/connection",
+      "operationId": "listConnections",
+      "summary": "Informatica Retrieve All Connections in the Organization",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/connection",
+      "operationId": "createConnection",
+      "summary": "Informatica Create a New Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/connection/{connectionId}",
+      "operationId": "getConnection",
+      "summary": "Informatica Retrieve a Connection by Id",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/saas/api/v2/connection/{connectionId}",
+      "operationId": "updateConnection",
+      "summary": "Informatica Update an Existing Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/saas/api/v2/connection/{connectionId}",
+      "operationId": "deleteConnection",
+      "summary": "Informatica Delete a Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/connection/name/{connectionName}",
+      "operationId": "getConnectionByName",
+      "summary": "Informatica Retrieve a Connection by Name",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/connection/search",
+      "operationId": "searchConnections",
+      "summary": "Informatica Search for Connections by Agent or Runtime Environment",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/connection/{connectionId}/test",
+      "operationId": "testConnection",
+      "summary": "Informatica Test a Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mapping",
+      "operationId": "listMappings",
+      "summary": "Informatica Retrieve All Mappings in the Organization",
+      "tags": [
+        "Mappings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mapping/{mappingId}",
+      "operationId": "getMapping",
+      "summary": "Informatica Retrieve a Mapping by Id",
+      "tags": [
+        "Mappings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mapping/name/{mappingName}",
+      "operationId": "getMappingByName",
+      "summary": "Informatica Retrieve a Mapping by Name",
+      "tags": [
+        "Mappings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mapping/search",
+      "operationId": "searchMappings",
+      "summary": "Informatica Search for Mappings by Name",
+      "tags": [
+        "Mappings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mttask",
+      "operationId": "listMappingTasks",
+      "summary": "Informatica Retrieve All Mapping Tasks in the Organization",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/mttask",
+      "operationId": "createMappingTask",
+      "summary": "Informatica Create a New Mapping Task",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mttask/{taskId}",
+      "operationId": "getMappingTask",
+      "summary": "Informatica Retrieve a Mapping Task by Id",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/saas/api/v2/mttask/{taskId}",
+      "operationId": "updateMappingTask",
+      "summary": "Informatica Update an Existing Mapping Task",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/saas/api/v2/mttask/{taskId}",
+      "operationId": "deleteMappingTask",
+      "summary": "Informatica Delete a Mapping Task",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/mttask/name/{taskName}",
+      "operationId": "getMappingTaskByName",
+      "summary": "Informatica Retrieve a Mapping Task by Name",
+      "tags": [
+        "Mapping Tasks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/job",
+      "operationId": "startJob",
+      "summary": "Informatica Start a Job for a Task or Taskflow",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/job/stop",
+      "operationId": "stopJob",
+      "summary": "Informatica Stop a Running Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/activity/activityLog",
+      "operationId": "getActivityLog",
+      "summary": "Informatica Retrieve Activity Log Entries for Jobs",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/schedule",
+      "operationId": "listSchedules",
+      "summary": "Informatica Retrieve All Schedules",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/saas/api/v2/schedule",
+      "operationId": "createSchedule",
+      "summary": "Informatica Create a New Schedule",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/saas/api/v2/schedule/{scheduleId}",
+      "operationId": "getSchedule",
+      "summary": "Informatica Retrieve a Schedule by Id",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/saas/api/v2/schedule/{scheduleId}",
+      "operationId": "updateSchedule",
+      "summary": "Informatica Update an Existing Schedule",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/saas/api/v2/schedule/{scheduleId}",
+      "operationId": "deleteSchedule",
+      "summary": "Informatica Delete a Schedule",
+      "tags": [
+        "Schedules"
+      ]
+    }
+  ]
+}

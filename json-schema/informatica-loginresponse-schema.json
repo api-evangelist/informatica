@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LoginResponse",
+  "title": "LoginResponse",
+  "type": "object",
+  "description": "Successful login response containing the session ID and server URL for subsequent API calls.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The user ID.",
+      "example": "abc123"
+    },
+    "orgId": {
+      "type": "string",
+      "description": "The organization ID.",
+      "example": "500123"
+    },
+    "orgUuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The organization UUID.",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The username used to log in.",
+      "example": "Example Title"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "The first name of the user.",
+      "example": "example_value"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "The last name of the user.",
+      "example": "example_value"
+    },
+    "title": {
+      "type": "string",
+      "description": "The job title of the user.",
+      "example": "Example Title"
+    },
+    "phone": {
+      "type": "string",
+      "description": "The phone number of the user.",
+      "example": "example_value"
+    },
+    "emails": {
+      "type": "string",
+      "description": "The email address of the user.",
+      "example": "user@example.com"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone of the user (e.g., America/Los_Angeles).",
+      "example": "example_value"
+    },
+    "serverUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The base URL to use in version 2 REST API calls. Use this URL as the base for all subsequent v2 API requests.",
+      "example": "https://www.example.com"
+    },
+    "icSessionId": {
+      "type": "string",
+      "description": "The REST API session ID. Include this value in the icSessionId header for all subsequent requests. Expires after 30 minutes of inactivity.",
+      "example": "500123"
+    },
+    "securityQuestion": {
+      "type": "string",
+      "description": "The security question for the user account.",
+      "example": "example_value"
+    },
+    "securityAnswer": {
+      "type": "string",
+      "description": "The security answer (returned as empty string).",
+      "example": "example_value"
+    },
+    "createTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the user account was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time the user account was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

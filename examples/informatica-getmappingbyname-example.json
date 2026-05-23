@@ -1,0 +1,78 @@
+{
+  "operationId": "getMappingByName",
+  "method": "GET",
+  "path": "/saas/api/v2/mapping/name/{mappingName}",
+  "summary": "Informatica Retrieve a Mapping by Name",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmappingbyname200Example",
+      "example": {
+        "@type": "example_value",
+        "id": "abc123",
+        "orgId": "500123",
+        "name": "Example Title",
+        "description": "A sample description.",
+        "createTime": "2026-01-15T10:30:00Z",
+        "updateTime": "2026-01-15T10:30:00Z",
+        "createdBy": "example_value",
+        "updatedBy": "example_value",
+        "bundleObjectId": "500123",
+        "bundleVersion": "example_value",
+        "templateId": "500123",
+        "deployTime": "2026-01-15T10:30:00Z",
+        "hasParameters": true,
+        "valid": "500123",
+        "fixedConnection": true,
+        "hasParametersDeployed": true,
+        "fixedConnectionDeployed": true,
+        "deployedTemplateId": "500123",
+        "tasks": 10,
+        "parameters": [
+          {
+            "id": "abc123",
+            "name": "Example Title",
+            "type": "example_value",
+            "description": "A sample description.",
+            "customFuncId": "500123",
+            "uiProperties": "example_value"
+          }
+        ],
+        "inOutParameters": [
+          {
+            "id": "abc123",
+            "name": "Example Title",
+            "description": "A sample description.",
+            "initialValue": "example_value",
+            "datatype": "example_value",
+            "precision": "example_value",
+            "scale": "example_value",
+            "retentionPolicy": "example_value",
+            "aggregationType": "example_value",
+            "currentValue": "example_value"
+          }
+        ],
+        "references": [
+          {
+            "refObjectId": "500123",
+            "refType": "example_value"
+          }
+        ]
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "Getmappingbyname404Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

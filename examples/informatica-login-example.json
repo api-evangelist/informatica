@@ -1,0 +1,58 @@
+{
+  "operationId": "login",
+  "method": "POST",
+  "path": "/ma/api/v2/user/login",
+  "summary": "Log in to Informatica Intelligent Cloud Services",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "@type": "login",
+        "username": "user@example.com",
+        "password": "securePassword123"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": {
+        "id": "0012ABC000000001",
+        "orgId": "00DXYZ000000001",
+        "orgUuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "user@example.com",
+        "firstName": "John",
+        "lastName": "Doe",
+        "serverUrl": "https://na4.dm-us.informaticacloud.com/saas",
+        "icSessionId": "abcdef1234567890abcdef1234567890",
+        "securityQuestion": "What is your pet name?",
+        "securityAnswer": ""
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Login401Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "500",
+      "contentType": "application/json",
+      "name": "Login500Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

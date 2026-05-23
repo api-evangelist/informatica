@@ -1,0 +1,21 @@
+{
+  "operationId": "logout",
+  "method": "POST",
+  "path": "/saas/api/v2/user/logout",
+  "summary": "Informatica Log Out and End the Rest Api Session",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Logout401Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

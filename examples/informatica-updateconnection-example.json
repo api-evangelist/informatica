@@ -1,0 +1,82 @@
+{
+  "operationId": "updateConnection",
+  "method": "PUT",
+  "path": "/saas/api/v2/connection/{connectionId}",
+  "summary": "Informatica Update an Existing Connection",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdateconnectionRequestExample",
+      "example": {
+        "@type": "example_value",
+        "name": "Example Title",
+        "description": "A sample description.",
+        "host": "example_value",
+        "port": 10,
+        "database": "example_value",
+        "schema": "example_value",
+        "username": "example_value",
+        "password": "example_value",
+        "authenticationType": "example_value",
+        "serviceUrl": "https://www.example.com",
+        "codepage": "example_value",
+        "connParams": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Updateconnection200Example",
+      "example": {
+        "@type": "example_value",
+        "id": "abc123",
+        "orgId": "500123",
+        "name": "Example Title",
+        "description": "A sample description.",
+        "type": "CSVFile",
+        "createTime": "2026-01-15T10:30:00Z",
+        "updateTime": "2026-01-15T10:30:00Z",
+        "createdBy": "example_value",
+        "updatedBy": "example_value",
+        "agentId": "500123",
+        "runtimeEnvironmentId": "500123",
+        "host": "example_value",
+        "port": 10,
+        "database": "example_value",
+        "schema": "example_value",
+        "username": "example_value",
+        "password": "example_value",
+        "authenticationType": "example_value",
+        "serviceUrl": "https://www.example.com",
+        "codepage": "example_value",
+        "connParams": "example_value"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Updateconnection400Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "name": "Updateconnection404Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "operationId": "listMappingTasks",
+  "method": "GET",
+  "path": "/saas/api/v2/mttask",
+  "summary": "Informatica Retrieve All Mapping Tasks in the Organization",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listmappingtasks200Example",
+      "example": [
+        {
+          "@type": "example_value",
+          "id": "abc123",
+          "orgId": "500123",
+          "name": "Example Title",
+          "description": "A sample description.",
+          "createTime": "2026-01-15T10:30:00Z",
+          "updateTime": "2026-01-15T10:30:00Z",
+          "createdBy": "example_value",
+          "updatedBy": "example_value",
+          "mappingId": "500123",
+          "runtimeEnvironmentId": "500123",
+          "scheduleId": "500123",
+          "preProcessingCmd": "example_value",
+          "postProcessingCmd": "example_value",
+          "parameters": [
+            {}
+          ],
+          "sourceConnectionId": "500123",
+          "targetConnectionId": "500123",
+          "frsId": "500123",
+          "active": true
+        }
+      ]
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Listmappingtasks401Example",
+      "example": {
+        "@type": "example_value",
+        "statusCode": 10,
+        "message": "example_value",
+        "description": "A sample description.",
+        "requestId": "500123"
+      }
+    }
+  ]
+}

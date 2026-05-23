@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionCreateRequest",
+  "title": "ConnectionCreateRequest",
+  "type": "object",
+  "description": "Request body for creating a new connection.",
+  "required": [
+    "@type",
+    "name",
+    "type",
+    "runtimeEnvironmentId"
+  ],
+  "properties": {
+    "@type": {
+      "type": "string",
+      "description": "The resource type identifier. Must be set to \"connection\".",
+      "const": "connection",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name for the new connection.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the connection.",
+      "example": "A sample description."
+    },
+    "type": {
+      "type": "string",
+      "description": "The connection type.",
+      "example": "example_value"
+    },
+    "runtimeEnvironmentId": {
+      "type": "string",
+      "description": "The runtime environment ID for the connection.",
+      "example": "500123"
+    },
+    "host": {
+      "type": "string",
+      "description": "The hostname or IP address.",
+      "example": "example_value"
+    },
+    "port": {
+      "type": "integer",
+      "description": "The port number.",
+      "example": 10
+    },
+    "database": {
+      "type": "string",
+      "description": "The database name or service name.",
+      "example": "example_value"
+    },
+    "schema": {
+      "type": "string",
+      "description": "The database schema.",
+      "example": "example_value"
+    },
+    "username": {
+      "type": "string",
+      "description": "The username for authentication.",
+      "example": "example_value"
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "The password for authentication.",
+      "example": "example_value"
+    },
+    "authenticationType": {
+      "type": "string",
+      "description": "The authentication method.",
+      "example": "example_value"
+    },
+    "serviceUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The service endpoint URL.",
+      "example": "https://www.example.com"
+    },
+    "codepage": {
+      "type": "string",
+      "description": "The character encoding.",
+      "example": "example_value"
+    },
+    "connParams": {
+      "type": "object",
+      "description": "Additional connection-type-specific parameters.",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MappingInOutParameter",
+  "title": "MappingInOutParameter",
+  "type": "object",
+  "description": "An in-out parameter defined within a mapping.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The parameter ID.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The parameter name.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the parameter.",
+      "example": "A sample description."
+    },
+    "initialValue": {
+      "type": "string",
+      "description": "The starting value for the parameter.",
+      "example": "example_value"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type of the parameter.",
+      "example": "example_value"
+    },
+    "precision": {
+      "type": "string",
+      "description": "The numeric precision.",
+      "example": "example_value"
+    },
+    "scale": {
+      "type": "string",
+      "description": "The decimal scale.",
+      "example": "example_value"
+    },
+    "retentionPolicy": {
+      "type": "string",
+      "description": "The value retention policy.",
+      "example": "example_value"
+    },
+    "aggregationType": {
+      "type": "string",
+      "description": "The method for determining the final value.",
+      "example": "example_value"
+    },
+    "currentValue": {
+      "type": "string",
+      "description": "The current parameter value.",
+      "example": "example_value"
+    }
+  }
+}
