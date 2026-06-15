@@ -1,0 +1,582 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Log in to Informatica Intelligent Cloud Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/ma/api/v2/user/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity."
+        },
+        {
+          "info": {
+            "name": "Informatica Log Out and End the Rest Api Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/user/logout"
+          },
+          "docs": "Ends the current REST API session. You can also end all active sessions for the organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Connections in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection"
+          },
+          "docs": "Returns connection details for all connections configured in the organization. Results can be filtered by agent or runtime environment."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection in the organization with the specified configuration including connection type, credentials, and runtime environment."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Connection by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Deletes the connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Connection by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/name/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the connection. Spaces must be encoded as %20."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific connection identified by its name. Spaces in the name must be encoded as %20."
+        },
+        {
+          "info": {
+            "name": "Informatica Search for Connections by Agent or Runtime Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/search",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "500123",
+                "type": "query",
+                "description": "The Secure Agent ID to filter connections."
+              },
+              {
+                "name": "runtimeEnvironmentId",
+                "value": "500123",
+                "type": "query",
+                "description": "The runtime environment ID to filter connections."
+              },
+              {
+                "name": "uiType",
+                "value": "example_value",
+                "type": "query",
+                "description": "The connection type to filter by (e.g., Oracle, Salesforce, MySQL)."
+              }
+            ]
+          },
+          "docs": "Searches for connections filtered by Secure Agent ID or runtime environment ID, combined with connection type."
+        },
+        {
+          "info": {
+            "name": "Informatica Test a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId/test",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Tests the connection identified by its ID to verify that the credentials and configuration are valid."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Mappings in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping"
+          },
+          "docs": "Returns the mapping object for every mapping in the organization. When retrieving all mappings, parameter details are not included."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/:mappingId",
+            "params": [
+              {
+                "name": "mappingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific mapping identified by its ID, including parameter details."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/name/:mappingName",
+            "params": [
+              {
+                "name": "mappingName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the mapping."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific mapping identified by its name."
+        },
+        {
+          "info": {
+            "name": "Informatica Search for Mappings by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/search",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "The mapping name or name pattern to search for."
+              }
+            ]
+          },
+          "docs": "Searches for mappings matching the specified name pattern."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mapping Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Mapping Tasks in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask"
+          },
+          "docs": "Returns summary information for all mapping tasks configured in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new mapping task in the organization. The request body must include the mapping reference, source and target connection configurations, and runtime parameters."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping Task by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ]
+          },
+          "docs": "Returns the full details of a mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ]
+          },
+          "docs": "Deletes the mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping Task by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/name/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the mapping task."
+              }
+            ]
+          },
+          "docs": "Returns the full details of a mapping task identified by its name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Start a Job for a Task or Taskflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks."
+        },
+        {
+          "info": {
+            "name": "Informatica Stop a Running Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/job/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve Activity Log Entries for Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/activity/activityLog",
+            "params": [
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the job run ID."
+              },
+              {
+                "name": "taskId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the task ID."
+              },
+              {
+                "name": "taskType",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow)."
+              },
+              {
+                "name": "startTimeUTC",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format."
+              },
+              {
+                "name": "endTimeUTC",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule"
+          },
+          "docs": "Returns a list of all schedules in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new schedule in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Schedule by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ]
+          },
+          "docs": "Returns the details of a schedule identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a schedule identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ]
+          },
+          "docs": "Deletes the schedule identified by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

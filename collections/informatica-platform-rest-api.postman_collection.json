@@ -1,0 +1,4541 @@
+{
+  "item": [
+    {
+      "id": "1557d7e4-8011-41d5-870f-2dcdc4384a26",
+      "name": "Authentication",
+      "description": {
+        "content": "Login and session management operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3dad7402-2926-47b5-bd16-8a9a3f04a2d8",
+          "name": "Log in to Informatica Intelligent Cloud Services",
+          "request": {
+            "name": "Log in to Informatica Intelligent Cloud Services",
+            "description": {
+              "content": "Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ma",
+                "api",
+                "v2",
+                "user",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f7a20fb-1391-45dd-8d3a-0b41c87fc025",
+              "name": "Successful authentication.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ma",
+                    "api",
+                    "v2",
+                    "user",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0012ABC000000001\",\n  \"orgId\": \"00DXYZ000000001\",\n  \"orgUuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"name\": \"user@example.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"serverUrl\": \"https://na4.dm-us.informaticacloud.com/saas\",\n  \"icSessionId\": \"abcdef1234567890abcdef1234567890\",\n  \"securityQuestion\": \"What is your pet name?\",\n  \"securityAnswer\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25b78746-b978-4e08-a98b-4e95d01efb42",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ma",
+                    "api",
+                    "v2",
+                    "user",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d28b05a-7f4a-4c86-9673-e1989078584a",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ma",
+                    "api",
+                    "v2",
+                    "user",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa9161a1-9dea-46da-aa10-d630516bc745",
+          "name": "Informatica Log Out and End the Rest Api Session",
+          "request": {
+            "name": "Informatica Log Out and End the Rest Api Session",
+            "description": {
+              "content": "Ends the current REST API session. You can also end all active sessions for the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "user",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb0df9d8-68fa-4187-8cb3-574f144bfa3e",
+              "name": "Successfully logged out.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "user",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c3d0e02-2c98-4f81-a757-3dd2fdec365e",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "user",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b1e852c5-2ba9-4de8-a065-2fab9ebe7c5c",
+      "name": "Connections",
+      "description": {
+        "content": "Manage connections to data sources and targets including databases, flat files, cloud applications, and SaaS services.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1b2f2c9a-3559-4d51-9561-73817e4b36e3",
+          "name": "Informatica Retrieve All Connections in the Organization",
+          "request": {
+            "name": "Informatica Retrieve All Connections in the Organization",
+            "description": {
+              "content": "Returns connection details for all connections configured in the organization. Results can be filtered by agent or runtime environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "068bec77-4af5-4401-8f9b-c9b0a18d6391",
+              "name": "A list of connections.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"CSVFile\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"agentId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"host\": \"example_value\",\n    \"port\": 10,\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"username\": \"example_value\",\n    \"password\": \"example_value\",\n    \"authenticationType\": \"example_value\",\n    \"serviceUrl\": \"https://www.example.com\",\n    \"codepage\": \"example_value\",\n    \"connParams\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a780bb0-eaf4-4608-b729-eb5d9939ad43",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f9e0e49-17b2-47cb-8348-43c1c6448cab",
+          "name": "Informatica Create a New Connection",
+          "request": {
+            "name": "Informatica Create a New Connection",
+            "description": {
+              "content": "Creates a new connection in the organization with the specified configuration including connection type, credentials, and runtime environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"host\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<password>\",\n  \"authenticationType\": \"<string>\",\n  \"serviceUrl\": \"<uri>\",\n  \"codepage\": \"<string>\",\n  \"connParams\": {\n    \"key_0\": 4506\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64200c5c-256b-4b8f-8cf9-5488b07beec2",
+              "name": "Connection created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"connection\",\n  \"name\": \"My_Oracle_Connection\",\n  \"type\": \"Oracle\",\n  \"username\": \"db_user\",\n  \"password\": \"db_password\",\n  \"host\": \"oracle-server.example.com\",\n  \"port\": 1521,\n  \"database\": \"ORCL\",\n  \"codepage\": \"UTF-8\",\n  \"runtimeEnvironmentId\": \"0012ABC000000099\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"type\": \"CSVFile\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"agentId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "998ee085-02a2-48c4-86ee-fb81b5df06ef",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"connection\",\n  \"name\": \"My_Oracle_Connection\",\n  \"type\": \"Oracle\",\n  \"username\": \"db_user\",\n  \"password\": \"db_password\",\n  \"host\": \"oracle-server.example.com\",\n  \"port\": 1521,\n  \"database\": \"ORCL\",\n  \"codepage\": \"UTF-8\",\n  \"runtimeEnvironmentId\": \"0012ABC000000099\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98582b21-467c-4f9c-8a88-ca61ad691c89",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"connection\",\n  \"name\": \"My_Oracle_Connection\",\n  \"type\": \"Oracle\",\n  \"username\": \"db_user\",\n  \"password\": \"db_password\",\n  \"host\": \"oracle-server.example.com\",\n  \"port\": 1521,\n  \"database\": \"ORCL\",\n  \"codepage\": \"UTF-8\",\n  \"runtimeEnvironmentId\": \"0012ABC000000099\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc82dcaf-1294-4b58-82d4-919f0910c7a5",
+          "name": "Informatica Retrieve a Connection by Id",
+          "request": {
+            "name": "Informatica Retrieve a Connection by Id",
+            "description": {
+              "content": "Returns the details of a specific connection identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) The unique identifier of the connection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f46cdee8-e435-4378-8d69-92d67f782c18",
+              "name": "Connection details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"type\": \"CSVFile\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"agentId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edca5dd3-9e5f-4f90-b9df-03e2c2c02909",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62e44eac-68f2-448b-b184-6f60c6dabb01",
+          "name": "Informatica Update an Existing Connection",
+          "request": {
+            "name": "Informatica Update an Existing Connection",
+            "description": {
+              "content": "Updates the configuration of an existing connection identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) The unique identifier of the connection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"host\": \"<string>\",\n  \"port\": \"<integer>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<password>\",\n  \"authenticationType\": \"<string>\",\n  \"serviceUrl\": \"<uri>\",\n  \"codepage\": \"<string>\",\n  \"connParams\": {\n    \"key_0\": 9098.170107979353,\n    \"key_1\": false,\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1b78b37-3a6c-44eb-bf6e-0aa676d3509b",
+              "name": "Connection updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"type\": \"CSVFile\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"agentId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad81e509-5482-413c-a03a-36dcfab40c5e",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95e6bcb4-4b63-4618-9796-4e9e617f58bf",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11c892ec-998d-4781-865a-1e0258c58c27",
+          "name": "Informatica Delete a Connection",
+          "request": {
+            "name": "Informatica Delete a Connection",
+            "description": {
+              "content": "Deletes the connection identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) The unique identifier of the connection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "769823ef-96d8-41ae-acdf-1942dc251c49",
+              "name": "Connection deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6664fa5f-2b14-445c-8377-480fac3acfdf",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "195f6064-9e6d-4646-8f55-8bf72fe17e97",
+          "name": "Informatica Retrieve a Connection by Name",
+          "request": {
+            "name": "Informatica Retrieve a Connection by Name",
+            "description": {
+              "content": "Returns the details of a specific connection identified by its name. Spaces in the name must be encoded as %20.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                "name",
+                ":connectionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionName",
+                  "description": "(Required) The name of the connection. Spaces must be encoded as %20."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5282695a-231a-4182-9b83-08944f7f278d",
+              "name": "Connection details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    "name",
+                    ":connectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionName",
+                      "description": "(Required) The name of the connection. Spaces must be encoded as %20."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"type\": \"CSVFile\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"agentId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"host\": \"example_value\",\n  \"port\": 10,\n  \"database\": \"example_value\",\n  \"schema\": \"example_value\",\n  \"username\": \"example_value\",\n  \"password\": \"example_value\",\n  \"authenticationType\": \"example_value\",\n  \"serviceUrl\": \"https://www.example.com\",\n  \"codepage\": \"example_value\",\n  \"connParams\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22316be5-ef2f-491c-9315-06c51f1dd9f3",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    "name",
+                    ":connectionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionName",
+                      "description": "(Required) The name of the connection. Spaces must be encoded as %20."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1ed1dae-6685-475b-a6ad-49782a3af376",
+          "name": "Informatica Search for Connections by Agent or Runtime Environment",
+          "request": {
+            "name": "Informatica Search for Connections by Agent or Runtime Environment",
+            "description": {
+              "content": "Searches for connections filtered by Secure Agent ID or runtime environment ID, combined with connection type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "agentId",
+                  "value": "<string>",
+                  "description": "The Secure Agent ID to filter connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "runtimeEnvironmentId",
+                  "value": "<string>",
+                  "description": "The runtime environment ID to filter connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "uiType",
+                  "value": "<string>",
+                  "description": "(Required) The connection type to filter by (e.g., Oracle, Salesforce, MySQL)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c3c5532-0011-44d0-b6fe-9ec53681b058",
+              "name": "A list of matching connections.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "runtimeEnvironmentId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "uiType",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"type\": \"CSVFile\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"agentId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"host\": \"example_value\",\n    \"port\": 10,\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"username\": \"example_value\",\n    \"password\": \"example_value\",\n    \"authenticationType\": \"example_value\",\n    \"serviceUrl\": \"https://www.example.com\",\n    \"codepage\": \"example_value\",\n    \"connParams\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a89a9ee3-969c-44f9-8361-1c0561ac4e17",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "agentId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "runtimeEnvironmentId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "uiType",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9231c66-adda-4bfa-8e4e-ebaba7836a7c",
+          "name": "Informatica Test a Connection",
+          "request": {
+            "name": "Informatica Test a Connection",
+            "description": {
+              "content": "Tests the connection identified by its ID to verify that the credentials and configuration are valid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "connection",
+                ":connectionId",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connectionId",
+                  "description": "(Required) The unique identifier of the connection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7577e424-d012-490d-9d46-6d41eb789642",
+              "name": "Connection test result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4e0cfb4-d1b6-498d-bc9e-b3f2e0da1e50",
+              "name": "Connection not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "connection",
+                    ":connectionId",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "015b1ffc-adc6-41ff-a315-4d2e980a9df2",
+      "name": "Jobs",
+      "description": {
+        "content": "Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "622422fc-0d25-4a60-b56b-112bae1f9caf",
+          "name": "Informatica Start a Job for a Task or Taskflow",
+          "request": {
+            "name": "Informatica Start a Job for a Task or Taskflow",
+            "description": {
+              "content": "Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c6d7487-e1c6-4cdd-9c5f-35c5b993bde9",
+              "name": "Job started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"runId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f9f4a5c-33a8-4703-a433-efb2bb6df23b",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1ffebb2-6d98-42c7-a847-c714d5b2015b",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12fb3a7c-fccd-47fa-9389-4fb39ad550ab",
+          "name": "Informatica Stop a Running Job",
+          "request": {
+            "name": "Informatica Stop a Running Job",
+            "description": {
+              "content": "Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "job",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "849e2f4e-f425-48fc-9881-b2b2b4c2abc7",
+              "name": "Job stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce64c1dc-51b6-4460-ac34-1056bb6234a4",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d03db7a8-b23f-40f6-8b8b-2c2ba8b709c6",
+              "name": "Job not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "job",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "982f8797-e845-44fe-ad9c-a0e273e49a19",
+          "name": "Informatica Retrieve Activity Log Entries for Jobs",
+          "request": {
+            "name": "Informatica Retrieve Activity Log Entries for Jobs",
+            "description": {
+              "content": "Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "activity",
+                "activityLog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "runId",
+                  "value": "<long>",
+                  "description": "Filter by the job run ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskId",
+                  "value": "<string>",
+                  "description": "Filter by the task ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "taskType",
+                  "value": "<string>",
+                  "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow)."
+                },
+                {
+                  "disabled": false,
+                  "key": "startTimeUTC",
+                  "value": "<dateTime>",
+                  "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "endTimeUTC",
+                  "value": "<dateTime>",
+                  "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5748c1c3-fda2-4d18-94cb-7ad87e09dbc3",
+              "name": "Activity log entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "activity",
+                    "activityLog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "runId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "taskId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "taskType",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "startTimeUTC",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "endTimeUTC",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"abc123\",\n    \"type\": \"example_value\",\n    \"objectId\": \"500123\",\n    \"objectName\": \"example_value\",\n    \"runId\": \"500123\",\n    \"agentId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"startTime\": \"2026-01-15T10:30:00Z\",\n    \"endTime\": \"2026-01-15T10:30:00Z\",\n    \"state\": 10,\n    \"failedSourceRows\": 10,\n    \"successSourceRows\": 10,\n    \"failedTargetRows\": 10,\n    \"successTargetRows\": 10,\n    \"totalSuccessRows\": 10,\n    \"totalErrorRows\": 10,\n    \"errorMsg\": \"example_value\",\n    \"startedBy\": \"example_value\",\n    \"runContextType\": \"example_value\",\n    \"entries\": [\n      {}\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3ac3aaa-c508-4d69-82ad-a02f8505f042",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "activity",
+                    "activityLog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "runId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "taskId",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "taskType",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "startTimeUTC",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "endTimeUTC",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3f393de9-2d2c-4c36-967c-72b53ba9c5c2",
+      "name": "Mapping Tasks",
+      "description": {
+        "content": "Create, retrieve, update, and delete mapping task configurations that execute mappings with specific runtime parameters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e66d46b9-d1d2-4e6b-9eb3-d0e458663da4",
+          "name": "Informatica Retrieve All Mapping Tasks in the Organization",
+          "request": {
+            "name": "Informatica Retrieve All Mapping Tasks in the Organization",
+            "description": {
+              "content": "Returns summary information for all mapping tasks configured in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13e8d670-206c-4c02-9b22-67870bfa7f2b",
+              "name": "A list of mapping tasks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"mappingId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"scheduleId\": \"500123\",\n    \"preProcessingCmd\": \"example_value\",\n    \"postProcessingCmd\": \"example_value\",\n    \"parameters\": [\n      {}\n    ],\n    \"sourceConnectionId\": \"500123\",\n    \"targetConnectionId\": \"500123\",\n    \"frsId\": \"500123\",\n    \"active\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "635f5e2b-6779-4595-9fcb-4722d408267f",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1120444-c162-4fd3-8d3e-f3fa77fc44fb",
+          "name": "Informatica Create a New Mapping Task",
+          "request": {
+            "name": "Informatica Create a New Mapping Task",
+            "description": {
+              "content": "Creates a new mapping task in the organization. The request body must include the mapping reference, source and target connection configurations, and runtime parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cbde1d2a-9d38-4af8-9346-da4b4fee2cdc",
+              "name": "Mapping task created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "125233dd-f8ec-4bb1-aebb-2d954bd28622",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ac59952-0251-447b-9572-c5f56bb538b2",
+          "name": "Informatica Retrieve a Mapping Task by Id",
+          "request": {
+            "name": "Informatica Retrieve a Mapping Task by Id",
+            "description": {
+              "content": "Returns the full details of a mapping task identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The unique identifier of the mapping task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca56a183-5b9c-4d7d-8cde-71f07e200fb9",
+              "name": "Mapping task details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b378a629-3646-4d4e-9d34-6cf3cc86d5c7",
+              "name": "Mapping task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88f20869-b49a-40b2-b4dc-6dda1fff3353",
+          "name": "Informatica Update an Existing Mapping Task",
+          "request": {
+            "name": "Informatica Update an Existing Mapping Task",
+            "description": {
+              "content": "Updates the configuration of a mapping task identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The unique identifier of the mapping task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96181e0d-3733-4140-8c03-647dd542f47a",
+              "name": "Mapping task updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c44b7c5-47f7-48c4-8a91-a925409545a0",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5315a38f-9e01-4766-b2c6-46b3fceaee4e",
+              "name": "Mapping task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b780c67f-cfe8-4fc2-9122-05b8ed4baf43",
+          "name": "Informatica Delete a Mapping Task",
+          "request": {
+            "name": "Informatica Delete a Mapping Task",
+            "description": {
+              "content": "Deletes the mapping task identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The unique identifier of the mapping task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fb89241-baed-4dc1-a8a9-8b23e31f4c80",
+              "name": "Mapping task deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3aed0d45-49ba-442b-83f3-07d550e761f1",
+              "name": "Mapping task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The unique identifier of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "045259e4-31e2-40c0-8436-cabbd728d797",
+          "name": "Informatica Retrieve a Mapping Task by Name",
+          "request": {
+            "name": "Informatica Retrieve a Mapping Task by Name",
+            "description": {
+              "content": "Returns the full details of a mapping task identified by its name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mttask",
+                "name",
+                ":taskName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) The name of the mapping task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1f90635-119d-4df2-8f21-eb01966cfb8b",
+              "name": "Mapping task details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    "name",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) The name of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54e85526-4822-4c69-968c-7dd31248a26c",
+              "name": "Mapping task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mttask",
+                    "name",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) The name of the mapping task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6ca8b422-2733-4458-b925-bd51cce494f5",
+      "name": "Mappings",
+      "description": {
+        "content": "Retrieve mapping definitions and metadata for data integration mappings within the organization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "417fb8ab-5a8a-4e3b-b990-8886831b6440",
+          "name": "Informatica Retrieve All Mappings in the Organization",
+          "request": {
+            "name": "Informatica Retrieve All Mappings in the Organization",
+            "description": {
+              "content": "Returns the mapping object for every mapping in the organization. When retrieving all mappings, parameter details are not included.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mapping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78239282-563d-4739-8613-445f8ae991fe",
+              "name": "A list of mappings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"bundleObjectId\": \"500123\",\n    \"bundleVersion\": \"example_value\",\n    \"templateId\": \"500123\",\n    \"deployTime\": \"2026-01-15T10:30:00Z\",\n    \"hasParameters\": true,\n    \"valid\": \"500123\",\n    \"fixedConnection\": true,\n    \"hasParametersDeployed\": true,\n    \"fixedConnectionDeployed\": true,\n    \"deployedTemplateId\": \"500123\",\n    \"tasks\": 10,\n    \"parameters\": [\n      {}\n    ],\n    \"inOutParameters\": [\n      {}\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"500123\",\n        \"refType\": \"example_value\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1012b05a-f847-4930-bd13-50a8445e6b73",
+              "name": "Unauthorized or session expired.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb6bbdee-6bb8-48e9-bda3-182d39a0a302",
+          "name": "Informatica Retrieve a Mapping by Id",
+          "request": {
+            "name": "Informatica Retrieve a Mapping by Id",
+            "description": {
+              "content": "Returns the details of a specific mapping identified by its ID, including parameter details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mapping",
+                ":mappingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mappingId",
+                  "description": "(Required) The unique identifier of the mapping."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "248d16d3-2e60-47b2-9976-553865094106",
+              "name": "Mapping details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping",
+                    ":mappingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingId",
+                      "description": "(Required) The unique identifier of the mapping."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"bundleObjectId\": \"500123\",\n  \"bundleVersion\": \"example_value\",\n  \"templateId\": \"500123\",\n  \"deployTime\": \"2026-01-15T10:30:00Z\",\n  \"hasParameters\": true,\n  \"valid\": \"500123\",\n  \"fixedConnection\": true,\n  \"hasParametersDeployed\": true,\n  \"fixedConnectionDeployed\": true,\n  \"deployedTemplateId\": \"500123\",\n  \"tasks\": 10,\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"initialValue\": \"example_value\",\n      \"datatype\": \"example_value\",\n      \"precision\": \"example_value\",\n      \"scale\": \"example_value\",\n      \"retentionPolicy\": \"example_value\",\n      \"aggregationType\": \"example_value\",\n      \"currentValue\": \"example_value\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"500123\",\n      \"refType\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21c8befa-ede7-4c5d-a969-4d74ed7cd17c",
+              "name": "Mapping not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping",
+                    ":mappingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingId",
+                      "description": "(Required) The unique identifier of the mapping."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adbd62f2-3ddc-427e-b4fa-8d3a8272666f",
+          "name": "Informatica Retrieve a Mapping by Name",
+          "request": {
+            "name": "Informatica Retrieve a Mapping by Name",
+            "description": {
+              "content": "Returns the details of a specific mapping identified by its name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mapping",
+                "name",
+                ":mappingName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mappingName",
+                  "description": "(Required) The name of the mapping."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52187414-bdca-4366-bebd-8ef2930dbcee",
+              "name": "Mapping details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping",
+                    "name",
+                    ":mappingName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingName",
+                      "description": "(Required) The name of the mapping."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"bundleObjectId\": \"500123\",\n  \"bundleVersion\": \"example_value\",\n  \"templateId\": \"500123\",\n  \"deployTime\": \"2026-01-15T10:30:00Z\",\n  \"hasParameters\": true,\n  \"valid\": \"500123\",\n  \"fixedConnection\": true,\n  \"hasParametersDeployed\": true,\n  \"fixedConnectionDeployed\": true,\n  \"deployedTemplateId\": \"500123\",\n  \"tasks\": 10,\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"initialValue\": \"example_value\",\n      \"datatype\": \"example_value\",\n      \"precision\": \"example_value\",\n      \"scale\": \"example_value\",\n      \"retentionPolicy\": \"example_value\",\n      \"aggregationType\": \"example_value\",\n      \"currentValue\": \"example_value\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"500123\",\n      \"refType\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a538b7b-fa5e-49b9-b866-e0a247a567fc",
+              "name": "Mapping not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping",
+                    "name",
+                    ":mappingName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingName",
+                      "description": "(Required) The name of the mapping."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c64aa4a-7035-471a-acd3-9104cd56ca39",
+          "name": "Informatica Search for Mappings by Name",
+          "request": {
+            "name": "Informatica Search for Mappings by Name",
+            "description": {
+              "content": "Searches for mappings matching the specified name pattern.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "mapping",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The mapping name or name pattern to search for."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9e8562b-0f5c-4bca-8519-6171640a1be1",
+              "name": "A list of matching mappings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "mapping",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"bundleObjectId\": \"500123\",\n    \"bundleVersion\": \"example_value\",\n    \"templateId\": \"500123\",\n    \"deployTime\": \"2026-01-15T10:30:00Z\",\n    \"hasParameters\": true,\n    \"valid\": \"500123\",\n    \"fixedConnection\": true,\n    \"hasParametersDeployed\": true,\n    \"fixedConnectionDeployed\": true,\n    \"deployedTemplateId\": \"500123\",\n    \"tasks\": 10,\n    \"parameters\": [\n      {}\n    ],\n    \"inOutParameters\": [\n      {}\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"500123\",\n        \"refType\": \"example_value\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7d5fc2bc-94d2-4226-8d27-a2f75169ff17",
+      "name": "Schedules",
+      "description": {
+        "content": "Manage task execution schedules.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "516dcb56-44d2-46b4-bf91-4acdb8428aac",
+          "name": "Informatica Retrieve All Schedules",
+          "request": {
+            "name": "Informatica Retrieve All Schedules",
+            "description": {
+              "content": "Returns a list of all schedules in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2d5470f-c491-4589-8056-93ae3374259e",
+              "name": "A list of schedules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "schedule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"startTime\": \"2026-01-15T10:30:00Z\",\n    \"endTime\": \"2026-01-15T10:30:00Z\",\n    \"interval\": \"example_value\",\n    \"frequency\": 10,\n    \"timezone\": \"example_value\",\n    \"rangeStartTime\": \"2026-01-15T10:30:00Z\",\n    \"rangeEndTime\": \"2026-01-15T10:30:00Z\",\n    \"dayOfWeek\": \"example_value\",\n    \"dayOfMonth\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8d84574-d66c-4ddf-b0f3-68d49d229c6b",
+          "name": "Informatica Create a New Schedule",
+          "request": {
+            "name": "Informatica Create a New Schedule",
+            "description": {
+              "content": "Creates a new schedule in the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "schedule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"endTime\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"frequency\": \"<integer>\",\n  \"timezone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "060f8561-9c45-41bd-aee2-429b69f8c613",
+              "name": "Schedule created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "schedule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\",\n  \"frequency\": 10,\n  \"timezone\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\",\n  \"frequency\": 10,\n  \"timezone\": \"example_value\",\n  \"rangeStartTime\": \"2026-01-15T10:30:00Z\",\n  \"rangeEndTime\": \"2026-01-15T10:30:00Z\",\n  \"dayOfWeek\": \"example_value\",\n  \"dayOfMonth\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4486bd44-d7c7-45dd-94ef-da67b10f3f59",
+          "name": "Informatica Retrieve a Schedule by Id",
+          "request": {
+            "name": "Informatica Retrieve a Schedule by Id",
+            "description": {
+              "content": "Returns the details of a schedule identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "schedule",
+                ":scheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduleId",
+                  "description": "(Required) The unique identifier of the schedule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f2e717d-b347-4d26-b3c6-05d9869d2aee",
+              "name": "Schedule details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "schedule",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduleId",
+                      "description": "(Required) The unique identifier of the schedule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\",\n  \"frequency\": 10,\n  \"timezone\": \"example_value\",\n  \"rangeStartTime\": \"2026-01-15T10:30:00Z\",\n  \"rangeEndTime\": \"2026-01-15T10:30:00Z\",\n  \"dayOfWeek\": \"example_value\",\n  \"dayOfMonth\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c611924-d9f2-4a3b-b84a-833222247415",
+          "name": "Informatica Update an Existing Schedule",
+          "request": {
+            "name": "Informatica Update an Existing Schedule",
+            "description": {
+              "content": "Updates the configuration of a schedule identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "schedule",
+                ":scheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduleId",
+                  "description": "(Required) The unique identifier of the schedule."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"description\": \"<string>\",\n  \"endTime\": \"<dateTime>\",\n  \"interval\": \"<string>\",\n  \"frequency\": \"<integer>\",\n  \"timezone\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8103d856-b1c8-4eb3-b6bc-9d6dc25c7c87",
+              "name": "Schedule updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "schedule",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduleId",
+                      "description": "(Required) The unique identifier of the schedule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\",\n  \"frequency\": 10,\n  \"timezone\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"startTime\": \"2026-01-15T10:30:00Z\",\n  \"endTime\": \"2026-01-15T10:30:00Z\",\n  \"interval\": \"example_value\",\n  \"frequency\": 10,\n  \"timezone\": \"example_value\",\n  \"rangeStartTime\": \"2026-01-15T10:30:00Z\",\n  \"rangeEndTime\": \"2026-01-15T10:30:00Z\",\n  \"dayOfWeek\": \"example_value\",\n  \"dayOfMonth\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64334437-059c-45de-875b-4241af2c2289",
+          "name": "Informatica Delete a Schedule",
+          "request": {
+            "name": "Informatica Delete a Schedule",
+            "description": {
+              "content": "Deletes the schedule identified by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "saas",
+                "api",
+                "v2",
+                "schedule",
+                ":scheduleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scheduleId",
+                  "description": "(Required) The unique identifier of the schedule."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52adc12d-6e14-4ff4-ae66-7e1b631ae70b",
+              "name": "Schedule deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "saas",
+                    "api",
+                    "v2",
+                    "schedule",
+                    ":scheduleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scheduleId",
+                      "description": "(Required) The unique identifier of the schedule."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "icSessionId",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dm-us.informaticacloud.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "icSessionId"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb14dd1e-52ff-4312-bc38-caec751da54d",
+    "name": "Informatica IICS Platform REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
+      "type": "text/plain"
+    }
+  }
+}
