@@ -135,41 +135,41 @@ apis:
         url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
       - type: JSONStructure
         url: json-structure/informatica-platform-rest-error-response-structure.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-login-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-login-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-connection-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-connection-create-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-connection-update-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-parameter-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-task-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-task-create-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-mapping-task-update-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-job-start-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-job-start-response-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-job-stop-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-activity-log-entry-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-schedule-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-schedule-create-request-example.json
-      - type: Example
+      - type: Examples
         url: examples/informatica-platform-rest-error-response-example.json
       - type: JSONLD
         url: json-ld/informatica-context.jsonld
