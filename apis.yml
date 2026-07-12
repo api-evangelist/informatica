@@ -273,6 +273,10 @@ apis:
         url: >-
           https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html
 common:
+  - type: DomainSecurity
+    url: security/informatica-domain-security.yml
+  - type: Authentication
+    url: authentication/informatica-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/informatica
   - type: LinkedIn
@@ -294,6 +298,8 @@ common:
     url: rules/informatica-spectral-rules.yml
   - type: Vocabulary
     url: vocabulary/informatica-vocabulary.yaml
+  - type: Blog
+    url: https://www.informatica.com/blogs.html
   - type: Features
     data:
       - name: Data Integration

@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/informatica-platform-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: icSessionId
+  type: apiKey
+  in: header
+  parameter: icSessionId
+  description: The REST API session ID returned by the login endpoint. Include this value in
+    the icSessionId header for all authenticated requests. The session expires after 30 minutes
+    of inactivity.
+  sources:
+  - openapi/informatica-platform-rest-api-openapi.yml
