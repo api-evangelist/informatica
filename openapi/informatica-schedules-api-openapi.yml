@@ -1,0 +1,396 @@
+openapi: 3.1.0
+info:
+  title: Informatica IICS Platform REST Authentication Schedules API
+  description: The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.
+  version: 2.0.0
+  contact:
+    name: Informatica
+    url: https://www.informatica.com/support.html
+  license:
+    name: Proprietary
+    url: https://www.informatica.com/legal.html
+  termsOfService: https://www.informatica.com/legal.html
+  x-informatica-api-version: v2
+servers:
+- url: https://dm-us.informaticacloud.com
+  description: North America production pod
+- url: https://dm-em.informaticacloud.com
+  description: Europe production pod
+- url: https://dm-ap.informaticacloud.com
+  description: Asia-Pacific production pod
+security:
+- icSessionId: []
+tags:
+- name: Schedules
+  description: Manage task execution schedules.
+paths:
+  /saas/api/v2/schedule:
+    get:
+      operationId: listSchedules
+      summary: Informatica Retrieve All Schedules
+      description: Returns a list of all schedules in the organization.
+      tags:
+      - Schedules
+      responses:
+        '200':
+          description: A list of schedules.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Schedule'
+              examples:
+                Listschedules200Example:
+                  summary: Default listSchedules 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSchedule
+      summary: Informatica Create a New Schedule
+      description: Creates a new schedule in the organization.
+      tags:
+      - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreateRequest'
+            examples:
+              CreatescheduleRequestExample:
+                summary: Default createSchedule request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  startTime: '2026-01-15T10:30:00Z'
+                  endTime: '2026-01-15T10:30:00Z'
+                  interval: example_value
+                  frequency: 10
+                  timezone: example_value
+      responses:
+        '200':
+          description: Schedule created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+              examples:
+                Createschedule200Example:
+                  summary: Default createSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/schedule/{scheduleId}:
+    get:
+      operationId: getSchedule
+      summary: Informatica Retrieve a Schedule by Id
+      description: Returns the details of a schedule identified by its ID.
+      tags:
+      - Schedules
+      parameters:
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: Schedule details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+              examples:
+                Getschedule200Example:
+                  summary: Default getSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateSchedule
+      summary: Informatica Update an Existing Schedule
+      description: Updates the configuration of a schedule identified by its ID.
+      tags:
+      - Schedules
+      parameters:
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreateRequest'
+            examples:
+              UpdatescheduleRequestExample:
+                summary: Default updateSchedule request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  startTime: '2026-01-15T10:30:00Z'
+                  endTime: '2026-01-15T10:30:00Z'
+                  interval: example_value
+                  frequency: 10
+                  timezone: example_value
+      responses:
+        '200':
+          description: Schedule updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+              examples:
+                Updateschedule200Example:
+                  summary: Default updateSchedule 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    interval: example_value
+                    frequency: 10
+                    timezone: example_value
+                    rangeStartTime: '2026-01-15T10:30:00Z'
+                    rangeEndTime: '2026-01-15T10:30:00Z'
+                    dayOfWeek: example_value
+                    dayOfMonth: 10
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSchedule
+      summary: Informatica Delete a Schedule
+      description: Deletes the schedule identified by its ID.
+      tags:
+      - Schedules
+      parameters:
+      - name: scheduleId
+        in: path
+        required: true
+        description: The unique identifier of the schedule.
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: Schedule deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ScheduleCreateRequest:
+      type: object
+      description: Request body for creating a new schedule.
+      required:
+      - '@type'
+      - name
+      - startTime
+      properties:
+        '@type':
+          type: string
+          const: schedule
+          example: example_value
+        name:
+          type: string
+          description: The name for the new schedule.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the schedule.
+          example: A sample description.
+        startTime:
+          type: string
+          format: date-time
+          description: The scheduled start time.
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: The scheduled end time.
+          example: '2026-01-15T10:30:00Z'
+        interval:
+          type: string
+          description: The recurrence interval.
+          example: example_value
+        frequency:
+          type: integer
+          description: The repeat frequency.
+          example: 10
+        timezone:
+          type: string
+          description: The time zone.
+          example: example_value
+    Schedule:
+      type: object
+      description: A task execution schedule.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: schedule
+          example: example_value
+        id:
+          type: string
+          description: The unique identifier for the schedule.
+          example: abc123
+        orgId:
+          type: string
+          description: The organization ID.
+          example: '500123'
+        name:
+          type: string
+          description: The name of the schedule.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the schedule.
+          example: A sample description.
+        createTime:
+          type: string
+          format: date-time
+          description: The time the schedule was created.
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the schedule was last updated.
+          example: '2026-01-15T10:30:00Z'
+        createdBy:
+          type: string
+          description: The user who created the schedule.
+          example: example_value
+        updatedBy:
+          type: string
+          description: The user who last updated the schedule.
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          description: The scheduled start time.
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: The scheduled end time.
+          example: '2026-01-15T10:30:00Z'
+        interval:
+          type: string
+          description: The recurrence interval (e.g., None, Daily, Weekly, Monthly).
+          example: example_value
+        frequency:
+          type: integer
+          description: How often the schedule repeats within the interval.
+          example: 10
+        timezone:
+          type: string
+          description: The time zone for the schedule.
+          example: example_value
+        rangeStartTime:
+          type: string
+          format: date-time
+          description: The start of the time range within each day.
+          example: '2026-01-15T10:30:00Z'
+        rangeEndTime:
+          type: string
+          format: date-time
+          description: The end of the time range within each day.
+          example: '2026-01-15T10:30:00Z'
+        dayOfWeek:
+          type: string
+          description: The day(s) of the week for weekly schedules (e.g., Mon, Tue, Wed).
+          example: example_value
+        dayOfMonth:
+          type: integer
+          description: The day of the month for monthly schedules.
+          example: 10
+  securitySchemes:
+    icSessionId:
+      type: apiKey
+      name: icSessionId
+      in: header
+      description: The REST API session ID returned by the login endpoint. Include this value in the icSessionId header for all authenticated requests. The session expires after 30 minutes of inactivity.
+externalDocs:
+  description: Informatica IICS REST API Reference
+  url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html

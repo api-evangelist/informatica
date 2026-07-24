@@ -1,0 +1,472 @@
+openapi: 3.1.0
+info:
+  title: Informatica IICS Platform REST Authentication Jobs API
+  description: The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.
+  version: 2.0.0
+  contact:
+    name: Informatica
+    url: https://www.informatica.com/support.html
+  license:
+    name: Proprietary
+    url: https://www.informatica.com/legal.html
+  termsOfService: https://www.informatica.com/legal.html
+  x-informatica-api-version: v2
+servers:
+- url: https://dm-us.informaticacloud.com
+  description: North America production pod
+- url: https://dm-em.informaticacloud.com
+  description: Europe production pod
+- url: https://dm-ap.informaticacloud.com
+  description: Asia-Pacific production pod
+security:
+- icSessionId: []
+tags:
+- name: Jobs
+  description: Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.
+paths:
+  /saas/api/v2/job:
+    post:
+      operationId: startJob
+      summary: Informatica Start a Job for a Task or Taskflow
+      description: Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks.
+      tags:
+      - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobStartRequest'
+            example:
+              '@type': job
+              taskId: 0012ABC000000042
+              taskType: MTT
+              callbackUrl: https://example.com/callback
+      responses:
+        '200':
+          description: Job started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStartResponse'
+              examples:
+                Startjob200Example:
+                  summary: Default startJob 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: '500123'
+                    taskType: example_value
+                    runId: '500123'
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Startjob400Example:
+                  summary: Default startJob 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Startjob401Example:
+                  summary: Default startJob 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/job/stop:
+    post:
+      operationId: stopJob
+      summary: Informatica Stop a Running Job
+      description: Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row.
+      tags:
+      - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobStopRequest'
+            example:
+              '@type': job
+              taskId: 0012ABC000000042
+              taskType: MTT
+      responses:
+        '200':
+          description: Job stopped successfully.
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Stopjob400Example:
+                  summary: Default stopJob 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+        '404':
+          description: Job not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Stopjob404Example:
+                  summary: Default stopJob 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/activity/activityLog:
+    get:
+      operationId: getActivityLog
+      summary: Informatica Retrieve Activity Log Entries for Jobs
+      description: Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria.
+      tags:
+      - Jobs
+      parameters:
+      - name: runId
+        in: query
+        description: Filter by the job run ID.
+        schema:
+          type: integer
+          format: int64
+        example: '500123'
+      - name: taskId
+        in: query
+        description: Filter by the task ID.
+        schema:
+          type: string
+        example: '500123'
+      - name: taskType
+        in: query
+        description: Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow).
+        schema:
+          type: string
+        example: example_value
+      - name: startTimeUTC
+        in: query
+        description: Filter for jobs started after this UTC timestamp in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      - name: endTimeUTC
+        in: query
+        description: Filter for jobs completed before this UTC timestamp in ISO 8601 format.
+        schema:
+          type: string
+          format: date-time
+        example: '2026-01-15T10:30:00Z'
+      responses:
+        '200':
+          description: Activity log entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityLogEntry'
+              examples:
+                Getactivitylog200Example:
+                  summary: Default getActivityLog 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    type: example_value
+                    objectId: '500123'
+                    objectName: example_value
+                    runId: '500123'
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    startTime: '2026-01-15T10:30:00Z'
+                    endTime: '2026-01-15T10:30:00Z'
+                    state: 10
+                    failedSourceRows: 10
+                    successSourceRows: 10
+                    failedTargetRows: 10
+                    successTargetRows: 10
+                    totalSuccessRows: 10
+                    totalErrorRows: 10
+                    errorMsg: example_value
+                    startedBy: example_value
+                    runContextType: example_value
+                    entries:
+                    - {}
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getactivitylog401Example:
+                  summary: Default getActivityLog 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ActivityLogEntry:
+      type: object
+      description: An entry in the activity log representing the execution status of a job.
+      properties:
+        id:
+          type: string
+          description: The activity log entry ID.
+          example: abc123
+        type:
+          type: string
+          description: The type of activity.
+          example: example_value
+        objectId:
+          type: string
+          description: The ID of the task or object.
+          example: '500123'
+        objectName:
+          type: string
+          description: The name of the task or object.
+          example: example_value
+        runId:
+          type: integer
+          format: int64
+          description: The job run ID.
+          example: '500123'
+        agentId:
+          type: string
+          description: The Secure Agent that ran the job.
+          example: '500123'
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment used.
+          example: '500123'
+        startTime:
+          type: string
+          format: date-time
+          description: The time the job started.
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: The time the job completed.
+          example: '2026-01-15T10:30:00Z'
+        state:
+          type: integer
+          description: The job execution state. Common values are 1 (success), 2 (warning), 3 (error).
+          example: 10
+        failedSourceRows:
+          type: integer
+          format: int64
+          description: The number of source rows that failed.
+          example: 10
+        successSourceRows:
+          type: integer
+          format: int64
+          description: The number of source rows processed successfully.
+          example: 10
+        failedTargetRows:
+          type: integer
+          format: int64
+          description: The number of target rows that failed.
+          example: 10
+        successTargetRows:
+          type: integer
+          format: int64
+          description: The number of target rows written successfully.
+          example: 10
+        totalSuccessRows:
+          type: integer
+          format: int64
+          description: The total number of rows processed successfully.
+          example: 10
+        totalErrorRows:
+          type: integer
+          format: int64
+          description: The total number of rows that encountered errors.
+          example: 10
+        errorMsg:
+          type: string
+          description: The error message if the job failed.
+          example: example_value
+        startedBy:
+          type: string
+          description: The user who started the job.
+          example: example_value
+        runContextType:
+          type: string
+          description: The context in which the job was run (e.g., API, SCHEDULER, UI).
+          example: example_value
+        entries:
+          type: array
+          description: Sub-entries for multi-step jobs.
+          items:
+            type: object
+          example: []
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
+    JobStopRequest:
+      type: object
+      description: Request body for stopping a running job.
+      required:
+      - '@type'
+      - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+          example: example_value
+        taskId:
+          type: string
+          description: The ID of the task to stop. Either taskId or taskName must be provided.
+          example: '500123'
+        taskName:
+          type: string
+          description: The name of the task to stop. Either taskId or taskName must be provided.
+          example: example_value
+        taskType:
+          type: string
+          description: The type of the task to stop.
+          enum:
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
+        cleanStop:
+          type: boolean
+          description: When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately.
+          default: false
+          example: true
+    JobStartRequest:
+      type: object
+      description: Request body for starting a job. You can identify the task by taskId or taskName, and must specify the task type.
+      required:
+      - '@type'
+      - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+          example: example_value
+        taskId:
+          type: string
+          description: The ID of the task to run. Either taskId or taskName must be provided.
+          example: '500123'
+        taskName:
+          type: string
+          description: The name of the task to run. Either taskId or taskName must be provided.
+          example: example_value
+        taskType:
+          type: string
+          description: The type of the task to run. Supported values include MTT (mapping task), WORKFLOW (taskflow), DSS (synchronization task), DRS (data replication task), and PCS (PowerCenter task).
+          enum:
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
+        callbackUrl:
+          type: string
+          format: uri
+          description: An optional URL that receives a callback when the job completes.
+          example: https://www.example.com
+        runtime:
+          type: object
+          description: Optional runtime configuration for the job execution.
+          properties:
+            '@type':
+              type: string
+              description: The runtime object type identifier.
+            runtimeEnvironmentId:
+              type: string
+              description: Override the runtime environment for this execution.
+          example: example_value
+    JobStartResponse:
+      type: object
+      description: Response returned when a job is successfully started.
+      properties:
+        taskId:
+          type: string
+          description: The ID of the task that was started.
+          example: '500123'
+        taskType:
+          type: string
+          description: The type of the task.
+          example: example_value
+        runId:
+          type: integer
+          format: int64
+          description: The unique run ID for this job execution. Use this ID to track job status.
+          example: '500123'
+  securitySchemes:
+    icSessionId:
+      type: apiKey
+      name: icSessionId
+      in: header
+      description: The REST API session ID returned by the login endpoint. Include this value in the icSessionId header for all authenticated requests. The session expires after 30 minutes of inactivity.
+externalDocs:
+  description: Informatica IICS REST API Reference
+  url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html

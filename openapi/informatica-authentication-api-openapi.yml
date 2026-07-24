@@ -1,0 +1,256 @@
+openapi: 3.1.0
+info:
+  title: Informatica IICS Platform REST Authentication API
+  description: The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.
+  version: 2.0.0
+  contact:
+    name: Informatica
+    url: https://www.informatica.com/support.html
+  license:
+    name: Proprietary
+    url: https://www.informatica.com/legal.html
+  termsOfService: https://www.informatica.com/legal.html
+  x-informatica-api-version: v2
+servers:
+- url: https://dm-us.informaticacloud.com
+  description: North America production pod
+- url: https://dm-em.informaticacloud.com
+  description: Europe production pod
+- url: https://dm-ap.informaticacloud.com
+  description: Asia-Pacific production pod
+security:
+- icSessionId: []
+tags:
+- name: Authentication
+  description: Login and session management operations.
+paths:
+  /ma/api/v2/user/login:
+    post:
+      operationId: login
+      summary: Log in to Informatica Intelligent Cloud Services
+      description: Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              '@type': login
+              username: user@example.com
+              password: securePassword123
+      responses:
+        '200':
+          description: Successful authentication.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              example:
+                id: 0012ABC000000001
+                orgId: 00DXYZ000000001
+                orgUuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                name: user@example.com
+                firstName: John
+                lastName: Doe
+                serverUrl: https://na4.dm-us.informaticacloud.com/saas
+                icSessionId: abcdef1234567890abcdef1234567890
+                securityQuestion: What is your pet name?
+                securityAnswer: ''
+        '401':
+          description: Authentication failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Login401Example:
+                  summary: Default login 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Login500Example:
+                  summary: Default login 500 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/user/logout:
+    post:
+      operationId: logout
+      summary: Informatica Log Out and End the Rest Api Session
+      description: Ends the current REST API session. You can also end all active sessions for the organization.
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: Successfully logged out.
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Logout401Example:
+                  summary: Default logout 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
+    LoginRequest:
+      type: object
+      description: Request body for the login endpoint.
+      required:
+      - '@type'
+      - username
+      - password
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "login".
+          enum:
+          - login
+          example: login
+        username:
+          type: string
+          description: The Informatica Intelligent Cloud Services username.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The account password.
+          example: example_value
+    LoginResponse:
+      type: object
+      description: Successful login response containing the session ID and server URL for subsequent API calls.
+      properties:
+        id:
+          type: string
+          description: The user ID.
+          example: abc123
+        orgId:
+          type: string
+          description: The organization ID.
+          example: '500123'
+        orgUuid:
+          type: string
+          format: uuid
+          description: The organization UUID.
+          example: '500123'
+        name:
+          type: string
+          description: The username used to log in.
+          example: Example Title
+        firstName:
+          type: string
+          description: The first name of the user.
+          example: example_value
+        lastName:
+          type: string
+          description: The last name of the user.
+          example: example_value
+        title:
+          type: string
+          description: The job title of the user.
+          example: Example Title
+        phone:
+          type: string
+          description: The phone number of the user.
+          example: example_value
+        emails:
+          type: string
+          description: The email address of the user.
+          example: user@example.com
+        timezone:
+          type: string
+          description: The time zone of the user (e.g., America/Los_Angeles).
+          example: example_value
+        serverUrl:
+          type: string
+          format: uri
+          description: The base URL to use in version 2 REST API calls. Use this URL as the base for all subsequent v2 API requests.
+          example: https://www.example.com
+        icSessionId:
+          type: string
+          description: The REST API session ID. Include this value in the icSessionId header for all subsequent requests. Expires after 30 minutes of inactivity.
+          example: '500123'
+        securityQuestion:
+          type: string
+          description: The security question for the user account.
+          example: example_value
+        securityAnswer:
+          type: string
+          description: The security answer (returned as empty string).
+          example: example_value
+        createTime:
+          type: string
+          format: date-time
+          description: The time the user account was created.
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the user account was last updated.
+          example: '2026-01-15T10:30:00Z'
+  securitySchemes:
+    icSessionId:
+      type: apiKey
+      name: icSessionId
+      in: header
+      description: The REST API session ID returned by the login endpoint. Include this value in the icSessionId header for all authenticated requests. The session expires after 30 minutes of inactivity.
+externalDocs:
+  description: Informatica IICS REST API Reference
+  url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html

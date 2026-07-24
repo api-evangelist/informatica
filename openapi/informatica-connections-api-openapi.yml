@@ -1,0 +1,870 @@
+openapi: 3.1.0
+info:
+  title: Informatica IICS Platform REST Authentication Connections API
+  description: The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.
+  version: 2.0.0
+  contact:
+    name: Informatica
+    url: https://www.informatica.com/support.html
+  license:
+    name: Proprietary
+    url: https://www.informatica.com/legal.html
+  termsOfService: https://www.informatica.com/legal.html
+  x-informatica-api-version: v2
+servers:
+- url: https://dm-us.informaticacloud.com
+  description: North America production pod
+- url: https://dm-em.informaticacloud.com
+  description: Europe production pod
+- url: https://dm-ap.informaticacloud.com
+  description: Asia-Pacific production pod
+security:
+- icSessionId: []
+tags:
+- name: Connections
+  description: Manage connections to data sources and targets including databases, flat files, cloud applications, and SaaS services.
+paths:
+  /saas/api/v2/connection:
+    get:
+      operationId: listConnections
+      summary: Informatica Retrieve All Connections in the Organization
+      description: Returns connection details for all connections configured in the organization. Results can be filtered by agent or runtime environment.
+      tags:
+      - Connections
+      responses:
+        '200':
+          description: A list of connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+              examples:
+                Listconnections200Example:
+                  summary: Default listConnections 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Listconnections401Example:
+                  summary: Default listConnections 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createConnection
+      summary: Informatica Create a New Connection
+      description: Creates a new connection in the organization with the specified configuration including connection type, credentials, and runtime environment.
+      tags:
+      - Connections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionCreateRequest'
+            example:
+              '@type': connection
+              name: My_Oracle_Connection
+              type: Oracle
+              username: db_user
+              password: db_password
+              host: oracle-server.example.com
+              port: 1521
+              database: ORCL
+              codepage: UTF-8
+              runtimeEnvironmentId: 0012ABC000000099
+      responses:
+        '200':
+          description: Connection created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+              examples:
+                Createconnection200Example:
+                  summary: Default createConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createconnection400Example:
+                  summary: Default createConnection 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createconnection401Example:
+                  summary: Default createConnection 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/connection/{connectionId}:
+    get:
+      operationId: getConnection
+      summary: Informatica Retrieve a Connection by Id
+      description: Returns the details of a specific connection identified by its ID.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+              examples:
+                Getconnection200Example:
+                  summary: Default getConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getconnection404Example:
+                  summary: Default getConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateConnection
+      summary: Informatica Update an Existing Connection
+      description: Updates the configuration of an existing connection identified by its ID.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionUpdateRequest'
+            examples:
+              UpdateconnectionRequestExample:
+                summary: Default updateConnection request
+                x-microcks-default: true
+                value:
+                  '@type': example_value
+                  name: Example Title
+                  description: A sample description.
+                  host: example_value
+                  port: 10
+                  database: example_value
+                  schema: example_value
+                  username: example_value
+                  password: example_value
+                  authenticationType: example_value
+                  serviceUrl: https://www.example.com
+                  codepage: example_value
+                  connParams: example_value
+      responses:
+        '200':
+          description: Connection updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+              examples:
+                Updateconnection200Example:
+                  summary: Default updateConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '400':
+          description: Invalid request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updateconnection400Example:
+                  summary: Default updateConnection 400 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Updateconnection404Example:
+                  summary: Default updateConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteConnection
+      summary: Informatica Delete a Connection
+      description: Deletes the connection identified by its ID.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Deleteconnection404Example:
+                  summary: Default deleteConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/connection/name/{connectionName}:
+    get:
+      operationId: getConnectionByName
+      summary: Informatica Retrieve a Connection by Name
+      description: Returns the details of a specific connection identified by its name. Spaces in the name must be encoded as %20.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionName'
+      responses:
+        '200':
+          description: Connection details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+              examples:
+                Getconnectionbyname200Example:
+                  summary: Default getConnectionByName 200 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Getconnectionbyname404Example:
+                  summary: Default getConnectionByName 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/connection/search:
+    get:
+      operationId: searchConnections
+      summary: Informatica Search for Connections by Agent or Runtime Environment
+      description: Searches for connections filtered by Secure Agent ID or runtime environment ID, combined with connection type.
+      tags:
+      - Connections
+      parameters:
+      - name: agentId
+        in: query
+        description: The Secure Agent ID to filter connections.
+        schema:
+          type: string
+        example: '500123'
+      - name: runtimeEnvironmentId
+        in: query
+        description: The runtime environment ID to filter connections.
+        schema:
+          type: string
+        example: '500123'
+      - name: uiType
+        in: query
+        required: true
+        description: The connection type to filter by (e.g., Oracle, Salesforce, MySQL).
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: A list of matching connections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connection'
+              examples:
+                Searchconnections200Example:
+                  summary: Default searchConnections 200 response
+                  x-microcks-default: true
+                  value:
+                  - '@type': example_value
+                    id: abc123
+                    orgId: '500123'
+                    name: Example Title
+                    description: A sample description.
+                    type: CSVFile
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    createdBy: example_value
+                    updatedBy: example_value
+                    agentId: '500123'
+                    runtimeEnvironmentId: '500123'
+                    host: example_value
+                    port: 10
+                    database: example_value
+                    schema: example_value
+                    username: example_value
+                    password: example_value
+                    authenticationType: example_value
+                    serviceUrl: https://www.example.com
+                    codepage: example_value
+                    connParams: example_value
+        '401':
+          description: Unauthorized or session expired.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Searchconnections401Example:
+                  summary: Default searchConnections 401 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /saas/api/v2/connection/{connectionId}/test:
+    post:
+      operationId: testConnection
+      summary: Informatica Test a Connection
+      description: Tests the connection identified by its ID to verify that the credentials and configuration are valid.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/connectionId'
+      responses:
+        '200':
+          description: Connection test result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the connection test was successful.
+                  message:
+                    type: string
+                    description: Message describing the test result.
+              examples:
+                Testconnection200Example:
+                  summary: Default testConnection 200 response
+                  x-microcks-default: true
+                  value:
+                    success: true
+                    message: example_value
+        '404':
+          description: Connection not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Testconnection404Example:
+                  summary: Default testConnection 404 response
+                  x-microcks-default: true
+                  value:
+                    '@type': example_value
+                    statusCode: 10
+                    message: example_value
+                    description: A sample description.
+                    requestId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ConnectionCreateRequest:
+      type: object
+      description: Request body for creating a new connection.
+      required:
+      - '@type'
+      - name
+      - type
+      - runtimeEnvironmentId
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "connection".
+          const: connection
+          example: example_value
+        name:
+          type: string
+          description: The name for the new connection.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the connection.
+          example: A sample description.
+        type:
+          type: string
+          description: The connection type.
+          example: example_value
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment ID for the connection.
+          example: '500123'
+        host:
+          type: string
+          description: The hostname or IP address.
+          example: example_value
+        port:
+          type: integer
+          description: The port number.
+          example: 10
+        database:
+          type: string
+          description: The database name or service name.
+          example: example_value
+        schema:
+          type: string
+          description: The database schema.
+          example: example_value
+        username:
+          type: string
+          description: The username for authentication.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The password for authentication.
+          example: example_value
+        authenticationType:
+          type: string
+          description: The authentication method.
+          example: example_value
+        serviceUrl:
+          type: string
+          format: uri
+          description: The service endpoint URL.
+          example: https://www.example.com
+        codepage:
+          type: string
+          description: The character encoding.
+          example: example_value
+        connParams:
+          type: object
+          description: Additional connection-type-specific parameters.
+          additionalProperties: true
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
+    ConnectionUpdateRequest:
+      type: object
+      description: Request body for updating an existing connection.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "connection".
+          const: connection
+          example: example_value
+        name:
+          type: string
+          description: The updated name for the connection.
+          example: Example Title
+        description:
+          type: string
+          description: An updated description of the connection.
+          example: A sample description.
+        host:
+          type: string
+          description: The updated hostname or IP address.
+          example: example_value
+        port:
+          type: integer
+          description: The updated port number.
+          example: 10
+        database:
+          type: string
+          description: The updated database name.
+          example: example_value
+        schema:
+          type: string
+          description: The updated database schema.
+          example: example_value
+        username:
+          type: string
+          description: The updated username.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The updated password.
+          example: example_value
+        authenticationType:
+          type: string
+          description: The updated authentication method.
+          example: example_value
+        serviceUrl:
+          type: string
+          format: uri
+          description: The updated service endpoint URL.
+          example: https://www.example.com
+        codepage:
+          type: string
+          description: The updated character encoding.
+          example: example_value
+        connParams:
+          type: object
+          description: Updated connection-type-specific parameters.
+          additionalProperties: true
+          example: example_value
+    Connection:
+      type: object
+      description: Represents a connection to a data source or target in Informatica Intelligent Cloud Services.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: connection
+          example: example_value
+        id:
+          type: string
+          description: The unique identifier for the connection.
+          example: abc123
+        orgId:
+          type: string
+          description: The organization ID that owns the connection.
+          example: '500123'
+        name:
+          type: string
+          description: The name of the connection.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the connection.
+          example: A sample description.
+        type:
+          type: string
+          description: The connection type (e.g., Oracle, Salesforce, MySQL, SqlServer, FTP, CSVFile).
+          enum:
+          - CSVFile
+          - FTP
+          - SFTP
+          - MS_ACCESS
+          - MSD
+          - MySQL
+          - ODBC
+          - Oracle
+          - OCOD
+          - Salesforce
+          - SqlServer
+          - SqlServer2000
+          - SqlServer2005
+          - SqlServer2008
+          - SqlServer2012
+          - SqlServer2014
+          - SqlServer2016
+          - SqlServer2017
+          - TOOLKIT
+          - WebServicesConsumer
+          - SAP_ALE_IDoc_Reader
+          - SAP_ALE_IDoc_Writer
+          example: CSVFile
+        createTime:
+          type: string
+          format: date-time
+          description: The time the connection was created.
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the connection was last updated.
+          example: '2026-01-15T10:30:00Z'
+        createdBy:
+          type: string
+          description: The user who created the connection.
+          example: example_value
+        updatedBy:
+          type: string
+          description: The user who last updated the connection.
+          example: example_value
+        agentId:
+          type: string
+          description: The ID of the Secure Agent associated with the connection.
+          example: '500123'
+        runtimeEnvironmentId:
+          type: string
+          description: The ID of the runtime environment associated with the connection.
+          example: '500123'
+        host:
+          type: string
+          description: The hostname or IP address for the connection. Applicable to database and server-based connections.
+          example: example_value
+        port:
+          type: integer
+          description: The port number for the connection. Applicable to database and server-based connections.
+          example: 10
+        database:
+          type: string
+          description: The database name or service name for the connection.
+          example: example_value
+        schema:
+          type: string
+          description: The database schema name.
+          example: example_value
+        username:
+          type: string
+          description: The username for authentication.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The password for authentication.
+          example: example_value
+        authenticationType:
+          type: string
+          description: The authentication method used by the connection.
+          example: example_value
+        serviceUrl:
+          type: string
+          format: uri
+          description: The service endpoint URL. Applicable to web service and cloud application connections.
+          example: https://www.example.com
+        codepage:
+          type: string
+          description: The character encoding for the connection (e.g., UTF-8).
+          example: example_value
+        connParams:
+          type: object
+          description: Additional connection parameters specific to the connection type. Contains attributes not listed as top-level fields.
+          additionalProperties: true
+          example: example_value
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: The name of the connection. Spaces must be encoded as %20.
+      schema:
+        type: string
+    connectionId:
+      name: connectionId
+      in: path
+      required: true
+      description: The unique identifier of the connection.
+      schema:
+        type: string
+  securitySchemes:
+    icSessionId:
+      type: apiKey
+      name: icSessionId
+      in: header
+      description: The REST API session ID returned by the login endpoint. Include this value in the icSessionId header for all authenticated requests. The session expires after 30 minutes of inactivity.
+externalDocs:
+  description: Informatica IICS REST API Reference
+  url: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
