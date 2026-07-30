@@ -7,6 +7,19 @@ description: >-
   providing programmatic access to data integration, data governance, data quality, master data management, B2B gateway,
   and platform administration capabilities.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
 image: https://companieslogo.com/img/orig/INFA-3e1d4e5a.png
@@ -29,249 +42,910 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: informatica:informatica
-    name: Informatica Platform REST API
-    description: >-
-      The Informatica Intelligent Cloud Services Platform REST API provides access to platform-level resources including
-      login and authentication, roles and privileges, user and user group management, organizations, connections,
-      schedules, runtime environments, Secure Agent services, object permissions, export and import, source control,
-      projects and folders, licenses, metering data, and security logs. Supports version 2 (JSON and XML) and version 3
-      (JSON) resource formats.
-    humanURL: >-
-      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
-    tags:
-      - Authentication
-      - Platform
-      - Roles
-      - Users
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
-        title: Platform REST API v3
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
-        title: Roles API
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/openapi/informatica-platform-rest-api-openapi.yml
-      - type: OpenAPI
-        url: openapi/informatica-platform-rest-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/informatica-connection-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-login-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-login-response-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-connection-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-connection-create-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-connection-update-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-task-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-job-start-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-job-start-response-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-job-stop-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-schedule-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
-      - type: JSONSchema
-        url: json-schema/informatica-platform-rest-error-response-schema.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-login-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-login-response-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-connection-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-connection-create-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-connection-update-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-task-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-job-start-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-job-start-response-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-job-stop-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-schedule-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
-      - type: JSONStructure
-        url: json-structure/informatica-platform-rest-error-response-structure.json
-      - type: Examples
-        url: examples/informatica-platform-rest-login-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-login-response-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-connection-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-connection-create-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-connection-update-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-parameter-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-task-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-task-create-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-mapping-task-update-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-job-start-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-job-start-response-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-job-stop-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-activity-log-entry-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-schedule-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-schedule-create-request-example.json
-      - type: Examples
-        url: examples/informatica-platform-rest-error-response-example.json
-      - type: JSONLD
-        url: json-ld/informatica-context.jsonld
-      - type: JSONLD
-        url: json-ld/informatica-platform-rest-context.jsonld
-  - aid: informatica:data-integration-rest-api
-    name: Informatica Data Integration REST API
-    description: >-
-      The Data Integration REST API provides programmatic access to manage data integration assets and operations,
-      including connections, mappings, mapping tasks, dynamic mapping tasks, taskflows, code tasks, connectors, data
-      preview, fields, file listeners, file transfer, and hierarchical mappers. Uses version 2 resources with JSON or
-      XML format.
-    humanURL: >-
+- aid: informatica:data-integration-rest-api
+  name: Informatica Data Integration REST API
+  description: >-
+    The Data Integration REST API provides programmatic access to manage data integration assets and operations,
+    including connections, mappings, mapping tasks, dynamic mapping tasks, taskflows, code tasks, connectors,
+    data preview, fields, file listeners, file transfer, and hierarchical mappers. Uses version 2 resources
+    with JSON or XML format.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html
+  tags:
+  - Connections
+  - Data Integration
+  - ETL
+  - Mappings
+  properties:
+  - type: Documentation
+    url: >-
       https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html
-    tags:
-      - Connections
-      - Data Integration
-      - ETL
-      - Mappings
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html
-      - type: APIReference
-        url: >-
-          https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/rest-api-resource-quick-references/data-integration-resource-quick-reference.html
-  - aid: informatica:cloud-data-governance-and-catalog-api
-    name: Informatica Cloud Data Governance and Catalog API
-    description: >-
-      The Cloud Data Governance and Catalog API enables programmatic creation and management of assets, searching for
-      assets, and viewing asset details within Informatica Data Governance and Catalog. Calls can be made using a REST
-      client, the cURL tool, or a suitable programming interface.
-    humanURL: https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html
-    tags:
-      - Data Catalog
-      - Data Governance
-    properties:
-      - type: Documentation
-        url: https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html
-  - aid: informatica:cloud-data-profiling-rest-api
-    name: Informatica Cloud Data Profiling REST API
-    description: >-
-      The Cloud Data Profiling REST API allows interaction with the Data Profiling Service through API calls to create,
-      delete, update, and run queries and profiles within your organization. Supports platform REST API version 2 and
-      version 3 resources and service-specific resources.
-    humanURL: >-
+  - type: APIReference
+    url: >-
+      https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/rest-api-resource-quick-references/data-integration-resource-quick-reference.html
+- aid: informatica:cloud-data-governance-and-catalog-api
+  name: Informatica Cloud Data Governance and Catalog API
+  description: >-
+    The Cloud Data Governance and Catalog API enables programmatic creation and management of assets,
+    searching for assets, and viewing asset details within Informatica Data Governance and Catalog. Calls
+    can be made using a REST client, the cURL tool, or a suitable programming interface.
+  humanURL: >-
+    https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html
+  tags:
+  - Data Catalog
+  - Data Governance
+  properties:
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html
+- aid: informatica:cloud-data-profiling-rest-api
+  name: Informatica Cloud Data Profiling REST API
+  description: >-
+    The Cloud Data Profiling REST API allows interaction with the Data Profiling Service through API calls
+    to create, delete, update, and run queries and profiles within your organization. Supports platform
+    REST API version 2 and version 3 resources and service-specific resources.
+  humanURL: >-
+    https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html
+  tags:
+  - Data Profiling
+  - Data Quality
+  properties:
+  - type: Documentation
+    url: >-
       https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html
-    tags:
-      - Data Profiling
-      - Data Quality
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html
-      - type: GettingStarted
-        url: >-
-          https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/h2l/1547-getting-started-with-cloud-data-profiling-rest-api/getting-started-with-cloud-data-profiling-rest-api/overview.html
-  - aid: informatica:cloud-address-verification-api
-    name: Informatica Cloud Address Verification API
-    description: >-
-      The Cloud Address Verification API is a REST API-based solution for verifying and validating postal addresses in
-      real time. You can integrate the Address Verification service API endpoints into your application using a REST
-      client, the cURL tool, or any suitable programming interface.
-    humanURL: >-
+  - type: GettingStarted
+    url: >-
+      https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/h2l/1547-getting-started-with-cloud-data-profiling-rest-api/getting-started-with-cloud-data-profiling-rest-api/overview.html
+- aid: informatica:cloud-address-verification-api
+  name: Informatica Cloud Address Verification API
+  description: >-
+    The Cloud Address Verification API is a REST API-based solution for verifying and validating postal
+    addresses in real time. You can integrate the Address Verification service API endpoints into your
+    application using a REST client, the cURL tool, or any suitable programming interface.
+  humanURL: >-
+    https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html
+  tags:
+  - Address Verification
+  - Data Quality
+  properties:
+  - type: Documentation
+    url: >-
       https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html
-    tags:
-      - Address Verification
-      - Data Quality
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html
-  - aid: informatica:b2b-gateway-rest-api
-    name: Informatica B2B Gateway REST API
-    description: >-
-      The B2B Gateway REST APIs enable running inbound and outbound partner flows, querying the status of events, and
-      getting control numbers for outbound EDI X12 and EDIFACT messages through programmatic API calls.
-    humanURL: >-
+- aid: informatica:b2b-gateway-rest-api
+  name: Informatica B2B Gateway REST API
+  description: >-
+    The B2B Gateway REST APIs enable running inbound and outbound partner flows, querying the status of
+    events, and getting control numbers for outbound EDI X12 and EDIFACT messages through programmatic
+    API calls.
+  humanURL: >-
+    https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - B2B
+  - EDI
+  - Gateway
+  properties:
+  - type: Documentation
+    url: >-
       https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
-    tags:
-      - B2B
-      - EDI
-      - Gateway
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
-  - aid: informatica:reference-360-rest-api
-    name: Informatica Reference 360 REST API
-    description: >-
-      The Reference 360 REST API enables programmatic management of reference data, including exporting and importing
-      reference data sets, managing code values and value mappings, retrieving asset details, managing code lists,
-      crosswalks, hierarchies, and audit trails. Supports multiple API versions for model import and export operations.
-    humanURL: >-
+- aid: informatica:reference-360-rest-api
+  name: Informatica Reference 360 REST API
+  description: >-
+    The Reference 360 REST API enables programmatic management of reference data, including exporting
+    and importing reference data sets, managing code values and value mappings, retrieving asset details,
+    managing code lists, crosswalks, hierarchies, and audit trails. Supports multiple API versions for
+    model import and export operations.
+  humanURL: >-
+    https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html
+  tags:
+  - Master Data Management
+  - Reference Data
+  properties:
+  - type: Documentation
+    url: >-
       https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html
-    tags:
-      - Master Data Management
-      - Reference Data
-    properties:
-      - type: Documentation
-        url: >-
-          https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html
+- aid: informatica:informatica-authentication-api
+  name: Informatica Authentication API
+  description: Login and session management operations.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-authentication-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
+- aid: informatica:informatica-connections-api
+  name: Informatica Connections API
+  description: >-
+    Manage connections to data sources and targets including databases, flat files, cloud applications,
+    and SaaS services.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Connections
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-connections-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
+- aid: informatica:informatica-jobs-api
+  name: Informatica Jobs API
+  description: Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-jobs-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
+- aid: informatica:informatica-mapping-tasks-api
+  name: Informatica Mapping Tasks API
+  description: >-
+    Create, retrieve, update, and delete mapping task configurations that execute mappings with specific
+    runtime parameters.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Mapping Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-mapping-tasks-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
+- aid: informatica:informatica-mappings-api
+  name: Informatica Mappings API
+  description: >-
+    Retrieve mapping definitions and metadata for data integration mappings within the organization.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-mappings-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
+- aid: informatica:informatica-schedules-api
+  name: Informatica Schedules API
+  description: Manage task execution schedules.
+  humanURL: >-
+    https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  tags:
+  - Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/informatica-schedules-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html
+  - type: Documentation
+    url: >-
+      https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html
+  - type: JSONSchema
+    url: json-schema/informatica-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-login-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-connection-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-mapping-task-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-start-response-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-job-stop-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-activity-log-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-schedule-create-request-schema.json
+  - type: JSONSchema
+    url: json-schema/informatica-platform-rest-error-response-schema.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-login-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-connection-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-mapping-task-update-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-start-response-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-job-stop-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-activity-log-entry-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-schedule-create-request-structure.json
+  - type: JSONStructure
+    url: json-structure/informatica-platform-rest-error-response-structure.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-login-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-connection-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-in-out-parameter-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-mapping-task-update-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-start-response-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-job-stop-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-activity-log-entry-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-schedule-create-request-example.json
+  - type: Examples
+    url: examples/informatica-platform-rest-error-response-example.json
+  - type: JSONLD
+    url: json-ld/informatica-context.jsonld
+  - type: JSONLD
+    url: json-ld/informatica-platform-rest-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/informatica-agentic-access.yml
