@@ -1,0 +1,24 @@
+{
+  "provider": "informatica",
+  "sources": [
+    "informatica-authentication-api-openapi.yml",
+    "informatica-connections-api-openapi.yml",
+    "informatica-jobs-api-openapi.yml",
+    "informatica-mapping-tasks-api-openapi.yml",
+    "informatica-mappings-api-openapi.yml",
+    "informatica-schedules-api-openapi.yml"
+  ],
+  "outputs": [
+    "informatica-authentication-api-openapi.yml",
+    "informatica-connections-api-openapi.yml",
+    "informatica-jobs-api-openapi.yml",
+    "informatica-mapping-tasks-api-openapi.yml",
+    "informatica-mappings-api-openapi.yml",
+    "informatica-schedules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
