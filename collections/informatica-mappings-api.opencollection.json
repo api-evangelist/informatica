@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication Mappings API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Mappings in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping"
+          },
+          "docs": "Returns the mapping object for every mapping in the organization. When retrieving all mappings, parameter details are not included."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/:mappingId",
+            "params": [
+              {
+                "name": "mappingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific mapping identified by its ID, including parameter details."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/name/:mappingName",
+            "params": [
+              {
+                "name": "mappingName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the mapping."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific mapping identified by its name."
+        },
+        {
+          "info": {
+            "name": "Informatica Search for Mappings by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mapping/search",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "The mapping name or name pattern to search for."
+              }
+            ]
+          },
+          "docs": "Searches for mappings matching the specified name pattern."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

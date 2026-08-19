@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication Mapping Tasks API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mapping Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Mapping Tasks in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask"
+          },
+          "docs": "Returns summary information for all mapping tasks configured in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new mapping task in the organization. The request body must include the mapping reference, source and target connection configurations, and runtime parameters."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping Task by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ]
+          },
+          "docs": "Returns the full details of a mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Mapping Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the mapping task."
+              }
+            ]
+          },
+          "docs": "Deletes the mapping task identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Mapping Task by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/mttask/name/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the mapping task."
+              }
+            ]
+          },
+          "docs": "Returns the full details of a mapping task identified by its name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

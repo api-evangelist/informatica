@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication Connections API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Connections in the Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection"
+          },
+          "docs": "Returns connection details for all connections configured in the organization. Results can be filtered by agent or runtime environment."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection in the organization with the specified configuration including connection type, credentials, and runtime environment."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Connection by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Deletes the connection identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Connection by Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/name/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the connection. Spaces must be encoded as %20."
+              }
+            ]
+          },
+          "docs": "Returns the details of a specific connection identified by its name. Spaces in the name must be encoded as %20."
+        },
+        {
+          "info": {
+            "name": "Informatica Search for Connections by Agent or Runtime Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/search",
+            "params": [
+              {
+                "name": "agentId",
+                "value": "500123",
+                "type": "query",
+                "description": "The Secure Agent ID to filter connections."
+              },
+              {
+                "name": "runtimeEnvironmentId",
+                "value": "500123",
+                "type": "query",
+                "description": "The runtime environment ID to filter connections."
+              },
+              {
+                "name": "uiType",
+                "value": "example_value",
+                "type": "query",
+                "description": "The connection type to filter by (e.g., Oracle, Salesforce, MySQL)."
+              }
+            ]
+          },
+          "docs": "Searches for connections filtered by Secure Agent ID or runtime environment ID, combined with connection type."
+        },
+        {
+          "info": {
+            "name": "Informatica Test a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/connection/:connectionId/test",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the connection."
+              }
+            ]
+          },
+          "docs": "Tests the connection identified by its ID to verify that the credentials and configuration are valid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

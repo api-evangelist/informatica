@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Log in to Informatica Intelligent Cloud Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/ma/api/v2/user/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity."
+        },
+        {
+          "info": {
+            "name": "Informatica Log Out and End the Rest Api Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/user/logout"
+          },
+          "docs": "Ends the current REST API session. You can also end all active sessions for the organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

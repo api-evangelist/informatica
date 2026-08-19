@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication Schedules API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Retrieve All Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule"
+          },
+          "docs": "Returns a list of all schedules in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Create a New Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new schedule in the organization."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve a Schedule by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ]
+          },
+          "docs": "Returns the details of a schedule identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Update an Existing Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a schedule identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Informatica Delete a Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/schedule/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier of the schedule."
+              }
+            ]
+          },
+          "docs": "Deletes the schedule identified by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

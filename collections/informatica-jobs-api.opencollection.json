@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Informatica IICS Platform REST Authentication Jobs API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "icSessionId",
+      "value": "{{icSessionId}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Informatica Start a Job for a Task or Taskflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks."
+        },
+        {
+          "info": {
+            "name": "Informatica Stop a Running Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/job/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row."
+        },
+        {
+          "info": {
+            "name": "Informatica Retrieve Activity Log Entries for Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dm-us.informaticacloud.com/saas/api/v2/activity/activityLog",
+            "params": [
+              {
+                "name": "runId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the job run ID."
+              },
+              {
+                "name": "taskId",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by the task ID."
+              },
+              {
+                "name": "taskType",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow)."
+              },
+              {
+                "name": "startTimeUTC",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format."
+              },
+              {
+                "name": "endTimeUTC",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
