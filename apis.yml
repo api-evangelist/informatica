@@ -417,6 +417,8 @@ apis:
   humanURL: >-
     https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
