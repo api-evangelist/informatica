@@ -913,6 +913,8 @@ apis:
   - type: JSONLD
     url: json-ld/informatica-platform-rest-context.jsonld
 common:
+- type: Website
+  url: https://www.informatica.com/
 - type: ParentCompany
   url: https://apis.io/providers/salesforce/
   name: Salesforce
