@@ -117,6 +117,10 @@ apis:
   tags:
   - B2B
   - EDI
+  - Gateways
+  tags_raw:
+  - B2B
+  - EDI
   - Gateway
   properties:
   - type: Documentation
@@ -788,6 +792,8 @@ apis:
   description: Manage task execution schedules.
   humanURL: https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
