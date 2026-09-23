@@ -1,12 +1,7 @@
 {
   "provider": "informatica",
   "sources": [
-    "informatica-authentication-api-openapi.yml",
-    "informatica-connections-api-openapi.yml",
-    "informatica-jobs-api-openapi.yml",
-    "informatica-mapping-tasks-api-openapi.yml",
-    "informatica-mappings-api-openapi.yml",
-    "informatica-schedules-api-openapi.yml"
+    "_original/informatica-platform-rest-api-openapi.yml"
   ],
   "outputs": [
     "informatica-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "informatica-platform-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "informatica-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "informatica-connections-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "informatica-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "informatica-mapping-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "informatica-mappings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "informatica-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
