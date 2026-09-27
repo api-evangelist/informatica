@@ -313,21 +313,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    mappingId:
-      name: mappingId
-      in: path
-      required: true
-      description: The unique identifier of the mapping.
-      schema:
-        type: string
-    mappingName:
-      name: mappingName
-      in: path
-      required: true
-      description: The name of the mapping.
-      schema:
-        type: string
   schemas:
     Mapping:
       type: object
@@ -540,6 +525,21 @@ components:
           type: string
           description: The current parameter value.
           example: example_value
+  parameters:
+    mappingName:
+      name: mappingName
+      in: path
+      required: true
+      description: The name of the mapping.
+      schema:
+        type: string
+    mappingId:
+      name: mappingId
+      in: path
+      required: true
+      description: The unique identifier of the mapping.
+      schema:
+        type: string
   securitySchemes:
     icSessionId:
       type: apiKey

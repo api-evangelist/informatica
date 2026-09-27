@@ -244,6 +244,128 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    JobStopRequest:
+      type: object
+      description: Request body for stopping a running job.
+      required:
+      - '@type'
+      - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+          example: example_value
+        taskId:
+          type: string
+          description: The ID of the task to stop. Either taskId or taskName must be provided.
+          example: '500123'
+        taskName:
+          type: string
+          description: The name of the task to stop. Either taskId or taskName must be provided.
+          example: example_value
+        taskType:
+          type: string
+          description: The type of the task to stop.
+          enum:
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
+        cleanStop:
+          type: boolean
+          description: When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately.
+          default: false
+          example: true
+    JobStartResponse:
+      type: object
+      description: Response returned when a job is successfully started.
+      properties:
+        taskId:
+          type: string
+          description: The ID of the task that was started.
+          example: '500123'
+        taskType:
+          type: string
+          description: The type of the task.
+          example: example_value
+        runId:
+          type: integer
+          format: int64
+          description: The unique run ID for this job execution. Use this ID to track job status.
+          example: '500123'
+    JobStartRequest:
+      type: object
+      description: Request body for starting a job. You can identify the task by taskId or taskName, and must specify the task type.
+      required:
+      - '@type'
+      - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+          example: example_value
+        taskId:
+          type: string
+          description: The ID of the task to run. Either taskId or taskName must be provided.
+          example: '500123'
+        taskName:
+          type: string
+          description: The name of the task to run. Either taskId or taskName must be provided.
+          example: example_value
+        taskType:
+          type: string
+          description: The type of the task to run. Supported values include MTT (mapping task), WORKFLOW (taskflow), DSS (synchronization task), DRS (data replication task), and PCS (PowerCenter task).
+          enum:
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
+        callbackUrl:
+          type: string
+          format: uri
+          description: An optional URL that receives a callback when the job completes.
+          example: https://www.example.com
+        runtime:
+          type: object
+          description: Optional runtime configuration for the job execution.
+          properties:
+            '@type':
+              type: string
+              description: The runtime object type identifier.
+            runtimeEnvironmentId:
+              type: string
+              description: Override the runtime environment for this execution.
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
     ActivityLogEntry:
       type: object
       description: An entry in the activity log representing the execution status of a job.
@@ -339,128 +461,6 @@ components:
           items:
             type: object
           example: []
-    JobStopRequest:
-      type: object
-      description: Request body for stopping a running job.
-      required:
-      - '@type'
-      - taskType
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier. Must be set to "job".
-          const: job
-          example: example_value
-        taskId:
-          type: string
-          description: The ID of the task to stop. Either taskId or taskName must be provided.
-          example: '500123'
-        taskName:
-          type: string
-          description: The name of the task to stop. Either taskId or taskName must be provided.
-          example: example_value
-        taskType:
-          type: string
-          description: The type of the task to stop.
-          enum:
-          - MTT
-          - WORKFLOW
-          - DSS
-          - DRS
-          - PCS
-          example: MTT
-        cleanStop:
-          type: boolean
-          description: When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately.
-          default: false
-          example: true
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        '@type':
-          type: string
-          description: The error type identifier.
-          example: example_value
-        statusCode:
-          type: integer
-          description: The HTTP status code.
-          example: 10
-        message:
-          type: string
-          description: A human-readable error message.
-          example: example_value
-        description:
-          type: string
-          description: A detailed description of the error.
-          example: A sample description.
-        requestId:
-          type: string
-          description: The unique request ID for troubleshooting.
-          example: '500123'
-    JobStartRequest:
-      type: object
-      description: Request body for starting a job. You can identify the task by taskId or taskName, and must specify the task type.
-      required:
-      - '@type'
-      - taskType
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier. Must be set to "job".
-          const: job
-          example: example_value
-        taskId:
-          type: string
-          description: The ID of the task to run. Either taskId or taskName must be provided.
-          example: '500123'
-        taskName:
-          type: string
-          description: The name of the task to run. Either taskId or taskName must be provided.
-          example: example_value
-        taskType:
-          type: string
-          description: The type of the task to run. Supported values include MTT (mapping task), WORKFLOW (taskflow), DSS (synchronization task), DRS (data replication task), and PCS (PowerCenter task).
-          enum:
-          - MTT
-          - WORKFLOW
-          - DSS
-          - DRS
-          - PCS
-          example: MTT
-        callbackUrl:
-          type: string
-          format: uri
-          description: An optional URL that receives a callback when the job completes.
-          example: https://www.example.com
-        runtime:
-          type: object
-          description: Optional runtime configuration for the job execution.
-          properties:
-            '@type':
-              type: string
-              description: The runtime object type identifier.
-            runtimeEnvironmentId:
-              type: string
-              description: Override the runtime environment for this execution.
-          example: example_value
-    JobStartResponse:
-      type: object
-      description: Response returned when a job is successfully started.
-      properties:
-        taskId:
-          type: string
-          description: The ID of the task that was started.
-          example: '500123'
-        taskType:
-          type: string
-          description: The type of the task.
-          example: example_value
-        runId:
-          type: integer
-          format: int64
-          description: The unique run ID for this job execution. Use this ID to track job status.
-          example: '500123'
   securitySchemes:
     icSessionId:
       type: apiKey
