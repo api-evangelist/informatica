@@ -472,9 +472,13 @@ components:
           type: string
           description: Display configuration including connection type, logical connection, order, visibility, editability, and control type.
           example: example_value
-    MappingTaskUpdateRequest:
+    MappingTaskCreateRequest:
       type: object
-      description: Request body for updating an existing mapping task.
+      description: Request body for creating a new mapping task.
+      required:
+      - '@type'
+      - name
+      - mappingId
       properties:
         '@type':
           type: string
@@ -483,39 +487,43 @@ components:
           example: example_value
         name:
           type: string
-          description: The updated name.
+          description: The name for the new mapping task.
           example: Example Title
         description:
           type: string
-          description: The updated description.
+          description: A description of the mapping task.
           example: A sample description.
+        mappingId:
+          type: string
+          description: The ID of the mapping to execute.
+          example: '500123'
         runtimeEnvironmentId:
           type: string
-          description: The updated runtime environment.
+          description: The runtime environment to use for execution.
           example: '500123'
         scheduleId:
           type: string
-          description: The updated schedule ID.
+          description: The schedule to associate with the task.
           example: '500123'
         preProcessingCmd:
           type: string
-          description: The updated pre-processing command.
+          description: The command to run before the task.
           example: example_value
         postProcessingCmd:
           type: string
-          description: The updated post-processing command.
+          description: The command to run after the task.
           example: example_value
         sourceConnectionId:
           type: string
-          description: The updated source connection ID.
+          description: The source connection ID.
           example: '500123'
         targetConnectionId:
           type: string
-          description: The updated target connection ID.
+          description: The target connection ID.
           example: '500123'
         parameters:
           type: array
-          description: Updated parameter values.
+          description: Parameter value overrides.
           items:
             $ref: '#/components/schemas/MappingParameter'
           example: []
@@ -628,13 +636,9 @@ components:
           type: string
           description: The unique request ID for troubleshooting.
           example: '500123'
-    MappingTaskCreateRequest:
+    MappingTaskUpdateRequest:
       type: object
-      description: Request body for creating a new mapping task.
-      required:
-      - '@type'
-      - name
-      - mappingId
+      description: Request body for updating an existing mapping task.
       properties:
         '@type':
           type: string
@@ -643,59 +647,55 @@ components:
           example: example_value
         name:
           type: string
-          description: The name for the new mapping task.
+          description: The updated name.
           example: Example Title
         description:
           type: string
-          description: A description of the mapping task.
+          description: The updated description.
           example: A sample description.
-        mappingId:
-          type: string
-          description: The ID of the mapping to execute.
-          example: '500123'
         runtimeEnvironmentId:
           type: string
-          description: The runtime environment to use for execution.
+          description: The updated runtime environment.
           example: '500123'
         scheduleId:
           type: string
-          description: The schedule to associate with the task.
+          description: The updated schedule ID.
           example: '500123'
         preProcessingCmd:
           type: string
-          description: The command to run before the task.
+          description: The updated pre-processing command.
           example: example_value
         postProcessingCmd:
           type: string
-          description: The command to run after the task.
+          description: The updated post-processing command.
           example: example_value
         sourceConnectionId:
           type: string
-          description: The source connection ID.
+          description: The updated source connection ID.
           example: '500123'
         targetConnectionId:
           type: string
-          description: The target connection ID.
+          description: The updated target connection ID.
           example: '500123'
         parameters:
           type: array
-          description: Parameter value overrides.
+          description: Updated parameter values.
           items:
             $ref: '#/components/schemas/MappingParameter'
           example: []
   parameters:
-    taskName:
-      name: taskName
-      in: path
-      required: true
-      description: The name of the mapping task.
-      schema:
-        type: string
     taskId:
       name: taskId
       in: path
       required: true
       description: The unique identifier of the mapping task.
+      schema:
+        type: string
+    taskName:
+      name: taskName
+      in: path
+      required: true
+      description: The name of the mapping task.
       schema:
         type: string
   securitySchemes:

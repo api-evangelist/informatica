@@ -150,29 +150,6 @@ components:
           type: string
           description: The unique request ID for troubleshooting.
           example: '500123'
-    LoginRequest:
-      type: object
-      description: Request body for the login endpoint.
-      required:
-      - '@type'
-      - username
-      - password
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier. Must be set to "login".
-          enum:
-          - login
-          example: login
-        username:
-          type: string
-          description: The Informatica Intelligent Cloud Services username.
-          example: example_value
-        password:
-          type: string
-          format: password
-          description: The account password.
-          example: example_value
     LoginResponse:
       type: object
       description: Successful login response containing the session ID and server URL for subsequent API calls.
@@ -245,6 +222,29 @@ components:
           format: date-time
           description: The time the user account was last updated.
           example: '2026-01-15T10:30:00Z'
+    LoginRequest:
+      type: object
+      description: Request body for the login endpoint.
+      required:
+      - '@type'
+      - username
+      - password
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "login".
+          enum:
+          - login
+          example: login
+        username:
+          type: string
+          description: The Informatica Intelligent Cloud Services username.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The account password.
+          example: example_value
   securitySchemes:
     icSessionId:
       type: apiKey

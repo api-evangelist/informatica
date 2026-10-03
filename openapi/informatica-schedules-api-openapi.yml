@@ -260,6 +260,48 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ScheduleCreateRequest:
+      type: object
+      description: Request body for creating a new schedule.
+      required:
+      - '@type'
+      - name
+      - startTime
+      properties:
+        '@type':
+          type: string
+          const: schedule
+          example: example_value
+        name:
+          type: string
+          description: The name for the new schedule.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the schedule.
+          example: A sample description.
+        startTime:
+          type: string
+          format: date-time
+          description: The scheduled start time.
+          example: '2026-01-15T10:30:00Z'
+        endTime:
+          type: string
+          format: date-time
+          description: The scheduled end time.
+          example: '2026-01-15T10:30:00Z'
+        interval:
+          type: string
+          description: The recurrence interval.
+          example: example_value
+        frequency:
+          type: integer
+          description: The repeat frequency.
+          example: 10
+        timezone:
+          type: string
+          description: The time zone.
+          example: example_value
     Schedule:
       type: object
       description: A task execution schedule.
@@ -343,48 +385,6 @@ components:
           type: integer
           description: The day of the month for monthly schedules.
           example: 10
-    ScheduleCreateRequest:
-      type: object
-      description: Request body for creating a new schedule.
-      required:
-      - '@type'
-      - name
-      - startTime
-      properties:
-        '@type':
-          type: string
-          const: schedule
-          example: example_value
-        name:
-          type: string
-          description: The name for the new schedule.
-          example: Example Title
-        description:
-          type: string
-          description: A description of the schedule.
-          example: A sample description.
-        startTime:
-          type: string
-          format: date-time
-          description: The scheduled start time.
-          example: '2026-01-15T10:30:00Z'
-        endTime:
-          type: string
-          format: date-time
-          description: The scheduled end time.
-          example: '2026-01-15T10:30:00Z'
-        interval:
-          type: string
-          description: The recurrence interval.
-          example: example_value
-        frequency:
-          type: integer
-          description: The repeat frequency.
-          example: 10
-        timezone:
-          type: string
-          description: The time zone.
-          example: example_value
   securitySchemes:
     icSessionId:
       type: apiKey

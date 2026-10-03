@@ -565,22 +565,152 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    connectionId:
-      name: connectionId
-      in: path
-      required: true
-      description: The unique identifier of the connection.
-      schema:
-        type: string
-    connectionName:
-      name: connectionName
-      in: path
-      required: true
-      description: The name of the connection. Spaces must be encoded as %20.
-      schema:
-        type: string
   schemas:
+    Connection:
+      type: object
+      description: Represents a connection to a data source or target in Informatica Intelligent Cloud Services.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: connection
+          example: example_value
+        id:
+          type: string
+          description: The unique identifier for the connection.
+          example: abc123
+        orgId:
+          type: string
+          description: The organization ID that owns the connection.
+          example: '500123'
+        name:
+          type: string
+          description: The name of the connection.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the connection.
+          example: A sample description.
+        type:
+          type: string
+          description: The connection type (e.g., Oracle, Salesforce, MySQL, SqlServer, FTP, CSVFile).
+          enum:
+          - CSVFile
+          - FTP
+          - SFTP
+          - MS_ACCESS
+          - MSD
+          - MySQL
+          - ODBC
+          - Oracle
+          - OCOD
+          - Salesforce
+          - SqlServer
+          - SqlServer2000
+          - SqlServer2005
+          - SqlServer2008
+          - SqlServer2012
+          - SqlServer2014
+          - SqlServer2016
+          - SqlServer2017
+          - TOOLKIT
+          - WebServicesConsumer
+          - SAP_ALE_IDoc_Reader
+          - SAP_ALE_IDoc_Writer
+          example: CSVFile
+        createTime:
+          type: string
+          format: date-time
+          description: The time the connection was created.
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          description: The time the connection was last updated.
+          example: '2026-01-15T10:30:00Z'
+        createdBy:
+          type: string
+          description: The user who created the connection.
+          example: example_value
+        updatedBy:
+          type: string
+          description: The user who last updated the connection.
+          example: example_value
+        agentId:
+          type: string
+          description: The ID of the Secure Agent associated with the connection.
+          example: '500123'
+        runtimeEnvironmentId:
+          type: string
+          description: The ID of the runtime environment associated with the connection.
+          example: '500123'
+        host:
+          type: string
+          description: The hostname or IP address for the connection. Applicable to database and server-based connections.
+          example: example_value
+        port:
+          type: integer
+          description: The port number for the connection. Applicable to database and server-based connections.
+          example: 10
+        database:
+          type: string
+          description: The database name or service name for the connection.
+          example: example_value
+        schema:
+          type: string
+          description: The database schema name.
+          example: example_value
+        username:
+          type: string
+          description: The username for authentication.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The password for authentication.
+          example: example_value
+        authenticationType:
+          type: string
+          description: The authentication method used by the connection.
+          example: example_value
+        serviceUrl:
+          type: string
+          format: uri
+          description: The service endpoint URL. Applicable to web service and cloud application connections.
+          example: https://www.example.com
+        codepage:
+          type: string
+          description: The character encoding for the connection (e.g., UTF-8).
+          example: example_value
+        connParams:
+          type: object
+          description: Additional connection parameters specific to the connection type. Contains attributes not listed as top-level fields.
+          additionalProperties: true
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
     ConnectionUpdateRequest:
       type: object
       description: Request body for updating an existing connection.
@@ -714,151 +844,21 @@ components:
           description: Additional connection-type-specific parameters.
           additionalProperties: true
           example: example_value
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        '@type':
-          type: string
-          description: The error type identifier.
-          example: example_value
-        statusCode:
-          type: integer
-          description: The HTTP status code.
-          example: 10
-        message:
-          type: string
-          description: A human-readable error message.
-          example: example_value
-        description:
-          type: string
-          description: A detailed description of the error.
-          example: A sample description.
-        requestId:
-          type: string
-          description: The unique request ID for troubleshooting.
-          example: '500123'
-    Connection:
-      type: object
-      description: Represents a connection to a data source or target in Informatica Intelligent Cloud Services.
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier.
-          const: connection
-          example: example_value
-        id:
-          type: string
-          description: The unique identifier for the connection.
-          example: abc123
-        orgId:
-          type: string
-          description: The organization ID that owns the connection.
-          example: '500123'
-        name:
-          type: string
-          description: The name of the connection.
-          example: Example Title
-        description:
-          type: string
-          description: A description of the connection.
-          example: A sample description.
-        type:
-          type: string
-          description: The connection type (e.g., Oracle, Salesforce, MySQL, SqlServer, FTP, CSVFile).
-          enum:
-          - CSVFile
-          - FTP
-          - SFTP
-          - MS_ACCESS
-          - MSD
-          - MySQL
-          - ODBC
-          - Oracle
-          - OCOD
-          - Salesforce
-          - SqlServer
-          - SqlServer2000
-          - SqlServer2005
-          - SqlServer2008
-          - SqlServer2012
-          - SqlServer2014
-          - SqlServer2016
-          - SqlServer2017
-          - TOOLKIT
-          - WebServicesConsumer
-          - SAP_ALE_IDoc_Reader
-          - SAP_ALE_IDoc_Writer
-          example: CSVFile
-        createTime:
-          type: string
-          format: date-time
-          description: The time the connection was created.
-          example: '2026-01-15T10:30:00Z'
-        updateTime:
-          type: string
-          format: date-time
-          description: The time the connection was last updated.
-          example: '2026-01-15T10:30:00Z'
-        createdBy:
-          type: string
-          description: The user who created the connection.
-          example: example_value
-        updatedBy:
-          type: string
-          description: The user who last updated the connection.
-          example: example_value
-        agentId:
-          type: string
-          description: The ID of the Secure Agent associated with the connection.
-          example: '500123'
-        runtimeEnvironmentId:
-          type: string
-          description: The ID of the runtime environment associated with the connection.
-          example: '500123'
-        host:
-          type: string
-          description: The hostname or IP address for the connection. Applicable to database and server-based connections.
-          example: example_value
-        port:
-          type: integer
-          description: The port number for the connection. Applicable to database and server-based connections.
-          example: 10
-        database:
-          type: string
-          description: The database name or service name for the connection.
-          example: example_value
-        schema:
-          type: string
-          description: The database schema name.
-          example: example_value
-        username:
-          type: string
-          description: The username for authentication.
-          example: example_value
-        password:
-          type: string
-          format: password
-          description: The password for authentication.
-          example: example_value
-        authenticationType:
-          type: string
-          description: The authentication method used by the connection.
-          example: example_value
-        serviceUrl:
-          type: string
-          format: uri
-          description: The service endpoint URL. Applicable to web service and cloud application connections.
-          example: https://www.example.com
-        codepage:
-          type: string
-          description: The character encoding for the connection (e.g., UTF-8).
-          example: example_value
-        connParams:
-          type: object
-          description: Additional connection parameters specific to the connection type. Contains attributes not listed as top-level fields.
-          additionalProperties: true
-          example: example_value
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: The name of the connection. Spaces must be encoded as %20.
+      schema:
+        type: string
+    connectionId:
+      name: connectionId
+      in: path
+      required: true
+      description: The unique identifier of the connection.
+      schema:
+        type: string
   securitySchemes:
     icSessionId:
       type: apiKey

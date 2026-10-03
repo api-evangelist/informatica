@@ -244,58 +244,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JobStopRequest:
-      type: object
-      description: Request body for stopping a running job.
-      required:
-      - '@type'
-      - taskType
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier. Must be set to "job".
-          const: job
-          example: example_value
-        taskId:
-          type: string
-          description: The ID of the task to stop. Either taskId or taskName must be provided.
-          example: '500123'
-        taskName:
-          type: string
-          description: The name of the task to stop. Either taskId or taskName must be provided.
-          example: example_value
-        taskType:
-          type: string
-          description: The type of the task to stop.
-          enum:
-          - MTT
-          - WORKFLOW
-          - DSS
-          - DRS
-          - PCS
-          example: MTT
-        cleanStop:
-          type: boolean
-          description: When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately.
-          default: false
-          example: true
-    JobStartResponse:
-      type: object
-      description: Response returned when a job is successfully started.
-      properties:
-        taskId:
-          type: string
-          description: The ID of the task that was started.
-          example: '500123'
-        taskType:
-          type: string
-          description: The type of the task.
-          example: example_value
-        runId:
-          type: integer
-          format: int64
-          description: The unique run ID for this job execution. Use this ID to track job status.
-          example: '500123'
     JobStartRequest:
       type: object
       description: Request body for starting a job. You can identify the task by taskId or taskName, and must specify the task type.
@@ -342,6 +290,58 @@ components:
               type: string
               description: Override the runtime environment for this execution.
           example: example_value
+    JobStartResponse:
+      type: object
+      description: Response returned when a job is successfully started.
+      properties:
+        taskId:
+          type: string
+          description: The ID of the task that was started.
+          example: '500123'
+        taskType:
+          type: string
+          description: The type of the task.
+          example: example_value
+        runId:
+          type: integer
+          format: int64
+          description: The unique run ID for this job execution. Use this ID to track job status.
+          example: '500123'
+    JobStopRequest:
+      type: object
+      description: Request body for stopping a running job.
+      required:
+      - '@type'
+      - taskType
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "job".
+          const: job
+          example: example_value
+        taskId:
+          type: string
+          description: The ID of the task to stop. Either taskId or taskName must be provided.
+          example: '500123'
+        taskName:
+          type: string
+          description: The name of the task to stop. Either taskId or taskName must be provided.
+          example: example_value
+        taskType:
+          type: string
+          description: The type of the task to stop.
+          enum:
+          - MTT
+          - WORKFLOW
+          - DSS
+          - DRS
+          - PCS
+          example: MTT
+        cleanStop:
+          type: boolean
+          description: When true, allows the job to finish processing the current row before stopping. When false, stops the job immediately.
+          default: false
+          example: true
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
