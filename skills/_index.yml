@@ -1,0 +1,34 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/informatica-connections-api-openapi.yml
+skills:
+- file: skills/informatica-create-and-test-connection.md
+  name: informatica-create-and-test-connection
+  api: openapi/informatica-connections-api-openapi.yml
+  operations:
+  - createConnection
+  - testConnection
+  - getConnection
+- file: skills/informatica-create-and-retrieve-mapping-task.md
+  name: informatica-create-and-retrieve-mapping-task
+  api: openapi/informatica-mapping-tasks-api-openapi.yml
+  operations:
+  - createMappingTask
+  - getMappingTask
+- file: skills/informatica-schedule-lifecycle.md
+  name: informatica-schedule-lifecycle
+  api: openapi/informatica-schedules-api-openapi.yml
+  operations:
+  - listSchedules
+  - createSchedule
+  - getSchedule
+  - updateSchedule
+  - deleteSchedule
+- file: skills/informatica-start-job-monitor.md
+  name: informatica-start-job-monitor
+  api: openapi/informatica-jobs-api-openapi.yml
+  operations:
+  - startJob
+  - getActivityLog
+  - stopJob

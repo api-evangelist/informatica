@@ -290,23 +290,6 @@ components:
               type: string
               description: Override the runtime environment for this execution.
           example: example_value
-    JobStartResponse:
-      type: object
-      description: Response returned when a job is successfully started.
-      properties:
-        taskId:
-          type: string
-          description: The ID of the task that was started.
-          example: '500123'
-        taskType:
-          type: string
-          description: The type of the task.
-          example: example_value
-        runId:
-          type: integer
-          format: int64
-          description: The unique run ID for this job execution. Use this ID to track job status.
-          example: '500123'
     JobStopRequest:
       type: object
       description: Request body for stopping a running job.
@@ -365,6 +348,23 @@ components:
         requestId:
           type: string
           description: The unique request ID for troubleshooting.
+          example: '500123'
+    JobStartResponse:
+      type: object
+      description: Response returned when a job is successfully started.
+      properties:
+        taskId:
+          type: string
+          description: The ID of the task that was started.
+          example: '500123'
+        taskType:
+          type: string
+          description: The type of the task.
+          example: example_value
+        runId:
+          type: integer
+          format: int64
+          description: The unique run ID for this job execution. Use this ID to track job status.
           example: '500123'
     ActivityLogEntry:
       type: object

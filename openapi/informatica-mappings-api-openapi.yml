@@ -313,36 +313,22 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    mappingName:
+      name: mappingName
+      in: path
+      required: true
+      description: The name of the mapping.
+      schema:
+        type: string
+    mappingId:
+      name: mappingId
+      in: path
+      required: true
+      description: The unique identifier of the mapping.
+      schema:
+        type: string
   schemas:
-    MappingParameter:
-      type: object
-      description: A parameter defined within a mapping.
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: The parameter identifier.
-          example: abc123
-        name:
-          type: string
-          description: The parameter name.
-          example: Example Title
-        type:
-          type: string
-          description: The parameter data type.
-          example: example_value
-        description:
-          type: string
-          description: A description of the parameter.
-          example: A sample description.
-        customFuncId:
-          type: string
-          description: The mapplet ID for mapplet-type parameters.
-          example: '500123'
-        uiProperties:
-          type: string
-          description: Display configuration including connection type, logical connection, order, visibility, editability, and control type.
-          example: example_value
     ErrorResponse:
       type: object
       description: Error response returned when a request fails.
@@ -525,21 +511,35 @@ components:
           type: string
           description: The current parameter value.
           example: example_value
-  parameters:
-    mappingId:
-      name: mappingId
-      in: path
-      required: true
-      description: The unique identifier of the mapping.
-      schema:
-        type: string
-    mappingName:
-      name: mappingName
-      in: path
-      required: true
-      description: The name of the mapping.
-      schema:
-        type: string
+    MappingParameter:
+      type: object
+      description: A parameter defined within a mapping.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The parameter identifier.
+          example: abc123
+        name:
+          type: string
+          description: The parameter name.
+          example: Example Title
+        type:
+          type: string
+          description: The parameter data type.
+          example: example_value
+        description:
+          type: string
+          description: A description of the parameter.
+          example: A sample description.
+        customFuncId:
+          type: string
+          description: The mapplet ID for mapplet-type parameters.
+          example: '500123'
+        uiProperties:
+          type: string
+          description: Display configuration including connection type, logical connection, order, visibility, editability, and control type.
+          example: example_value
   securitySchemes:
     icSessionId:
       type: apiKey

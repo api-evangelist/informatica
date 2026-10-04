@@ -1,0 +1,46 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/informatica-authentication-api-openapi.yml
+- openapi/informatica-connections-api-openapi.yml
+- openapi/informatica-jobs-api-openapi.yml
+- openapi/informatica-mapping-tasks-api-openapi.yml
+- openapi/informatica-mappings-api-openapi.yml
+- openapi/informatica-schedules-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 28
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request.
+  operations: 6
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Unauthorized or session expired.
+  operations: 9
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: Connection not found.
+  operations: 12
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 500
+  title: Internal Server Error
+  description: Internal server error.
+  operations: 1
+  media_types:
+  - application/json
+  schema: ErrorResponse

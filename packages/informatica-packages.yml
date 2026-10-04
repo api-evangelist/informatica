@@ -1,0 +1,25 @@
+generated: '2026-10-04'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io)
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (agentic-access/informatica-agentic-access.yml,
+  apis.io, authentication/informatica-authentication.yml, informatica.com, informaticacloud.com, linkedin.com, rules/informatica-spectral-rules.yml,
+  security/informatica-domain-security.yml, security/informatica-vulnerability-disclosure.yml, vocabulary/informatica-vocabulary.yaml) or its
+  accepted GitHub org.'
+packages:
+- name: informatica
+  registry: npm
+  url: https://www.npmjs.com/package/informatica
+  language: JavaScript
+  official: true
+  version: 1.0.4
+  published: '2018-06-04'
+  evidence: metadata names informatica.com
+- name: informatica
+  registry: pypi
+  url: https://pypi.org/project/informatica/
+  language: Python
+  official: false
+  version: 0.0.1
+  published: '2025-11-14'
+  evidence: 'name match only: the metadata names neither the provider''s domain nor its GitHub org'

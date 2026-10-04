@@ -126,30 +126,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        '@type':
-          type: string
-          description: The error type identifier.
-          example: example_value
-        statusCode:
-          type: integer
-          description: The HTTP status code.
-          example: 10
-        message:
-          type: string
-          description: A human-readable error message.
-          example: example_value
-        description:
-          type: string
-          description: A detailed description of the error.
-          example: A sample description.
-        requestId:
-          type: string
-          description: The unique request ID for troubleshooting.
-          example: '500123'
     LoginResponse:
       type: object
       description: Successful login response containing the session ID and server URL for subsequent API calls.
@@ -245,6 +221,30 @@ components:
           format: password
           description: The account password.
           example: example_value
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
   securitySchemes:
     icSessionId:
       type: apiKey

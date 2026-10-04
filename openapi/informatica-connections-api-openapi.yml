@@ -565,7 +565,46 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    connectionName:
+      name: connectionName
+      in: path
+      required: true
+      description: The name of the connection. Spaces must be encoded as %20.
+      schema:
+        type: string
+    connectionId:
+      name: connectionId
+      in: path
+      required: true
+      description: The unique identifier of the connection.
+      schema:
+        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
     Connection:
       type: object
       description: Represents a connection to a data source or target in Informatica Intelligent Cloud Services.
@@ -687,90 +726,6 @@ components:
           description: Additional connection parameters specific to the connection type. Contains attributes not listed as top-level fields.
           additionalProperties: true
           example: example_value
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        '@type':
-          type: string
-          description: The error type identifier.
-          example: example_value
-        statusCode:
-          type: integer
-          description: The HTTP status code.
-          example: 10
-        message:
-          type: string
-          description: A human-readable error message.
-          example: example_value
-        description:
-          type: string
-          description: A detailed description of the error.
-          example: A sample description.
-        requestId:
-          type: string
-          description: The unique request ID for troubleshooting.
-          example: '500123'
-    ConnectionUpdateRequest:
-      type: object
-      description: Request body for updating an existing connection.
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier. Must be set to "connection".
-          const: connection
-          example: example_value
-        name:
-          type: string
-          description: The updated name for the connection.
-          example: Example Title
-        description:
-          type: string
-          description: An updated description of the connection.
-          example: A sample description.
-        host:
-          type: string
-          description: The updated hostname or IP address.
-          example: example_value
-        port:
-          type: integer
-          description: The updated port number.
-          example: 10
-        database:
-          type: string
-          description: The updated database name.
-          example: example_value
-        schema:
-          type: string
-          description: The updated database schema.
-          example: example_value
-        username:
-          type: string
-          description: The updated username.
-          example: example_value
-        password:
-          type: string
-          format: password
-          description: The updated password.
-          example: example_value
-        authenticationType:
-          type: string
-          description: The updated authentication method.
-          example: example_value
-        serviceUrl:
-          type: string
-          format: uri
-          description: The updated service endpoint URL.
-          example: https://www.example.com
-        codepage:
-          type: string
-          description: The updated character encoding.
-          example: example_value
-        connParams:
-          type: object
-          description: Updated connection-type-specific parameters.
-          additionalProperties: true
-          example: example_value
     ConnectionCreateRequest:
       type: object
       description: Request body for creating a new connection.
@@ -844,21 +799,66 @@ components:
           description: Additional connection-type-specific parameters.
           additionalProperties: true
           example: example_value
-  parameters:
-    connectionName:
-      name: connectionName
-      in: path
-      required: true
-      description: The name of the connection. Spaces must be encoded as %20.
-      schema:
-        type: string
-    connectionId:
-      name: connectionId
-      in: path
-      required: true
-      description: The unique identifier of the connection.
-      schema:
-        type: string
+    ConnectionUpdateRequest:
+      type: object
+      description: Request body for updating an existing connection.
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier. Must be set to "connection".
+          const: connection
+          example: example_value
+        name:
+          type: string
+          description: The updated name for the connection.
+          example: Example Title
+        description:
+          type: string
+          description: An updated description of the connection.
+          example: A sample description.
+        host:
+          type: string
+          description: The updated hostname or IP address.
+          example: example_value
+        port:
+          type: integer
+          description: The updated port number.
+          example: 10
+        database:
+          type: string
+          description: The updated database name.
+          example: example_value
+        schema:
+          type: string
+          description: The updated database schema.
+          example: example_value
+        username:
+          type: string
+          description: The updated username.
+          example: example_value
+        password:
+          type: string
+          format: password
+          description: The updated password.
+          example: example_value
+        authenticationType:
+          type: string
+          description: The updated authentication method.
+          example: example_value
+        serviceUrl:
+          type: string
+          format: uri
+          description: The updated service endpoint URL.
+          example: https://www.example.com
+        codepage:
+          type: string
+          description: The updated character encoding.
+          example: example_value
+        connParams:
+          type: object
+          description: Updated connection-type-specific parameters.
+          additionalProperties: true
+          example: example_value
   securitySchemes:
     icSessionId:
       type: apiKey

@@ -1,0 +1,46 @@
+generated: '2026-10-04'
+method: probed
+source: "https://www.informatica.com/privacy-policy.html"
+signals:
+  data_subject_request:
+    evidence:
+      - source: "https://www.informatica.com/privacy-policy.html"
+        http_status: 200
+        fetched: "true"
+        quote: "Depending upon your jurisdiction and subject to limits under applicable law, you may be entitled to request a copy of the personal data Informatica holds about you (including in a structured, commonly used, machine‑readable format where applicable under the right of data portability), correction of the data, deletion of the data, and/or restriction of the data, as well as request that Informatica transmit your personal data to another controller (where applicable under the right of data portability), object to the processing of your personal data, or opt‑out of the sale or sharing of your personal data or its use in targeted advertisements, in accordance with the rights available to you in your jurisdiction.)"
+        section: "IX. Your Rights"
+        note: "Describes data subject rights and mechanisms to exercise them."
+  data_retention:
+    evidence:
+      - source: "https://www.informatica.com/privacy-policy.html"
+        http_status: 200
+        fetched: "true"
+        quote: "We store the personal data we collect about you for as long as is necessary for the purposes for which we originally collected it. We may retain certain information for legitimate business purposes, as required by law, or where necessary to preserve it in contemplation of litigation, legal proceedings or an investigation."
+        section: "Data Retention"
+        note: "States retention period policy."
+  incident_notification:
+    evidence: []
+  subprocessors:
+    evidence: []
+  ai_transparency:
+    evidence: []
+  data_residency:
+    evidence: []
+  global_privacy_control:
+    evidence: []
+  exit_assistance:
+    evidence: []
+  notice_and_action:
+    evidence: []
+  accessibility_conformance:
+    evidence: []
+  support_lifetime:
+    evidence: []
+  age_assurance:
+    evidence: []
+  sbom:
+    evidence: []
+  training_data_summary:
+    evidence: []
+  transparency_report:
+    evidence: []

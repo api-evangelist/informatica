@@ -1,0 +1,10 @@
+generated: "2026-10-04"
+method: derived
+deployment:
+  mode: none
+  endpoint: "https://docs.informatica.com"
+  install: ""
+  package: ""
+  auth: unknown
+  verified: derived
+source: "https://docs.informatica.com"

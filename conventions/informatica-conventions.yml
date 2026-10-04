@@ -1,0 +1,26 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://apis.io/onboarding/
+sources:
+- https://apis.io/onboarding/
+- https://apis.io/developer/onboarding
+- https://apis.io/developer/getting-started
+idempotency:
+  coverage: none
+  evidence: The documentation does not describe any idempotency key or mechanism.
+pagination:
+  style: page-based
+  params:
+  - page
+  - limit
+  response_fields:
+  - meta.total
+  - meta.page
+  - meta.limit
+  - meta.pages
+  - data
+authentication: no auth for keyless GET endpoints; API key via X-API-Key; OAuth 2.0 with PKCE; AAuth agent signatures using Signature-Key and
+  HTTP message signatures
+rate_limit_signaling: RateLimit-Policy, X-RateLimit-Tier
+docs: https://apis.io/onboarding/

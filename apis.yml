@@ -1,11 +1,16 @@
 aid: informatica
+
 name: Informatica
+
 segments:
 - iPaaS
+
 description: Collection of APIs for Informatica Intelligent Cloud Services (IICS) and Intelligent Data Management
   Cloud (IDMC), providing programmatic access to data integration, data governance, data quality, master data management,
   B2B gateway, and platform administration capabilities.
+
 type: Index
+
 deliveryModel:
   model: saas
   open_source: false
@@ -18,6 +23,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: enterprise
   onboarding: unknown
@@ -32,9 +38,13 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 position: Consuming
+
 access: 3rd-Party
+
 image: https://companieslogo.com/img/orig/INFA-3e1d4e5a.png
+
 tags:
 - Address Verification
 - B2B Gateway
@@ -50,10 +60,162 @@ tags:
 - Master Data Management
 - Reference Data Management
 - Data Catalog
+
 created: '2025-01-08'
+
 modified: '2026-08-30'
+
 url: https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/apis.yml
+
 specificationVersion: '0.23'
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+common:
+- type: FinOps
+  url: finops/informatica-finops.yml
+- type: RateLimits
+  url: rate-limits/informatica-rate-limits.yml
+- type: Plans
+  url: plans/informatica-plans-pricing.yml
+- type: Spectral
+  url: rules/informatica-spectral-rules.yml
+- type: Spectral
+  url: rules/informatica-rules.yml
+- type: Spectral
+  url: rules/informatica-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/informatica-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/informatica-data-model.yml
+- type: Conventions
+  url: conventions/informatica-conventions.yml
+- type: Security
+  url: security/informatica-vulnerability-disclosure.yml
+- type: Deprecation
+  url: lifecycle/informatica-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/informatica-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/informatica-problem-types.yml
+- type: Conformance
+  url: conformance/informatica-conformance.yml
+- type: AgentCard
+  url: a2a/informatica-a2a.yml
+- type: SecurityTxt
+  url: well-known/informatica-security.txt
+- type: SecurityTxt
+  url: well-known/informatica-apis-security.txt
+- type: WellKnown
+  url: well-known/informatica-well-known.yml
+- type: Hosts
+  url: hosts/informatica-hosts.yml
+- type: Vendors
+  url: vendors/informatica-vendors.yml
+- type: SDKs
+  url: packages/informatica-packages.yml
+- type: Packages
+  url: packages/informatica-packages.yml
+- type: TrustCenter
+  url: https://trust.informatica.com/
+- type: GettingStarted
+  url: https://apis.io/onboarding/
+- type: APIReference
+  url: https://apis.io/llms.txt
+- type: VulnerabilityDisclosure
+  url: security/informatica-vulnerability-disclosure.yml
+- type: Website
+  url: https://www.informatica.com/
+- type: ParentCompany
+  url: https://apis.io/providers/salesforce/
+  name: Salesforce
+  x-relationship: acquisition
+  x-generated-by: salesforce-family:2026-08-30
+  x-acquired: 2025
+- type: AgenticAccess
+  url: agentic-access/informatica-agentic-access.yml
+- type: DomainSecurity
+  url: security/informatica-domain-security.yml
+- type: Authentication
+  url: authentication/informatica-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/informatica
+- type: LinkedIn
+  url: https://www.linkedin.com/company/informatica
+- type: Portal
+  url: https://developer.informatica.com/
+- type: Documentation
+  url: https://docs.informatica.com/
+- type: KnowledgeCenter
+  url: https://knowledge.informatica.com/
+- type: Support
+  url: https://www.informatica.com/support.html
+- type: Support
+  url: https://network.informatica.com/
+  title: Community
+- type: Login
+  url: https://dm-us.informaticacloud.com/identity-service/home
+- type: SpectralRules
+  url: rules/informatica-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/informatica-vocabulary.yaml
+- type: Blog
+  url: https://www.informatica.com/blogs.html
+- type: Features
+  data:
+  - name: Data Integration
+    description: Connect, transform, and move data across cloud and on-premises environments using visual mapping
+      interfaces.
+  - name: Data Governance
+    description: Discover, catalog, and govern data assets with automated classification and lineage tracking.
+  - name: Data Quality
+    description: Profile, cleanse, standardize, and validate data to ensure accuracy and consistency.
+  - name: Master Data Management
+    description: Create and manage golden records for critical business entities across the enterprise.
+  - name: Address Verification
+    description: Validate and standardize postal addresses globally in real time.
+  - name: B2B Gateway
+    description: Exchange EDI documents with trading partners using X12, EDIFACT, and other B2B protocols.
+  - name: Reference Data Management
+    description: Manage code lists, crosswalks, and hierarchies for standardized reference data across systems.
+  - name: API and Application Integration
+    description: Build and manage API-led integrations connecting SaaS, cloud, and on-premises applications.
+- type: UseCases
+  data:
+  - name: Cloud Data Warehouse Loading
+    description: Extract data from multiple sources and load into cloud data warehouses like Snowflake, Redshift,
+      or BigQuery.
+  - name: Real-Time Data Synchronization
+    description: Synchronize data across CRM, ERP, and marketing platforms in real time using change data capture.
+  - name: Data Migration
+    description: Migrate data between legacy systems and modern cloud platforms with automated mapping and transformation.
+  - name: Regulatory Compliance
+    description: Ensure data quality and governance standards to meet GDPR, CCPA, and industry-specific regulations.
+  - name: Customer 360
+    description: Create unified customer profiles by integrating and matching data from multiple source systems.
+- type: Integrations
+  data:
+  - name: Salesforce
+    description: Native connectors for bidirectional data integration with Salesforce CRM and platform.
+  - name: SAP
+    description: Pre-built connectors for SAP ERP, S/4HANA, and SAP BW data integration.
+  - name: Snowflake
+    description: Optimized connectors for loading, transforming, and managing data in Snowflake.
+  - name: Amazon Web Services
+    description: Native connectors for S3, Redshift, DynamoDB, and other AWS data services.
+  - name: Microsoft Azure
+    description: Connectors for Azure SQL, Blob Storage, Synapse Analytics, and other Azure services.
+  - name: Google Cloud Platform
+    description: Connectors for BigQuery, Cloud Storage, and other GCP data services.
+  - name: Workday
+    description: Pre-built connectors for Workday HCM and financial data integration.
+  - name: ServiceNow
+    description: Connectors for ServiceNow ITSM and platform data integration.
+
 apis:
 - aid: informatica:data-integration-rest-api
   name: Informatica Data Integration REST API
@@ -919,97 +1081,15 @@ apis:
     url: json-ld/informatica-context.jsonld
   - type: JSONLD
     url: json-ld/informatica-platform-rest-context.jsonld
-common:
-- type: Website
-  url: https://www.informatica.com/
-- type: ParentCompany
-  url: https://apis.io/providers/salesforce/
-  name: Salesforce
-  x-relationship: acquisition
-  x-generated-by: salesforce-family:2026-08-30
-  x-acquired: 2025
-- type: AgenticAccess
-  url: agentic-access/informatica-agentic-access.yml
-- type: DomainSecurity
-  url: security/informatica-domain-security.yml
-- type: Authentication
-  url: authentication/informatica-authentication.yml
-- type: GitHubOrganization
-  url: https://github.com/informatica
-- type: LinkedIn
-  url: https://www.linkedin.com/company/informatica
-- type: Portal
-  url: https://developer.informatica.com/
-- type: Documentation
-  url: https://docs.informatica.com/
-- type: KnowledgeCenter
-  url: https://knowledge.informatica.com/
-- type: Support
-  url: https://www.informatica.com/support.html
-- type: Support
-  url: https://network.informatica.com/
-  title: Community
-- type: Login
-  url: https://dm-us.informaticacloud.com/identity-service/home
-- type: SpectralRules
-  url: rules/informatica-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/informatica-vocabulary.yaml
-- type: Blog
-  url: https://www.informatica.com/blogs.html
-- type: Features
-  data:
-  - name: Data Integration
-    description: Connect, transform, and move data across cloud and on-premises environments using visual mapping
-      interfaces.
-  - name: Data Governance
-    description: Discover, catalog, and govern data assets with automated classification and lineage tracking.
-  - name: Data Quality
-    description: Profile, cleanse, standardize, and validate data to ensure accuracy and consistency.
-  - name: Master Data Management
-    description: Create and manage golden records for critical business entities across the enterprise.
-  - name: Address Verification
-    description: Validate and standardize postal addresses globally in real time.
-  - name: B2B Gateway
-    description: Exchange EDI documents with trading partners using X12, EDIFACT, and other B2B protocols.
-  - name: Reference Data Management
-    description: Manage code lists, crosswalks, and hierarchies for standardized reference data across systems.
-  - name: API and Application Integration
-    description: Build and manage API-led integrations connecting SaaS, cloud, and on-premises applications.
-- type: UseCases
-  data:
-  - name: Cloud Data Warehouse Loading
-    description: Extract data from multiple sources and load into cloud data warehouses like Snowflake, Redshift,
-      or BigQuery.
-  - name: Real-Time Data Synchronization
-    description: Synchronize data across CRM, ERP, and marketing platforms in real time using change data capture.
-  - name: Data Migration
-    description: Migrate data between legacy systems and modern cloud platforms with automated mapping and transformation.
-  - name: Regulatory Compliance
-    description: Ensure data quality and governance standards to meet GDPR, CCPA, and industry-specific regulations.
-  - name: Customer 360
-    description: Create unified customer profiles by integrating and matching data from multiple source systems.
-- type: Integrations
-  data:
-  - name: Salesforce
-    description: Native connectors for bidirectional data integration with Salesforce CRM and platform.
-  - name: SAP
-    description: Pre-built connectors for SAP ERP, S/4HANA, and SAP BW data integration.
-  - name: Snowflake
-    description: Optimized connectors for loading, transforming, and managing data in Snowflake.
-  - name: Amazon Web Services
-    description: Native connectors for S3, Redshift, DynamoDB, and other AWS data services.
-  - name: Microsoft Azure
-    description: Connectors for Azure SQL, Blob Storage, Synapse Analytics, and other Azure services.
-  - name: Google Cloud Platform
-    description: Connectors for BigQuery, Cloud Storage, and other GCP data services.
-  - name: Workday
-    description: Pre-built connectors for Workday HCM and financial data integration.
-  - name: ServiceNow
-    description: Connectors for ServiceNow ITSM and platform data integration.
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+
 x-parent: salesforce
+
 x-relationship: acquisition
+
 x-acquired: 2025
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 32
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

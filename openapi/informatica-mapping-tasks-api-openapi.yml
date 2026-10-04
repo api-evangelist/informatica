@@ -442,91 +442,22 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    taskId:
+      name: taskId
+      in: path
+      required: true
+      description: The unique identifier of the mapping task.
+      schema:
+        type: string
+    taskName:
+      name: taskName
+      in: path
+      required: true
+      description: The name of the mapping task.
+      schema:
+        type: string
   schemas:
-    MappingParameter:
-      type: object
-      description: A parameter defined within a mapping.
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: The parameter identifier.
-          example: abc123
-        name:
-          type: string
-          description: The parameter name.
-          example: Example Title
-        type:
-          type: string
-          description: The parameter data type.
-          example: example_value
-        description:
-          type: string
-          description: A description of the parameter.
-          example: A sample description.
-        customFuncId:
-          type: string
-          description: The mapplet ID for mapplet-type parameters.
-          example: '500123'
-        uiProperties:
-          type: string
-          description: Display configuration including connection type, logical connection, order, visibility, editability, and control type.
-          example: example_value
-    MappingTaskCreateRequest:
-      type: object
-      description: Request body for creating a new mapping task.
-      required:
-      - '@type'
-      - name
-      - mappingId
-      properties:
-        '@type':
-          type: string
-          description: The resource type identifier.
-          const: mttask
-          example: example_value
-        name:
-          type: string
-          description: The name for the new mapping task.
-          example: Example Title
-        description:
-          type: string
-          description: A description of the mapping task.
-          example: A sample description.
-        mappingId:
-          type: string
-          description: The ID of the mapping to execute.
-          example: '500123'
-        runtimeEnvironmentId:
-          type: string
-          description: The runtime environment to use for execution.
-          example: '500123'
-        scheduleId:
-          type: string
-          description: The schedule to associate with the task.
-          example: '500123'
-        preProcessingCmd:
-          type: string
-          description: The command to run before the task.
-          example: example_value
-        postProcessingCmd:
-          type: string
-          description: The command to run after the task.
-          example: example_value
-        sourceConnectionId:
-          type: string
-          description: The source connection ID.
-          example: '500123'
-        targetConnectionId:
-          type: string
-          description: The target connection ID.
-          example: '500123'
-        parameters:
-          type: array
-          description: Parameter value overrides.
-          items:
-            $ref: '#/components/schemas/MappingParameter'
-          example: []
     MappingTask:
       type: object
       description: Represents a mapping task that executes a mapping with specific source and target connections and runtime parameters.
@@ -612,30 +543,6 @@ components:
           type: boolean
           description: Whether the mapping task is active.
           example: true
-    ErrorResponse:
-      type: object
-      description: Error response returned when a request fails.
-      properties:
-        '@type':
-          type: string
-          description: The error type identifier.
-          example: example_value
-        statusCode:
-          type: integer
-          description: The HTTP status code.
-          example: 10
-        message:
-          type: string
-          description: A human-readable error message.
-          example: example_value
-        description:
-          type: string
-          description: A detailed description of the error.
-          example: A sample description.
-        requestId:
-          type: string
-          description: The unique request ID for troubleshooting.
-          example: '500123'
     MappingTaskUpdateRequest:
       type: object
       description: Request body for updating an existing mapping task.
@@ -683,21 +590,114 @@ components:
           items:
             $ref: '#/components/schemas/MappingParameter'
           example: []
-  parameters:
-    taskId:
-      name: taskId
-      in: path
-      required: true
-      description: The unique identifier of the mapping task.
-      schema:
-        type: string
-    taskName:
-      name: taskName
-      in: path
-      required: true
-      description: The name of the mapping task.
-      schema:
-        type: string
+    ErrorResponse:
+      type: object
+      description: Error response returned when a request fails.
+      properties:
+        '@type':
+          type: string
+          description: The error type identifier.
+          example: example_value
+        statusCode:
+          type: integer
+          description: The HTTP status code.
+          example: 10
+        message:
+          type: string
+          description: A human-readable error message.
+          example: example_value
+        description:
+          type: string
+          description: A detailed description of the error.
+          example: A sample description.
+        requestId:
+          type: string
+          description: The unique request ID for troubleshooting.
+          example: '500123'
+    MappingParameter:
+      type: object
+      description: A parameter defined within a mapping.
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The parameter identifier.
+          example: abc123
+        name:
+          type: string
+          description: The parameter name.
+          example: Example Title
+        type:
+          type: string
+          description: The parameter data type.
+          example: example_value
+        description:
+          type: string
+          description: A description of the parameter.
+          example: A sample description.
+        customFuncId:
+          type: string
+          description: The mapplet ID for mapplet-type parameters.
+          example: '500123'
+        uiProperties:
+          type: string
+          description: Display configuration including connection type, logical connection, order, visibility, editability, and control type.
+          example: example_value
+    MappingTaskCreateRequest:
+      type: object
+      description: Request body for creating a new mapping task.
+      required:
+      - '@type'
+      - name
+      - mappingId
+      properties:
+        '@type':
+          type: string
+          description: The resource type identifier.
+          const: mttask
+          example: example_value
+        name:
+          type: string
+          description: The name for the new mapping task.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the mapping task.
+          example: A sample description.
+        mappingId:
+          type: string
+          description: The ID of the mapping to execute.
+          example: '500123'
+        runtimeEnvironmentId:
+          type: string
+          description: The runtime environment to use for execution.
+          example: '500123'
+        scheduleId:
+          type: string
+          description: The schedule to associate with the task.
+          example: '500123'
+        preProcessingCmd:
+          type: string
+          description: The command to run before the task.
+          example: example_value
+        postProcessingCmd:
+          type: string
+          description: The command to run after the task.
+          example: example_value
+        sourceConnectionId:
+          type: string
+          description: The source connection ID.
+          example: '500123'
+        targetConnectionId:
+          type: string
+          description: The target connection ID.
+          example: '500123'
+        parameters:
+          type: array
+          description: Parameter value overrides.
+          items:
+            $ref: '#/components/schemas/MappingParameter'
+          example: []
   securitySchemes:
     icSessionId:
       type: apiKey
