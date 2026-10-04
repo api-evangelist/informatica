@@ -35,6 +35,9 @@ accessModel:
 position: Consuming
 access: 3rd-Party
 image: https://companieslogo.com/img/orig/INFA-3e1d4e5a.png
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Address Verification
 - B2B Gateway
