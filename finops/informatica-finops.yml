@@ -128,10 +128,8 @@ apis:
 unitEconomics:
   - name: IPU Cost per Job-Minute
     metric: billed_cost / job_minutes
-    target: TBD
   - name: IPU Cost per Mastered Record
     metric: billed_cost / mdm_records
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
