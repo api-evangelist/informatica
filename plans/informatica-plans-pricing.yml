@@ -123,3 +123,37 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - negotiated
+  plans:
+  - name: IDMC — IPU Consumption
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
+    - year
+  - name: Master Data Management — Per-Domain Records
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: Enterprise Volume Agreement
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
