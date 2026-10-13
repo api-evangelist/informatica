@@ -1,0 +1,45 @@
+generated: '2026-10-13'
+method: searched
+checked:
+- https://aws.amazon.com/marketplace/
+- https://azuremarketplace.microsoft.com/
+marketplace_apps: []
+edges:
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=d13da660-f20f-4a0b-9f73-77a73706ce96
+  listing_count: 5
+  apps:
+  - Informatica Intelligent Data Management Cloud
+  - Informatica Multidomain MDM Cloud Edition
+  - Informatica Intelligent Cloud Services (ETL/ELT)-GovCloud
+  - Informatica Customer Managed Data Platform
+  - Informatica Customer Managed Data Platform-GovCloud
+  seller_name: Informatica
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Informatica
+  listing_count: 14
+  apps:
+  - Informatica IDMC - An Azure Native ISV Service (QA)
+  - Informatica Intelligent Data Management Cloud - An Azure Native ISV Service
+  - Informatica Intelligent Data Management Cloud
+  - IICS RHEL LINUX BYOL
+  - IICS WINDOWS BYOL
+  seller_name: Informatica
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
