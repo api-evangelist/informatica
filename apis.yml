@@ -58,6 +58,8 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/informatica/overview
 - type: FinOps
   url: finops/informatica-finops.yml
 - type: RateLimits
