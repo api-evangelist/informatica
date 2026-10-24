@@ -1,369 +1,451 @@
 {
+  "info": {
+    "_postman_id": "5ad49fbd-caa4-40cf-a733-4e4e9480ea71",
+    "name": "Informatica IICS Platform REST Authentication API",
+    "description": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:50:19.000Z",
+    "updatedAt": "2026-10-22T02:50:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ad49fbd-caa4-40cf-a733-4e4e9480ea71"
+  },
   "item": [
     {
-      "id": "a2dd8b65-c46b-4c70-ac6d-7cc6544a377c",
-      "name": "Authentication",
-      "description": {
-        "content": "Login and session management operations.",
-        "type": "text/plain"
-      },
+      "name": "ma",
       "item": [
         {
-          "id": "c01a2b92-443e-43cb-a517-8931eba09a1d",
-          "name": "Log in to Informatica Intelligent Cloud Services",
-          "request": {
-            "name": "Log in to Informatica Intelligent Cloud Services",
-            "description": {
-              "content": "Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "ma",
-                "api",
-                "v2",
-                "user",
-                "login"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"@type\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<password>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "api",
+          "item": [
             {
-              "id": "d61d40b5-8cec-46fd-9942-3e8f0892d2e2",
-              "name": "Successful authentication.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ma",
-                    "api",
-                    "v2",
-                    "user",
-                    "login"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+              "name": "v2",
+              "item": [
+                {
+                  "name": "user",
+                  "item": [
+                    {
+                      "name": "login",
+                      "item": [
+                        {
+                          "name": "Log in to Informatica Intelligent Cloud Services",
+                          "id": "db5012f1-64c2-4ae0-92b7-6a215b0ccb36",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ma/api/v2/user/login",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ma",
+                                "api",
+                                "v2",
+                                "user",
+                                "login"
+                              ]
+                            },
+                            "description": "Authenticates a user and returns a session ID and server URL for subsequent API calls. The session ID expires after 30 minutes of inactivity."
+                          },
+                          "response": [
+                            {
+                              "id": "ab03f1b5-988c-4a57-bdf3-9db4b93c085d",
+                              "name": "Successful authentication.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ma/api/v2/user/login",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ma",
+                                    "api",
+                                    "v2",
+                                    "user",
+                                    "login"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"orgUuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"emails\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"serverUrl\": \"<uri>\",\n  \"icSessionId\": \"<string>\",\n  \"securityQuestion\": \"<string>\",\n  \"securityAnswer\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-22T02:50:20.000Z",
+                              "updatedAt": "2026-10-22T02:50:20.000Z",
+                              "uid": "35240-ab03f1b5-988c-4a57-bdf3-9db4b93c085d"
+                            },
+                            {
+                              "id": "0bf34fb8-370e-4cd9-a2c6-c833e399d129",
+                              "name": "Authentication failed.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ma/api/v2/user/login",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ma",
+                                    "api",
+                                    "v2",
+                                    "user",
+                                    "login"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:20.000Z",
+                              "updatedAt": "2026-10-22T02:50:20.000Z",
+                              "uid": "35240-0bf34fb8-370e-4cd9-a2c6-c833e399d129"
+                            },
+                            {
+                              "id": "7e4caade-c17c-4bfd-b6a4-4e1dc13e9a8b",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ma/api/v2/user/login",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ma",
+                                    "api",
+                                    "v2",
+                                    "user",
+                                    "login"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:20.000Z",
+                              "updatedAt": "2026-10-22T02:50:20.000Z",
+                              "uid": "35240-7e4caade-c17c-4bfd-b6a4-4e1dc13e9a8b"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:20.000Z",
+                          "updatedAt": "2026-10-22T02:50:20.000Z",
+                          "uid": "35240-db5012f1-64c2-4ae0-92b7-6a215b0ccb36"
+                        }
+                      ],
+                      "id": "36c5004b-f18f-47b5-8be8-f5c443ca09ab",
+                      "createdAt": "2026-10-22T02:50:20.000Z",
+                      "updatedAt": "2026-10-22T02:50:20.000Z",
+                      "uid": "35240-36c5004b-f18f-47b5-8be8-f5c443ca09ab"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "id": "25e23ecc-bd27-4108-a6b3-691982850bb5",
+                  "createdAt": "2026-10-22T02:50:20.000Z",
+                  "updatedAt": "2026-10-22T02:50:20.000Z",
+                  "uid": "35240-25e23ecc-bd27-4108-a6b3-691982850bb5"
                 }
               ],
-              "body": "{\n  \"id\": \"0012ABC000000001\",\n  \"orgId\": \"00DXYZ000000001\",\n  \"orgUuid\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n  \"name\": \"user@example.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"serverUrl\": \"https://na4.dm-us.informaticacloud.com/saas\",\n  \"icSessionId\": \"abcdef1234567890abcdef1234567890\",\n  \"securityQuestion\": \"What is your pet name?\",\n  \"securityAnswer\": \"\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f70415ad-ff25-41f5-928c-adcebdccd04f",
-              "name": "Authentication failed.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ma",
-                    "api",
-                    "v2",
-                    "user",
-                    "login"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dbd6fe0c-566c-4113-91a1-c409e36d84c5",
-              "name": "Internal server error.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ma",
-                    "api",
-                    "v2",
-                    "user",
-                    "login"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"login\",\n  \"username\": \"user@example.com\",\n  \"password\": \"securePassword123\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b30aca96-0e24-4044-8c3d-edb2b692f77a",
-          "name": "Informatica Log Out and End the Rest Api Session",
-          "request": {
-            "name": "Informatica Log Out and End the Rest Api Session",
-            "description": {
-              "content": "Ends the current REST API session. You can also end all active sessions for the organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "user",
-                "logout"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8a93ffaf-9339-4bb5-8b96-55a112982ad0",
-              "name": "Successfully logged out.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "user",
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f5032234-2dc1-4437-a81b-d8c2efb2d19b",
-              "name": "Unauthorized or session expired.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "user",
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "d68ec2f9-3df2-408e-9a5c-4c99922d35d3",
+              "createdAt": "2026-10-22T02:50:20.000Z",
+              "updatedAt": "2026-10-22T02:50:20.000Z",
+              "uid": "35240-d68ec2f9-3df2-408e-9a5c-4c99922d35d3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "21a6fcc8-586c-465f-bb1c-02b9a1f98443",
+          "createdAt": "2026-10-22T02:50:20.000Z",
+          "updatedAt": "2026-10-22T02:50:20.000Z",
+          "uid": "35240-21a6fcc8-586c-465f-bb1c-02b9a1f98443"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "121b3c83-6526-4db2-9ca7-268a274760e5",
+      "createdAt": "2026-10-22T02:50:20.000Z",
+      "updatedAt": "2026-10-22T02:50:20.000Z",
+      "uid": "35240-121b3c83-6526-4db2-9ca7-268a274760e5"
+    },
     {
-      "type": "string",
-      "value": "https://dm-us.informaticacloud.com",
-      "key": "baseUrl"
+      "name": "saas",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "user",
+                  "item": [
+                    {
+                      "name": "logout",
+                      "item": [
+                        {
+                          "name": "Informatica Log Out and End the Rest Api Session",
+                          "id": "e865e2a2-01b4-42cb-9867-26baaea45c82",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/user/logout",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "user",
+                                "logout"
+                              ]
+                            },
+                            "description": "Ends the current REST API session. You can also end all active sessions for the organization."
+                          },
+                          "response": [
+                            {
+                              "id": "f4947104-4ba6-4514-98f2-4353e85733a7",
+                              "name": "Successfully logged out.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/user/logout",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "user",
+                                    "logout"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:50:20.000Z",
+                              "updatedAt": "2026-10-22T02:50:20.000Z",
+                              "uid": "35240-f4947104-4ba6-4514-98f2-4353e85733a7"
+                            },
+                            {
+                              "id": "32ba7bb5-2ccb-4e33-83a7-af5805ca6fea",
+                              "name": "Unauthorized or session expired.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/user/logout",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "user",
+                                    "logout"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:20.000Z",
+                              "updatedAt": "2026-10-22T02:50:20.000Z",
+                              "uid": "35240-32ba7bb5-2ccb-4e33-83a7-af5805ca6fea"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:20.000Z",
+                          "updatedAt": "2026-10-22T02:50:20.000Z",
+                          "uid": "35240-e865e2a2-01b4-42cb-9867-26baaea45c82"
+                        }
+                      ],
+                      "id": "7be70d5f-0801-47fc-a2ee-47bdcf23f5a0",
+                      "createdAt": "2026-10-22T02:50:20.000Z",
+                      "updatedAt": "2026-10-22T02:50:20.000Z",
+                      "uid": "35240-7be70d5f-0801-47fc-a2ee-47bdcf23f5a0"
+                    }
+                  ],
+                  "id": "ce5c391b-2d08-4f99-93c2-10527a0c6a1b",
+                  "createdAt": "2026-10-22T02:50:20.000Z",
+                  "updatedAt": "2026-10-22T02:50:20.000Z",
+                  "uid": "35240-ce5c391b-2d08-4f99-93c2-10527a0c6a1b"
+                }
+              ],
+              "id": "ae993b94-ba68-416e-921a-0704725d03c5",
+              "createdAt": "2026-10-22T02:50:20.000Z",
+              "updatedAt": "2026-10-22T02:50:20.000Z",
+              "uid": "35240-ae993b94-ba68-416e-921a-0704725d03c5"
+            }
+          ],
+          "id": "15d05ebc-ba05-4f18-9429-e968fa013e03",
+          "createdAt": "2026-10-22T02:50:20.000Z",
+          "updatedAt": "2026-10-22T02:50:20.000Z",
+          "uid": "35240-15d05ebc-ba05-4f18-9429-e968fa013e03"
+        }
+      ],
+      "id": "e029a79f-b218-4b34-b9b8-92c7040116bc",
+      "createdAt": "2026-10-22T02:50:20.000Z",
+      "updatedAt": "2026-10-22T02:50:20.000Z",
+      "uid": "35240-e029a79f-b218-4b34-b9b8-92c7040116bc"
     }
   ],
   "auth": {
@@ -371,25 +453,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "icSessionId"
+        "value": "icSessionId",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3a51431a-0788-4feb-8557-4942e2fd9b70",
-    "name": "Informatica IICS Platform REST Authentication API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dm-us.informaticacloud.com"
     }
-  }
+  ]
 }

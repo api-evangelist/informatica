@@ -1,655 +1,730 @@
 {
+  "info": {
+    "_postman_id": "854e566e-97cf-4a32-9ba6-1785f1f8e38d",
+    "name": "Informatica IICS Platform REST Jobs API",
+    "description": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:50:35.000Z",
+    "updatedAt": "2026-10-22T02:50:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-854e566e-97cf-4a32-9ba6-1785f1f8e38d"
+  },
   "item": [
     {
-      "id": "c088b916-419d-4511-b204-ce28b00233c4",
-      "name": "Jobs",
-      "description": {
-        "content": "Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.",
-        "type": "text/plain"
-      },
+      "name": "saas",
       "item": [
         {
-          "id": "3ef43cd7-a899-4033-bbba-5440d5708955",
-          "name": "Informatica Start a Job for a Task or Taskflow",
-          "request": {
-            "name": "Informatica Start a Job for a Task or Taskflow",
-            "description": {
-              "content": "Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "job"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "api",
+          "item": [
             {
-              "id": "7dec76d8-f741-4a3c-9acf-a4c17b64504d",
-              "name": "Job started successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v2",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "job",
+                  "item": [
+                    {
+                      "name": "stop",
+                      "item": [
+                        {
+                          "name": "Informatica Stop a Running Job",
+                          "id": "a0a1669e-8ec8-42d4-b9f7-2919fee74860",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"WORKFLOW\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/job/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "job",
+                                "stop"
+                              ]
+                            },
+                            "description": "Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row."
+                          },
+                          "response": [
+                            {
+                              "id": "548fcee9-4748-4f38-aaf7-ba34a90cee77",
+                              "name": "Job stopped successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"WORKFLOW\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/job/stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "job",
+                                    "stop"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:50:35.000Z",
+                              "updatedAt": "2026-10-22T02:50:35.000Z",
+                              "uid": "35240-548fcee9-4748-4f38-aaf7-ba34a90cee77"
+                            },
+                            {
+                              "id": "acb1c022-c65a-44c6-86bb-6391f6a86493",
+                              "name": "Invalid request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"WORKFLOW\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/job/stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "job",
+                                    "stop"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:35.000Z",
+                              "updatedAt": "2026-10-22T02:50:35.000Z",
+                              "uid": "35240-acb1c022-c65a-44c6-86bb-6391f6a86493"
+                            },
+                            {
+                              "id": "97456fc0-ffce-4ea3-a403-665b68895fa6",
+                              "name": "Job not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"WORKFLOW\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/job/stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "job",
+                                    "stop"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:35.000Z",
+                              "updatedAt": "2026-10-22T02:50:35.000Z",
+                              "uid": "35240-97456fc0-ffce-4ea3-a403-665b68895fa6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:35.000Z",
+                          "updatedAt": "2026-10-22T02:50:35.000Z",
+                          "uid": "35240-a0a1669e-8ec8-42d4-b9f7-2919fee74860"
+                        }
+                      ],
+                      "id": "021fa847-fb5a-439f-aacd-5208ed9f4703",
+                      "createdAt": "2026-10-22T02:50:35.000Z",
+                      "updatedAt": "2026-10-22T02:50:35.000Z",
+                      "uid": "35240-021fa847-fb5a-439f-aacd-5208ed9f4703"
+                    },
+                    {
+                      "name": "Informatica Start a Job for a Task or Taskflow",
+                      "id": "d84161a9-9424-4059-a61c-a0c1b2d4a29a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"DSS\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/saas/api/v2/job",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "saas",
+                            "api",
+                            "v2",
+                            "job"
+                          ]
+                        },
+                        "description": "Starts a job for a task identified by task ID or task name. Supports mapping tasks, synchronization tasks, data replication tasks, taskflows, and PowerCenter tasks."
+                      },
+                      "response": [
+                        {
+                          "id": "3f67852e-d864-4bf3-919d-91a1750285dc",
+                          "name": "Job started successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"DSS\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/job",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "job"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"taskId\": \"<string>\",\n  \"taskType\": \"<string>\",\n  \"runId\": \"<long>\"\n}",
+                          "createdAt": "2026-10-22T02:50:35.000Z",
+                          "updatedAt": "2026-10-22T02:50:35.000Z",
+                          "uid": "35240-3f67852e-d864-4bf3-919d-91a1750285dc"
+                        },
+                        {
+                          "id": "c02dd878-b7d3-45c9-bb21-45b59105db7a",
+                          "name": "Invalid request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"DSS\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/job",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "job"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:50:35.000Z",
+                          "updatedAt": "2026-10-22T02:50:35.000Z",
+                          "uid": "35240-c02dd878-b7d3-45c9-bb21-45b59105db7a"
+                        },
+                        {
+                          "id": "8f84ecaa-1b93-4030-a5ad-67f23f626d9a",
+                          "name": "Unauthorized or session expired.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"DSS\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"callbackUrl\": \"<uri>\",\n  \"runtime\": {\n    \"@type\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/job",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "job"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:50:35.000Z",
+                          "updatedAt": "2026-10-22T02:50:35.000Z",
+                          "uid": "35240-8f84ecaa-1b93-4030-a5ad-67f23f626d9a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:50:35.000Z",
+                      "updatedAt": "2026-10-22T02:50:35.000Z",
+                      "uid": "35240-d84161a9-9424-4059-a61c-a0c1b2d4a29a"
+                    }
+                  ],
+                  "id": "3e4259e4-3899-4056-85f6-b41e85089598",
+                  "createdAt": "2026-10-22T02:50:35.000Z",
+                  "updatedAt": "2026-10-22T02:50:35.000Z",
+                  "uid": "35240-3e4259e4-3899-4056-85f6-b41e85089598"
+                },
+                {
+                  "name": "activity",
+                  "item": [
+                    {
+                      "name": "activityLog",
+                      "item": [
+                        {
+                          "name": "Informatica Retrieve Activity Log Entries for Jobs",
+                          "id": "99b25584-67e3-4eaa-b5c7-c4ebaa4ef974",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/activity/activityLog?runId=<long>&taskId=<string>&taskType=<string>&startTimeUTC=<dateTime>&endTimeUTC=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "activity",
+                                "activityLog"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter by the job run ID.",
+                                  "key": "runId",
+                                  "value": "<long>"
+                                },
+                                {
+                                  "description": "Filter by the task ID.",
+                                  "key": "taskId",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow).",
+                                  "key": "taskType",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format.",
+                                  "key": "startTimeUTC",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format.",
+                                  "key": "endTimeUTC",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            },
+                            "description": "Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria."
+                          },
+                          "response": [
+                            {
+                              "id": "33932e3f-7f7a-4520-a075-163cc7f7d561",
+                              "name": "Activity log entries.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/activity/activityLog?runId=<long>&taskId=<string>&taskType=<string>&startTimeUTC=<dateTime>&endTimeUTC=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "activity",
+                                    "activityLog"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by the job run ID.",
+                                      "key": "runId",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Filter by the task ID.",
+                                      "key": "taskId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow).",
+                                      "key": "taskType",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format.",
+                                      "key": "startTimeUTC",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format.",
+                                      "key": "endTimeUTC",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"objectId\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"runId\": \"<long>\",\n    \"agentId\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"state\": \"<integer>\",\n    \"failedSourceRows\": \"<long>\",\n    \"successSourceRows\": \"<long>\",\n    \"failedTargetRows\": \"<long>\",\n    \"successTargetRows\": \"<long>\",\n    \"totalSuccessRows\": \"<long>\",\n    \"totalErrorRows\": \"<long>\",\n    \"errorMsg\": \"<string>\",\n    \"startedBy\": \"<string>\",\n    \"runContextType\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"objectId\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"runId\": \"<long>\",\n    \"agentId\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"state\": \"<integer>\",\n    \"failedSourceRows\": \"<long>\",\n    \"successSourceRows\": \"<long>\",\n    \"failedTargetRows\": \"<long>\",\n    \"successTargetRows\": \"<long>\",\n    \"totalSuccessRows\": \"<long>\",\n    \"totalErrorRows\": \"<long>\",\n    \"errorMsg\": \"<string>\",\n    \"startedBy\": \"<string>\",\n    \"runContextType\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-10-22T02:50:35.000Z",
+                              "updatedAt": "2026-10-22T02:50:35.000Z",
+                              "uid": "35240-33932e3f-7f7a-4520-a075-163cc7f7d561"
+                            },
+                            {
+                              "id": "28133995-78d4-423e-afbc-5ae49eea4203",
+                              "name": "Unauthorized or session expired.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/activity/activityLog?runId=<long>&taskId=<string>&taskType=<string>&startTimeUTC=<dateTime>&endTimeUTC=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "activity",
+                                    "activityLog"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by the job run ID.",
+                                      "key": "runId",
+                                      "value": "<long>"
+                                    },
+                                    {
+                                      "description": "Filter by the task ID.",
+                                      "key": "taskId",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow).",
+                                      "key": "taskType",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format.",
+                                      "key": "startTimeUTC",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format.",
+                                      "key": "endTimeUTC",
+                                      "value": "<dateTime>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:35.000Z",
+                              "updatedAt": "2026-10-22T02:50:35.000Z",
+                              "uid": "35240-28133995-78d4-423e-afbc-5ae49eea4203"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:35.000Z",
+                          "updatedAt": "2026-10-22T02:50:35.000Z",
+                          "uid": "35240-99b25584-67e3-4eaa-b5c7-c4ebaa4ef974"
+                        }
+                      ],
+                      "id": "2ecdef7e-2d3c-49a3-9cc4-3cb9a35c5ae4",
+                      "createdAt": "2026-10-22T02:50:35.000Z",
+                      "updatedAt": "2026-10-22T02:50:35.000Z",
+                      "uid": "35240-2ecdef7e-2d3c-49a3-9cc4-3cb9a35c5ae4"
+                    }
+                  ],
+                  "id": "f429d368-a420-4338-adbe-992b36f411a2",
+                  "createdAt": "2026-10-22T02:50:35.000Z",
+                  "updatedAt": "2026-10-22T02:50:35.000Z",
+                  "uid": "35240-f429d368-a420-4338-adbe-992b36f411a2"
                 }
               ],
-              "body": "{\n  \"taskId\": \"500123\",\n  \"taskType\": \"example_value\",\n  \"runId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8cf51fc6-a02d-44b4-aefc-902c995ddfb0",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2e3f90d7-652f-4a15-a5e9-b7bba497771c",
-              "name": "Unauthorized or session expired.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\",\n  \"callbackUrl\": \"https://example.com/callback\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fb1adb5c-e7c1-4cfe-a7d9-671ac43dd869",
+              "createdAt": "2026-10-22T02:50:35.000Z",
+              "updatedAt": "2026-10-22T02:50:35.000Z",
+              "uid": "35240-fb1adb5c-e7c1-4cfe-a7d9-671ac43dd869"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "aac63e3c-0abf-4540-9b46-d4f7e73754e7",
-          "name": "Informatica Stop a Running Job",
-          "request": {
-            "name": "Informatica Stop a Running Job",
-            "description": {
-              "content": "Stops a running job. You can perform an immediate stop or a clean stop that allows the job to finish processing the current row.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "job",
-                "stop"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"@type\": \"<string>\",\n  \"taskType\": \"<string>\",\n  \"taskId\": \"<string>\",\n  \"taskName\": \"<string>\",\n  \"cleanStop\": false\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0243e0e5-e303-4dda-bfc2-e16d651bc429",
-              "name": "Job stopped successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job",
-                    "stop"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "7922f38f-4a8c-4673-b2d9-c74f864115a7",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job",
-                    "stop"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "93db11ea-2021-47b7-abea-5c50312fde00",
-              "name": "Job not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "job",
-                    "stop"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"job\",\n  \"taskId\": \"0012ABC000000042\",\n  \"taskType\": \"MTT\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cc6c121e-dc6b-4731-aa50-d41b08fc2b71",
-          "name": "Informatica Retrieve Activity Log Entries for Jobs",
-          "request": {
-            "name": "Informatica Retrieve Activity Log Entries for Jobs",
-            "description": {
-              "content": "Returns activity log entries for completed and running jobs in the organization. Results can be filtered by run ID, task ID, or other criteria.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "activity",
-                "activityLog"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "runId",
-                  "value": "<long>",
-                  "description": "Filter by the job run ID."
-                },
-                {
-                  "disabled": false,
-                  "key": "taskId",
-                  "value": "<string>",
-                  "description": "Filter by the task ID."
-                },
-                {
-                  "disabled": false,
-                  "key": "taskType",
-                  "value": "<string>",
-                  "description": "Filter by task type (e.g., MTT for mapping task, WORKFLOW for taskflow)."
-                },
-                {
-                  "disabled": false,
-                  "key": "startTimeUTC",
-                  "value": "<dateTime>",
-                  "description": "Filter for jobs started after this UTC timestamp in ISO 8601 format."
-                },
-                {
-                  "disabled": false,
-                  "key": "endTimeUTC",
-                  "value": "<dateTime>",
-                  "description": "Filter for jobs completed before this UTC timestamp in ISO 8601 format."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0bba80e8-3ff5-42a5-8787-7c3a309cfdd6",
-              "name": "Activity log entries.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "activity",
-                    "activityLog"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "runId",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "taskId",
-                      "value": "500123"
-                    },
-                    {
-                      "key": "taskType",
-                      "value": "example_value"
-                    },
-                    {
-                      "key": "startTimeUTC",
-                      "value": "2026-01-15T10:30:00Z"
-                    },
-                    {
-                      "key": "endTimeUTC",
-                      "value": "2026-01-15T10:30:00Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": \"abc123\",\n    \"type\": \"example_value\",\n    \"objectId\": \"500123\",\n    \"objectName\": \"example_value\",\n    \"runId\": \"500123\",\n    \"agentId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"startTime\": \"2026-01-15T10:30:00Z\",\n    \"endTime\": \"2026-01-15T10:30:00Z\",\n    \"state\": 10,\n    \"failedSourceRows\": 10,\n    \"successSourceRows\": 10,\n    \"failedTargetRows\": 10,\n    \"successTargetRows\": 10,\n    \"totalSuccessRows\": 10,\n    \"totalErrorRows\": 10,\n    \"errorMsg\": \"example_value\",\n    \"startedBy\": \"example_value\",\n    \"runContextType\": \"example_value\",\n    \"entries\": [\n      {}\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ca0c1592-8263-4373-b3ba-ea24a6cab1b5",
-              "name": "Unauthorized or session expired.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "activity",
-                    "activityLog"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "runId",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "taskId",
-                      "value": "500123"
-                    },
-                    {
-                      "key": "taskType",
-                      "value": "example_value"
-                    },
-                    {
-                      "key": "startTimeUTC",
-                      "value": "2026-01-15T10:30:00Z"
-                    },
-                    {
-                      "key": "endTimeUTC",
-                      "value": "2026-01-15T10:30:00Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a99aed73-1744-4d86-91de-1d02d6edb937",
+          "createdAt": "2026-10-22T02:50:35.000Z",
+          "updatedAt": "2026-10-22T02:50:35.000Z",
+          "uid": "35240-a99aed73-1744-4d86-91de-1d02d6edb937"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dm-us.informaticacloud.com",
-      "key": "baseUrl"
+      "id": "b1df7321-b6d5-48ec-8036-de54732c5e49",
+      "createdAt": "2026-10-22T02:50:35.000Z",
+      "updatedAt": "2026-10-22T02:50:35.000Z",
+      "uid": "35240-b1df7321-b6d5-48ec-8036-de54732c5e49"
     }
   ],
   "auth": {
@@ -657,25 +732,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "icSessionId"
+        "value": "icSessionId",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "72b236f5-6025-420b-9e40-c08bdef3de94",
-    "name": "Informatica IICS Platform REST Authentication Jobs API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dm-us.informaticacloud.com"
     }
-  }
+  ]
 }

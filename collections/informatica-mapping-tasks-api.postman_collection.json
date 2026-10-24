@@ -1,1031 +1,1048 @@
 {
+  "info": {
+    "_postman_id": "c47de9a9-b736-4288-99f5-7ab65bcb6b5f",
+    "name": "Informatica IICS Platform REST Mapping Tasks API",
+    "description": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:50:43.000Z",
+    "updatedAt": "2026-10-22T02:50:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c47de9a9-b736-4288-99f5-7ab65bcb6b5f"
+  },
   "item": [
     {
-      "id": "14c51fce-a84a-42a8-889f-0b4ef17f0708",
-      "name": "Mapping Tasks",
-      "description": {
-        "content": "Create, retrieve, update, and delete mapping task configurations that execute mappings with specific runtime parameters.",
-        "type": "text/plain"
-      },
+      "name": "saas",
       "item": [
         {
-          "id": "5ad4a574-0f1c-4cd5-86fc-c15fb903d4d1",
-          "name": "Informatica Retrieve All Mapping Tasks in the Organization",
-          "request": {
-            "name": "Informatica Retrieve All Mapping Tasks in the Organization",
-            "description": {
-              "content": "Returns summary information for all mapping tasks configured in the organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "api",
+          "item": [
             {
-              "id": "06b7d8e2-29dc-41ce-8ed5-891cf7c7e39d",
-              "name": "A list of mapping tasks.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v2",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "mttask",
+                  "item": [
+                    {
+                      "name": "{taskId}",
+                      "item": [
+                        {
+                          "name": "Informatica Retrieve a Mapping Task by Id",
+                          "id": "a765d3f2-aac9-42fe-829c-8764b68c9828",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask",
+                                ":taskId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5178a1ae-6900-4762-9778-92d00f5cc4cf",
+                                  "key": "taskId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the mapping task."
+                                }
+                              ]
+                            },
+                            "description": "Returns the full details of a mapping task identified by its ID."
+                          },
+                          "response": [
+                            {
+                              "id": "896847c5-12e6-4a2e-9ff4-80119bed2a97",
+                              "name": "Mapping task details.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"frsId\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-896847c5-12e6-4a2e-9ff4-80119bed2a97"
+                            },
+                            {
+                              "id": "999bb181-b2ed-4700-b031-40488a8a5171",
+                              "name": "Mapping task not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-999bb181-b2ed-4700-b031-40488a8a5171"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-a765d3f2-aac9-42fe-829c-8764b68c9828"
+                        },
+                        {
+                          "name": "Informatica Update an Existing Mapping Task",
+                          "id": "41d4147e-056e-47d1-8b8b-fca5a5d168fd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask",
+                                ":taskId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "97315921-13ab-4199-a5ca-0eafbe9cca41",
+                                  "key": "taskId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the mapping task."
+                                }
+                              ]
+                            },
+                            "description": "Updates the configuration of a mapping task identified by its ID."
+                          },
+                          "response": [
+                            {
+                              "id": "626665ea-515c-429a-869a-ccd2567820d3",
+                              "name": "Mapping task updated successfully.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"frsId\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-626665ea-515c-429a-869a-ccd2567820d3"
+                            },
+                            {
+                              "id": "839f1108-4ef8-471a-9f09-9a5dd4b40313",
+                              "name": "Invalid request.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-839f1108-4ef8-471a-9f09-9a5dd4b40313"
+                            },
+                            {
+                              "id": "b8ae0263-dc4f-4b77-8607-7f6510dc0224",
+                              "name": "Mapping task not found.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-b8ae0263-dc4f-4b77-8607-7f6510dc0224"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-41d4147e-056e-47d1-8b8b-fca5a5d168fd"
+                        },
+                        {
+                          "name": "Informatica Delete a Mapping Task",
+                          "id": "0b3b669e-0137-421a-be07-937b5ab4fa94",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask",
+                                ":taskId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "352a7835-f5e3-417a-b767-05061661bacf",
+                                  "key": "taskId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the mapping task."
+                                }
+                              ]
+                            },
+                            "description": "Deletes the mapping task identified by its ID."
+                          },
+                          "response": [
+                            {
+                              "id": "2dbf8568-e7bb-4720-a457-c52d0073ac54",
+                              "name": "Mapping task deleted successfully.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-2dbf8568-e7bb-4720-a457-c52d0073ac54"
+                            },
+                            {
+                              "id": "25b2a3be-6282-400b-9714-78f6469b08a6",
+                              "name": "Mapping task not found.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/:taskId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    ":taskId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taskId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-25b2a3be-6282-400b-9714-78f6469b08a6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-0b3b669e-0137-421a-be07-937b5ab4fa94"
+                        }
+                      ],
+                      "id": "fe03414d-c192-47a2-bd07-282179716b26",
+                      "createdAt": "2026-10-22T02:50:44.000Z",
+                      "updatedAt": "2026-10-22T02:50:44.000Z",
+                      "uid": "35240-fe03414d-c192-47a2-bd07-282179716b26"
+                    },
+                    {
+                      "name": "name",
+                      "item": [
+                        {
+                          "name": "{taskName}",
+                          "item": [
+                            {
+                              "name": "Informatica Retrieve a Mapping Task by Name",
+                              "id": "2385741f-e04a-4861-8b9b-8d8414605a9c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mttask/name/:taskName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mttask",
+                                    "name",
+                                    ":taskName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "f818789e-386f-4dbc-9d07-d572cb974b64",
+                                      "key": "taskName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the mapping task."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the full details of a mapping task identified by its name."
+                              },
+                              "response": [
+                                {
+                                  "id": "a5e99131-00d2-4af9-a176-ff06dc2d42ee",
+                                  "name": "Mapping task details.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "icSessionId",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/saas/api/v2/mttask/name/:taskName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "saas",
+                                        "api",
+                                        "v2",
+                                        "mttask",
+                                        "name",
+                                        ":taskName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "taskName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"frsId\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                                  "createdAt": "2026-10-22T02:50:44.000Z",
+                                  "updatedAt": "2026-10-22T02:50:44.000Z",
+                                  "uid": "35240-a5e99131-00d2-4af9-a176-ff06dc2d42ee"
+                                },
+                                {
+                                  "id": "7426ad7a-7e48-4398-b57c-80d31d1b44b7",
+                                  "name": "Mapping task not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "icSessionId",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/saas/api/v2/mttask/name/:taskName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "saas",
+                                        "api",
+                                        "v2",
+                                        "mttask",
+                                        "name",
+                                        ":taskName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "taskName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T02:50:44.000Z",
+                                  "updatedAt": "2026-10-22T02:50:44.000Z",
+                                  "uid": "35240-7426ad7a-7e48-4398-b57c-80d31d1b44b7"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:50:44.000Z",
+                              "updatedAt": "2026-10-22T02:50:44.000Z",
+                              "uid": "35240-2385741f-e04a-4861-8b9b-8d8414605a9c"
+                            }
+                          ],
+                          "id": "cb693a4f-2d99-4d5c-b927-dc1abdbaa05d",
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-cb693a4f-2d99-4d5c-b927-dc1abdbaa05d"
+                        }
+                      ],
+                      "id": "e257b948-faf6-4ffc-92d5-68bd63fd6558",
+                      "createdAt": "2026-10-22T02:50:44.000Z",
+                      "updatedAt": "2026-10-22T02:50:44.000Z",
+                      "uid": "35240-e257b948-faf6-4ffc-92d5-68bd63fd6558"
+                    },
+                    {
+                      "name": "Informatica Retrieve All Mapping Tasks in the Organization",
+                      "id": "7a8ea855-61b3-4f52-b6b9-3ca15713fef7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "saas",
+                            "api",
+                            "v2",
+                            "mttask"
+                          ]
+                        },
+                        "description": "Returns summary information for all mapping tasks configured in the organization."
+                      },
+                      "response": [
+                        {
+                          "id": "898ca225-8073-4d95-8ec0-cfc00111b5a7",
+                          "name": "A list of mapping tasks.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"mappingId\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\",\n    \"scheduleId\": \"<string>\",\n    \"preProcessingCmd\": \"<string>\",\n    \"postProcessingCmd\": \"<string>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"sourceConnectionId\": \"<string>\",\n    \"targetConnectionId\": \"<string>\",\n    \"frsId\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"mappingId\": \"<string>\",\n    \"runtimeEnvironmentId\": \"<string>\",\n    \"scheduleId\": \"<string>\",\n    \"preProcessingCmd\": \"<string>\",\n    \"postProcessingCmd\": \"<string>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"sourceConnectionId\": \"<string>\",\n    \"targetConnectionId\": \"<string>\",\n    \"frsId\": \"<string>\",\n    \"active\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-898ca225-8073-4d95-8ec0-cfc00111b5a7"
+                        },
+                        {
+                          "id": "db793f47-4ada-4936-ba46-fa311d4bff99",
+                          "name": "Unauthorized or session expired.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-db793f47-4ada-4936-ba46-fa311d4bff99"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:50:44.000Z",
+                      "updatedAt": "2026-10-22T02:50:44.000Z",
+                      "uid": "35240-7a8ea855-61b3-4f52-b6b9-3ca15713fef7"
+                    },
+                    {
+                      "name": "Informatica Create a New Mapping Task",
+                      "id": "3c563332-2cab-4c98-b8c2-a84caffa2ee7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "saas",
+                            "api",
+                            "v2",
+                            "mttask"
+                          ]
+                        },
+                        "description": "Creates a new mapping task in the organization. The request body must include the mapping reference, source and target connection configurations, and runtime parameters."
+                      },
+                      "response": [
+                        {
+                          "id": "6b5934c8-4eaf-4999-a52f-44f9f964262e",
+                          "name": "Mapping task created successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"frsId\": \"<string>\",\n  \"active\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-6b5934c8-4eaf-4999-a52f-44f9f964262e"
+                        },
+                        {
+                          "id": "c547a46e-58af-4a2a-98a2-e88ee0ac9316",
+                          "name": "Invalid request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mttask",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mttask"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:50:44.000Z",
+                          "updatedAt": "2026-10-22T02:50:44.000Z",
+                          "uid": "35240-c547a46e-58af-4a2a-98a2-e88ee0ac9316"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:50:44.000Z",
+                      "updatedAt": "2026-10-22T02:50:44.000Z",
+                      "uid": "35240-3c563332-2cab-4c98-b8c2-a84caffa2ee7"
+                    }
+                  ],
+                  "id": "767cb332-3cdb-490e-99ae-8a85f78ec63b",
+                  "createdAt": "2026-10-22T02:50:44.000Z",
+                  "updatedAt": "2026-10-22T02:50:44.000Z",
+                  "uid": "35240-767cb332-3cdb-490e-99ae-8a85f78ec63b"
                 }
               ],
-              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"mappingId\": \"500123\",\n    \"runtimeEnvironmentId\": \"500123\",\n    \"scheduleId\": \"500123\",\n    \"preProcessingCmd\": \"example_value\",\n    \"postProcessingCmd\": \"example_value\",\n    \"parameters\": [\n      {}\n    ],\n    \"sourceConnectionId\": \"500123\",\n    \"targetConnectionId\": \"500123\",\n    \"frsId\": \"500123\",\n    \"active\": true\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2abf5401-bb4b-4a3f-ba17-efedeae8329c",
-              "name": "Unauthorized or session expired.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "8562f40e-aef6-4e20-a57b-970767b80a38",
+              "createdAt": "2026-10-22T02:50:44.000Z",
+              "updatedAt": "2026-10-22T02:50:44.000Z",
+              "uid": "35240-8562f40e-aef6-4e20-a57b-970767b80a38"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2e38d1e3-d550-48b4-9812-27aa51b89d84",
-          "name": "Informatica Create a New Mapping Task",
-          "request": {
-            "name": "Informatica Create a New Mapping Task",
-            "description": {
-              "content": "Creates a new mapping task in the organization. The request body must include the mapping reference, source and target connection configurations, and runtime parameters.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"mappingId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8b942497-c64a-4c6f-8673-0153018df269",
-              "name": "Mapping task created successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "74866cd7-0c22-4068-9c6c-861d1235f782",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b3e3c04c-5aca-4b41-b215-8ae11c2491c5",
-          "name": "Informatica Retrieve a Mapping Task by Id",
-          "request": {
-            "name": "Informatica Retrieve a Mapping Task by Id",
-            "description": {
-              "content": "Returns the full details of a mapping task identified by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask",
-                ":taskId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) The unique identifier of the mapping task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9879732d-f6f8-4b47-8a79-94eeb1b1ed99",
-              "name": "Mapping task details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ab217b3f-28cc-4384-8f5e-5df2171039e3",
-              "name": "Mapping task not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fecd341f-acf0-4873-bc1b-179efe3278d6",
-          "name": "Informatica Update an Existing Mapping Task",
-          "request": {
-            "name": "Informatica Update an Existing Mapping Task",
-            "description": {
-              "content": "Updates the configuration of a mapping task identified by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask",
-                ":taskId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) The unique identifier of the mapping task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"@type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"runtimeEnvironmentId\": \"<string>\",\n  \"scheduleId\": \"<string>\",\n  \"preProcessingCmd\": \"<string>\",\n  \"postProcessingCmd\": \"<string>\",\n  \"sourceConnectionId\": \"<string>\",\n  \"targetConnectionId\": \"<string>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "34e79760-5c2e-4f24-a867-b2e583f2b2df",
-              "name": "Mapping task updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "33711cde-e70f-47d7-9c03-a3f6afab4353",
-              "name": "Invalid request.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5dcb583e-b2b5-47c1-bb38-f2f69bbac17c",
-              "name": "Mapping task not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"@type\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4edb5cdf-f8e7-4f3b-b5e1-9e5e60d0a68c",
-          "name": "Informatica Delete a Mapping Task",
-          "request": {
-            "name": "Informatica Delete a Mapping Task",
-            "description": {
-              "content": "Deletes the mapping task identified by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask",
-                ":taskId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) The unique identifier of the mapping task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0e7c33a3-4273-43dc-ad55-36a8368027f8",
-              "name": "Mapping task deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ff18be42-4070-4aeb-b65c-6f74983e0399",
-              "name": "Mapping task not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) The unique identifier of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2f1f7a17-b800-4769-afc1-9bd0fc16597e",
-          "name": "Informatica Retrieve a Mapping Task by Name",
-          "request": {
-            "name": "Informatica Retrieve a Mapping Task by Name",
-            "description": {
-              "content": "Returns the full details of a mapping task identified by its name.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mttask",
-                "name",
-                ":taskName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskName",
-                  "description": "(Required) The name of the mapping task."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "69270cd1-0c07-4cd3-b642-2ffcfd2d5b7b",
-              "name": "Mapping task details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    "name",
-                    ":taskName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskName",
-                      "description": "(Required) The name of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"mappingId\": \"500123\",\n  \"runtimeEnvironmentId\": \"500123\",\n  \"scheduleId\": \"500123\",\n  \"preProcessingCmd\": \"example_value\",\n  \"postProcessingCmd\": \"example_value\",\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"sourceConnectionId\": \"500123\",\n  \"targetConnectionId\": \"500123\",\n  \"frsId\": \"500123\",\n  \"active\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "97c8a638-e5af-49bd-addc-08b7ae124cfb",
-              "name": "Mapping task not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mttask",
-                    "name",
-                    ":taskName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskName",
-                      "description": "(Required) The name of the mapping task."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2cf46284-5d01-4d57-9787-03f5bcd1b417",
+          "createdAt": "2026-10-22T02:50:44.000Z",
+          "updatedAt": "2026-10-22T02:50:44.000Z",
+          "uid": "35240-2cf46284-5d01-4d57-9787-03f5bcd1b417"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dm-us.informaticacloud.com",
-      "key": "baseUrl"
+      "id": "4171ee2e-8a4f-4804-99db-69c8b62a1ea0",
+      "createdAt": "2026-10-22T02:50:44.000Z",
+      "updatedAt": "2026-10-22T02:50:44.000Z",
+      "uid": "35240-4171ee2e-8a4f-4804-99db-69c8b62a1ea0"
     }
   ],
   "auth": {
@@ -1033,25 +1050,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "icSessionId"
+        "value": "icSessionId",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ed7cf1a4-07c7-40ad-b980-416159c07663",
-    "name": "Informatica IICS Platform REST Authentication Mapping Tasks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dm-us.informaticacloud.com"
     }
-  }
+  ]
 }

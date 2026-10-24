@@ -1,568 +1,598 @@
 {
+  "info": {
+    "_postman_id": "c3c578a8-a98f-4a28-b935-967c010f0c0e",
+    "name": "Informatica IICS Platform REST Mappings API",
+    "description": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:50:52.000Z",
+    "updatedAt": "2026-10-22T02:50:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c3c578a8-a98f-4a28-b935-967c010f0c0e"
+  },
   "item": [
     {
-      "id": "871b78d3-a898-495c-8107-ca89604a7c4f",
-      "name": "Mappings",
-      "description": {
-        "content": "Retrieve mapping definitions and metadata for data integration mappings within the organization.",
-        "type": "text/plain"
-      },
+      "name": "saas",
       "item": [
         {
-          "id": "bd898f1a-fe68-46cd-a108-32f2a03f57fc",
-          "name": "Informatica Retrieve All Mappings in the Organization",
-          "request": {
-            "name": "Informatica Retrieve All Mappings in the Organization",
-            "description": {
-              "content": "Returns the mapping object for every mapping in the organization. When retrieving all mappings, parameter details are not included.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mapping"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "api",
+          "item": [
             {
-              "id": "1a143e2b-4f48-4a94-81b4-a0fd6a94c14e",
-              "name": "A list of mappings.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "v2",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "mapping",
+                  "item": [
+                    {
+                      "name": "{mappingId}",
+                      "item": [
+                        {
+                          "name": "Informatica Retrieve a Mapping by Id",
+                          "id": "47fc9bdf-f4fa-4897-987d-378f3a976fdf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mapping/:mappingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mapping",
+                                ":mappingId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c859461f-e000-4f52-b0a7-4e8dfa908038",
+                                  "key": "mappingId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the mapping."
+                                }
+                              ]
+                            },
+                            "description": "Returns the details of a specific mapping identified by its ID, including parameter details."
+                          },
+                          "response": [
+                            {
+                              "id": "1c14ace6-3e35-415b-a41b-496dbac98869",
+                              "name": "Mapping details.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mapping/:mappingId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mapping",
+                                    ":mappingId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "mappingId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"bundleObjectId\": \"<string>\",\n  \"bundleVersion\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"deployTime\": \"<dateTime>\",\n  \"hasParameters\": \"<boolean>\",\n  \"valid\": \"<boolean>\",\n  \"fixedConnection\": \"<boolean>\",\n  \"hasParametersDeployed\": \"<boolean>\",\n  \"fixedConnectionDeployed\": \"<boolean>\",\n  \"deployedTemplateId\": \"<string>\",\n  \"tasks\": \"<integer>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"initialValue\": \"<string>\",\n      \"datatype\": \"<string>\",\n      \"precision\": \"<string>\",\n      \"scale\": \"<string>\",\n      \"retentionPolicy\": \"<string>\",\n      \"aggregationType\": \"<string>\",\n      \"currentValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"initialValue\": \"<string>\",\n      \"datatype\": \"<string>\",\n      \"precision\": \"<string>\",\n      \"scale\": \"<string>\",\n      \"retentionPolicy\": \"<string>\",\n      \"aggregationType\": \"<string>\",\n      \"currentValue\": \"<string>\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"<string>\",\n      \"refType\": \"<string>\"\n    },\n    {\n      \"refObjectId\": \"<string>\",\n      \"refType\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T02:50:53.000Z",
+                              "updatedAt": "2026-10-22T02:50:53.000Z",
+                              "uid": "35240-1c14ace6-3e35-415b-a41b-496dbac98869"
+                            },
+                            {
+                              "id": "a36fedfd-ebcc-4dc2-a180-c9715e9cfbb2",
+                              "name": "Mapping not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mapping/:mappingId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mapping",
+                                    ":mappingId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "mappingId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T02:50:53.000Z",
+                              "updatedAt": "2026-10-22T02:50:53.000Z",
+                              "uid": "35240-a36fedfd-ebcc-4dc2-a180-c9715e9cfbb2"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:53.000Z",
+                          "updatedAt": "2026-10-22T02:50:53.000Z",
+                          "uid": "35240-47fc9bdf-f4fa-4897-987d-378f3a976fdf"
+                        }
+                      ],
+                      "id": "a93d83cc-0452-448e-81fb-9bfc5bf26935",
+                      "createdAt": "2026-10-22T02:50:53.000Z",
+                      "updatedAt": "2026-10-22T02:50:53.000Z",
+                      "uid": "35240-a93d83cc-0452-448e-81fb-9bfc5bf26935"
+                    },
+                    {
+                      "name": "name",
+                      "item": [
+                        {
+                          "name": "{mappingName}",
+                          "item": [
+                            {
+                              "name": "Informatica Retrieve a Mapping by Name",
+                              "id": "00eadbb3-0bf4-4ec6-a6bf-6c473b671ba1",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mapping/name/:mappingName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mapping",
+                                    "name",
+                                    ":mappingName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "221435d8-7c83-4f48-aeb8-07cb25d7409e",
+                                      "key": "mappingName",
+                                      "value": "<string>",
+                                      "description": "(Required) The name of the mapping."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the details of a specific mapping identified by its name."
+                              },
+                              "response": [
+                                {
+                                  "id": "0bc7b163-d6f0-4f86-be35-314800871444",
+                                  "name": "Mapping details.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "icSessionId",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/saas/api/v2/mapping/name/:mappingName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "saas",
+                                        "api",
+                                        "v2",
+                                        "mapping",
+                                        "name",
+                                        ":mappingName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "mappingName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"@type\": \"<string>\",\n  \"id\": \"<string>\",\n  \"orgId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"updateTime\": \"<dateTime>\",\n  \"createdBy\": \"<string>\",\n  \"updatedBy\": \"<string>\",\n  \"bundleObjectId\": \"<string>\",\n  \"bundleVersion\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"deployTime\": \"<dateTime>\",\n  \"hasParameters\": \"<boolean>\",\n  \"valid\": \"<boolean>\",\n  \"fixedConnection\": \"<boolean>\",\n  \"hasParametersDeployed\": \"<boolean>\",\n  \"fixedConnectionDeployed\": \"<boolean>\",\n  \"deployedTemplateId\": \"<string>\",\n  \"tasks\": \"<integer>\",\n  \"parameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"customFuncId\": \"<string>\",\n      \"uiProperties\": \"<string>\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"initialValue\": \"<string>\",\n      \"datatype\": \"<string>\",\n      \"precision\": \"<string>\",\n      \"scale\": \"<string>\",\n      \"retentionPolicy\": \"<string>\",\n      \"aggregationType\": \"<string>\",\n      \"currentValue\": \"<string>\"\n    },\n    {\n      \"id\": \"<long>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"initialValue\": \"<string>\",\n      \"datatype\": \"<string>\",\n      \"precision\": \"<string>\",\n      \"scale\": \"<string>\",\n      \"retentionPolicy\": \"<string>\",\n      \"aggregationType\": \"<string>\",\n      \"currentValue\": \"<string>\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"<string>\",\n      \"refType\": \"<string>\"\n    },\n    {\n      \"refObjectId\": \"<string>\",\n      \"refType\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T02:50:53.000Z",
+                                  "updatedAt": "2026-10-22T02:50:53.000Z",
+                                  "uid": "35240-0bc7b163-d6f0-4f86-be35-314800871444"
+                                },
+                                {
+                                  "id": "1c0fb04a-c549-4940-8eb5-7f6dc0c984cf",
+                                  "name": "Mapping not found.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "icSessionId",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/saas/api/v2/mapping/name/:mappingName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "saas",
+                                        "api",
+                                        "v2",
+                                        "mapping",
+                                        "name",
+                                        ":mappingName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "mappingName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                                  "createdAt": "2026-10-22T02:50:53.000Z",
+                                  "updatedAt": "2026-10-22T02:50:53.000Z",
+                                  "uid": "35240-1c0fb04a-c549-4940-8eb5-7f6dc0c984cf"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T02:50:53.000Z",
+                              "updatedAt": "2026-10-22T02:50:53.000Z",
+                              "uid": "35240-00eadbb3-0bf4-4ec6-a6bf-6c473b671ba1"
+                            }
+                          ],
+                          "id": "8e6dfa76-2ea3-4a5e-a621-a577e0792ba4",
+                          "createdAt": "2026-10-22T02:50:53.000Z",
+                          "updatedAt": "2026-10-22T02:50:53.000Z",
+                          "uid": "35240-8e6dfa76-2ea3-4a5e-a621-a577e0792ba4"
+                        }
+                      ],
+                      "id": "0430880b-4705-4a77-8872-c583c6eb6ad0",
+                      "createdAt": "2026-10-22T02:50:53.000Z",
+                      "updatedAt": "2026-10-22T02:50:53.000Z",
+                      "uid": "35240-0430880b-4705-4a77-8872-c583c6eb6ad0"
+                    },
+                    {
+                      "name": "search",
+                      "item": [
+                        {
+                          "name": "Informatica Search for Mappings by Name",
+                          "id": "b1a93acd-7c05-416c-ad53-e5ec50f67b5e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mapping/search?name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mapping",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The mapping name or name pattern to search for.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Searches for mappings matching the specified name pattern."
+                          },
+                          "response": [
+                            {
+                              "id": "b5165ca5-c0de-44d8-8d3a-5162d85cf6c6",
+                              "name": "A list of matching mappings.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "icSessionId",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/saas/api/v2/mapping/search?name=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "saas",
+                                    "api",
+                                    "v2",
+                                    "mapping",
+                                    "search"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The mapping name or name pattern to search for.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"bundleObjectId\": \"<string>\",\n    \"bundleVersion\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"deployTime\": \"<dateTime>\",\n    \"hasParameters\": \"<boolean>\",\n    \"valid\": \"<boolean>\",\n    \"fixedConnection\": \"<boolean>\",\n    \"hasParametersDeployed\": \"<boolean>\",\n    \"fixedConnectionDeployed\": \"<boolean>\",\n    \"deployedTemplateId\": \"<string>\",\n    \"tasks\": \"<integer>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"inOutParameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      }\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      },\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"bundleObjectId\": \"<string>\",\n    \"bundleVersion\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"deployTime\": \"<dateTime>\",\n    \"hasParameters\": \"<boolean>\",\n    \"valid\": \"<boolean>\",\n    \"fixedConnection\": \"<boolean>\",\n    \"hasParametersDeployed\": \"<boolean>\",\n    \"fixedConnectionDeployed\": \"<boolean>\",\n    \"deployedTemplateId\": \"<string>\",\n    \"tasks\": \"<integer>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"inOutParameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      }\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      },\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      }\n    ]\n  }\n]",
+                              "createdAt": "2026-10-22T02:50:53.000Z",
+                              "updatedAt": "2026-10-22T02:50:53.000Z",
+                              "uid": "35240-b5165ca5-c0de-44d8-8d3a-5162d85cf6c6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T02:50:53.000Z",
+                          "updatedAt": "2026-10-22T02:50:53.000Z",
+                          "uid": "35240-b1a93acd-7c05-416c-ad53-e5ec50f67b5e"
+                        }
+                      ],
+                      "id": "017ba581-693a-4713-8740-87d8922d46ba",
+                      "createdAt": "2026-10-22T02:50:53.000Z",
+                      "updatedAt": "2026-10-22T02:50:53.000Z",
+                      "uid": "35240-017ba581-693a-4713-8740-87d8922d46ba"
+                    },
+                    {
+                      "name": "Informatica Retrieve All Mappings in the Organization",
+                      "id": "0871b9a0-f9a8-4464-991a-823aa60e4516",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/saas/api/v2/mapping",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "saas",
+                            "api",
+                            "v2",
+                            "mapping"
+                          ]
+                        },
+                        "description": "Returns the mapping object for every mapping in the organization. When retrieving all mappings, parameter details are not included."
+                      },
+                      "response": [
+                        {
+                          "id": "43adfdee-3819-4607-8969-43b6bb5c67b8",
+                          "name": "A list of mappings.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mapping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mapping"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"bundleObjectId\": \"<string>\",\n    \"bundleVersion\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"deployTime\": \"<dateTime>\",\n    \"hasParameters\": \"<boolean>\",\n    \"valid\": \"<boolean>\",\n    \"fixedConnection\": \"<boolean>\",\n    \"hasParametersDeployed\": \"<boolean>\",\n    \"fixedConnectionDeployed\": \"<boolean>\",\n    \"deployedTemplateId\": \"<string>\",\n    \"tasks\": \"<integer>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"inOutParameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      }\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      },\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"@type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"createTime\": \"<dateTime>\",\n    \"updateTime\": \"<dateTime>\",\n    \"createdBy\": \"<string>\",\n    \"updatedBy\": \"<string>\",\n    \"bundleObjectId\": \"<string>\",\n    \"bundleVersion\": \"<string>\",\n    \"templateId\": \"<string>\",\n    \"deployTime\": \"<dateTime>\",\n    \"hasParameters\": \"<boolean>\",\n    \"valid\": \"<boolean>\",\n    \"fixedConnection\": \"<boolean>\",\n    \"hasParametersDeployed\": \"<boolean>\",\n    \"fixedConnectionDeployed\": \"<boolean>\",\n    \"deployedTemplateId\": \"<string>\",\n    \"tasks\": \"<integer>\",\n    \"parameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\",\n        \"customFuncId\": \"<string>\",\n        \"uiProperties\": \"<string>\"\n      }\n    ],\n    \"inOutParameters\": [\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      },\n      {\n        \"id\": \"<long>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"initialValue\": \"<string>\",\n        \"datatype\": \"<string>\",\n        \"precision\": \"<string>\",\n        \"scale\": \"<string>\",\n        \"retentionPolicy\": \"<string>\",\n        \"aggregationType\": \"<string>\",\n        \"currentValue\": \"<string>\"\n      }\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      },\n      {\n        \"refObjectId\": \"<string>\",\n        \"refType\": \"<string>\"\n      }\n    ]\n  }\n]",
+                          "createdAt": "2026-10-22T02:50:53.000Z",
+                          "updatedAt": "2026-10-22T02:50:53.000Z",
+                          "uid": "35240-43adfdee-3819-4607-8969-43b6bb5c67b8"
+                        },
+                        {
+                          "id": "b214e459-6496-455c-97b3-88b2a7a4e357",
+                          "name": "Unauthorized or session expired.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "icSessionId",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/saas/api/v2/mapping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "saas",
+                                "api",
+                                "v2",
+                                "mapping"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"@type\": \"<string>\",\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"description\": \"<string>\",\n  \"requestId\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:50:53.000Z",
+                          "updatedAt": "2026-10-22T02:50:53.000Z",
+                          "uid": "35240-b214e459-6496-455c-97b3-88b2a7a4e357"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:50:53.000Z",
+                      "updatedAt": "2026-10-22T02:50:53.000Z",
+                      "uid": "35240-0871b9a0-f9a8-4464-991a-823aa60e4516"
+                    }
+                  ],
+                  "id": "ee715ddf-dc6b-49e5-b5b8-8345ae703ad7",
+                  "createdAt": "2026-10-22T02:50:53.000Z",
+                  "updatedAt": "2026-10-22T02:50:53.000Z",
+                  "uid": "35240-ee715ddf-dc6b-49e5-b5b8-8345ae703ad7"
                 }
               ],
-              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"bundleObjectId\": \"500123\",\n    \"bundleVersion\": \"example_value\",\n    \"templateId\": \"500123\",\n    \"deployTime\": \"2026-01-15T10:30:00Z\",\n    \"hasParameters\": true,\n    \"valid\": \"500123\",\n    \"fixedConnection\": true,\n    \"hasParametersDeployed\": true,\n    \"fixedConnectionDeployed\": true,\n    \"deployedTemplateId\": \"500123\",\n    \"tasks\": 10,\n    \"parameters\": [\n      {}\n    ],\n    \"inOutParameters\": [\n      {}\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"500123\",\n        \"refType\": \"example_value\"\n      }\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c9fb9298-f955-47ee-a4a7-bae954d5289d",
-              "name": "Unauthorized or session expired.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "8291a782-3ded-4b0f-93d9-a6735d5df85a",
+              "createdAt": "2026-10-22T02:50:53.000Z",
+              "updatedAt": "2026-10-22T02:50:53.000Z",
+              "uid": "35240-8291a782-3ded-4b0f-93d9-a6735d5df85a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7c968904-d023-465d-917a-378e0778cdb9",
-          "name": "Informatica Retrieve a Mapping by Id",
-          "request": {
-            "name": "Informatica Retrieve a Mapping by Id",
-            "description": {
-              "content": "Returns the details of a specific mapping identified by its ID, including parameter details.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mapping",
-                ":mappingId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "mappingId",
-                  "description": "(Required) The unique identifier of the mapping."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9d13d9ee-1716-4616-aa3a-2e3c7b953c64",
-              "name": "Mapping details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping",
-                    ":mappingId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "mappingId",
-                      "description": "(Required) The unique identifier of the mapping."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"bundleObjectId\": \"500123\",\n  \"bundleVersion\": \"example_value\",\n  \"templateId\": \"500123\",\n  \"deployTime\": \"2026-01-15T10:30:00Z\",\n  \"hasParameters\": true,\n  \"valid\": \"500123\",\n  \"fixedConnection\": true,\n  \"hasParametersDeployed\": true,\n  \"fixedConnectionDeployed\": true,\n  \"deployedTemplateId\": \"500123\",\n  \"tasks\": 10,\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"initialValue\": \"example_value\",\n      \"datatype\": \"example_value\",\n      \"precision\": \"example_value\",\n      \"scale\": \"example_value\",\n      \"retentionPolicy\": \"example_value\",\n      \"aggregationType\": \"example_value\",\n      \"currentValue\": \"example_value\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"500123\",\n      \"refType\": \"example_value\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ed326a58-bad7-4927-ae26-72171af24f66",
-              "name": "Mapping not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping",
-                    ":mappingId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "mappingId",
-                      "description": "(Required) The unique identifier of the mapping."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "21679f8a-f44b-453b-b1af-7fcd7bcb50b6",
-          "name": "Informatica Retrieve a Mapping by Name",
-          "request": {
-            "name": "Informatica Retrieve a Mapping by Name",
-            "description": {
-              "content": "Returns the details of a specific mapping identified by its name.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mapping",
-                "name",
-                ":mappingName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "mappingName",
-                  "description": "(Required) The name of the mapping."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "379f2bfb-3871-44a8-aafe-e29802aa701e",
-              "name": "Mapping details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping",
-                    "name",
-                    ":mappingName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "mappingName",
-                      "description": "(Required) The name of the mapping."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"id\": \"abc123\",\n  \"orgId\": \"500123\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"createTime\": \"2026-01-15T10:30:00Z\",\n  \"updateTime\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": \"example_value\",\n  \"updatedBy\": \"example_value\",\n  \"bundleObjectId\": \"500123\",\n  \"bundleVersion\": \"example_value\",\n  \"templateId\": \"500123\",\n  \"deployTime\": \"2026-01-15T10:30:00Z\",\n  \"hasParameters\": true,\n  \"valid\": \"500123\",\n  \"fixedConnection\": true,\n  \"hasParametersDeployed\": true,\n  \"fixedConnectionDeployed\": true,\n  \"deployedTemplateId\": \"500123\",\n  \"tasks\": 10,\n  \"parameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\",\n      \"description\": \"A sample description.\",\n      \"customFuncId\": \"500123\",\n      \"uiProperties\": \"example_value\"\n    }\n  ],\n  \"inOutParameters\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"initialValue\": \"example_value\",\n      \"datatype\": \"example_value\",\n      \"precision\": \"example_value\",\n      \"scale\": \"example_value\",\n      \"retentionPolicy\": \"example_value\",\n      \"aggregationType\": \"example_value\",\n      \"currentValue\": \"example_value\"\n    }\n  ],\n  \"references\": [\n    {\n      \"refObjectId\": \"500123\",\n      \"refType\": \"example_value\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a1cc55bc-0bb8-42f8-baf0-b5b7269caefb",
-              "name": "Mapping not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping",
-                    "name",
-                    ":mappingName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "mappingName",
-                      "description": "(Required) The name of the mapping."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@type\": \"example_value\",\n  \"statusCode\": 10,\n  \"message\": \"example_value\",\n  \"description\": \"A sample description.\",\n  \"requestId\": \"500123\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4b3c7ff6-082f-4f0a-a93f-9e46f01517fb",
-          "name": "Informatica Search for Mappings by Name",
-          "request": {
-            "name": "Informatica Search for Mappings by Name",
-            "description": {
-              "content": "Searches for mappings matching the specified name pattern.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "saas",
-                "api",
-                "v2",
-                "mapping",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "name",
-                  "value": "<string>",
-                  "description": "(Required) The mapping name or name pattern to search for."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "4afe2c20-8f5e-4407-abd1-6450bd680477",
-              "name": "A list of matching mappings.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "saas",
-                    "api",
-                    "v2",
-                    "mapping",
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "name",
-                      "value": "Example Title"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "icSessionId",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"@type\": \"example_value\",\n    \"id\": \"abc123\",\n    \"orgId\": \"500123\",\n    \"name\": \"Example Title\",\n    \"description\": \"A sample description.\",\n    \"createTime\": \"2026-01-15T10:30:00Z\",\n    \"updateTime\": \"2026-01-15T10:30:00Z\",\n    \"createdBy\": \"example_value\",\n    \"updatedBy\": \"example_value\",\n    \"bundleObjectId\": \"500123\",\n    \"bundleVersion\": \"example_value\",\n    \"templateId\": \"500123\",\n    \"deployTime\": \"2026-01-15T10:30:00Z\",\n    \"hasParameters\": true,\n    \"valid\": \"500123\",\n    \"fixedConnection\": true,\n    \"hasParametersDeployed\": true,\n    \"fixedConnectionDeployed\": true,\n    \"deployedTemplateId\": \"500123\",\n    \"tasks\": 10,\n    \"parameters\": [\n      {}\n    ],\n    \"inOutParameters\": [\n      {}\n    ],\n    \"references\": [\n      {\n        \"refObjectId\": \"500123\",\n        \"refType\": \"example_value\"\n      }\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f859ae92-a118-4e60-912d-3803579eaa8e",
+          "createdAt": "2026-10-22T02:50:53.000Z",
+          "updatedAt": "2026-10-22T02:50:53.000Z",
+          "uid": "35240-f859ae92-a118-4e60-912d-3803579eaa8e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://dm-us.informaticacloud.com",
-      "key": "baseUrl"
+      "id": "bf9fc114-6adb-4b1e-8896-187046379475",
+      "createdAt": "2026-10-22T02:50:53.000Z",
+      "updatedAt": "2026-10-22T02:50:53.000Z",
+      "uid": "35240-bf9fc114-6adb-4b1e-8896-187046379475"
     }
   ],
   "auth": {
@@ -570,25 +600,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "icSessionId"
+        "value": "icSessionId",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "244b7261-20c5-4311-9716-75a091e1842b",
-    "name": "Informatica IICS Platform REST Authentication Mappings API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Informatica Intelligent Cloud Services (IICS) Platform REST API provides programmatic access to platform-level resources including authentication, connections, mappings, mapping tasks, and job management. The API supports version 2 (JSON and XML) and version 3 (JSON) resource formats. All authenticated requests require a valid session ID obtained from the login endpoint.\n\nContact Support:\n Name: Informatica",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://dm-us.informaticacloud.com"
     }
-  }
+  ]
 }
