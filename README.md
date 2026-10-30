@@ -1,4 +1,4 @@
-# Informatica (informatica)
+# Informatica
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,241 +66,252 @@
 
 Collection of APIs for Informatica Intelligent Cloud Services (IICS) and Intelligent Data Management Cloud (IDMC), providing programmatic access to data integration, data governance, data quality, master data management, B2B gateway, and platform administration capabilities.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/apis.yml)
+**Areas:** Address Verification · B2B Gateway · Cloud Services · Data Governance · Data Integration · Data Profiling · Data Quality · Enterprise Software · ETL · IDMC · IICS · Master Data Management
 
-## Scope
+## Informatica on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Informatica is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/informatica/](https://apis.io/providers/informatica/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- Address Verification
-- B2B Gateway
-- Cloud Services
-- Data Governance
-- Data Integration
-- Data Profiling
-- Data Quality
-- Enterprise Software
-- ETL
-- IDMC
-- IICS
-- Master Data Management
-- Reference Data Management
+- [Informatica Data Integration REST API](https://apis.io/apis/informatica/data-integration-rest-api/) — The Data Integration REST API provides programmatic access to manage data integration assets and operations, including connections, mappings, mapping tasks,…
+- [Informatica Cloud Data Governance and Catalog API](https://apis.io/apis/informatica/cloud-data-governance-and-catalog-api/) — The Cloud Data Governance and Catalog API enables programmatic creation and management of assets, searching for assets, and viewing asset details within…
+- [Informatica Cloud Data Profiling REST API](https://apis.io/apis/informatica/cloud-data-profiling-rest-api/) — The Cloud Data Profiling REST API allows interaction with the Data Profiling Service through API calls to create, delete, update, and run queries and…
+- [Informatica Cloud Address Verification API](https://apis.io/apis/informatica/cloud-address-verification-api/) — The Cloud Address Verification API is a REST API-based solution for verifying and validating postal addresses in real time. You can integrate the Address…
+- [Informatica B2B Gateway REST API](https://apis.io/apis/informatica/b2b-gateway-rest-api/) — The B2B Gateway REST APIs enable running inbound and outbound partner flows, querying the status of events, and getting control numbers for outbound EDI X12…
+- [Informatica Reference 360 REST API](https://apis.io/apis/informatica/reference-360-rest-api/) — The Reference 360 REST API enables programmatic management of reference data, including exporting and importing reference data sets, managing code values…
+- [Informatica Authentication API](https://apis.io/apis/informatica/informatica-authentication-api/) — Login and session management operations.
+- [Informatica Connections API](https://apis.io/apis/informatica/informatica-connections-api/) — Manage connections to data sources and targets including databases, flat files, cloud applications, and SaaS services.
+- [Informatica Jobs API](https://apis.io/apis/informatica/informatica-jobs-api/) — Start, stop, and monitor job execution for tasks, taskflows, and other runnable assets.
+- [Informatica Mapping Tasks API](https://apis.io/apis/informatica/informatica-mapping-tasks-api/) — Create, retrieve, update, and delete mapping task configurations that execute mappings with specific runtime parameters.
+- [Informatica Mappings API](https://apis.io/apis/informatica/informatica-mappings-api/) — Retrieve mapping definitions and metadata for data integration mappings within the organization.
+- [Informatica Schedules API](https://apis.io/apis/informatica/informatica-schedules-api/) — Manage task execution schedules.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Informatica Platform REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Informatica Intelligent Cloud Services Platform REST API provides access to platform-level resources including login and authentication, roles and privileges, user and user group management, organizations, connections, schedules, runtime environments, Secure Agent services, object permissions, export and import, source control, projects and folders, licenses, metering data, and security logs. Supports version 2 (JSON and XML) and version 3 (JSON) resource formats.
+- [Informatica Agentic Access](https://apis.io/agentic-access/informatica/informatica-agentic-access/)
 
-- **Human URL:** [https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html](https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html)
+#### JSON Schema (36)
 
-#### Tags
+The data models the API reads and writes.
 
-- Authentication
-- Platform
-- Roles
-- Users
+- [ActivityLogEntry](https://apis.io/schemas/informatica/informatica-activitylogentry/)
+- [Informatica IICS Connection](https://apis.io/schemas/informatica/informatica-connection/)
+- [ConnectionCreateRequest](https://apis.io/schemas/informatica/informatica-connectioncreaterequest/)
+- [ConnectionUpdateRequest](https://apis.io/schemas/informatica/informatica-connectionupdaterequest/)
+- [ErrorResponse](https://apis.io/schemas/informatica/informatica-errorresponse/)
+- [JobStartRequest](https://apis.io/schemas/informatica/informatica-jobstartrequest/)
+- [JobStartResponse](https://apis.io/schemas/informatica/informatica-jobstartresponse/)
+- [JobStopRequest](https://apis.io/schemas/informatica/informatica-jobstoprequest/)
+- [LoginRequest](https://apis.io/schemas/informatica/informatica-loginrequest/)
+- [LoginResponse](https://apis.io/schemas/informatica/informatica-loginresponse/)
+- [Mapping](https://apis.io/schemas/informatica/informatica-mapping/)
+- [MappingInOutParameter](https://apis.io/schemas/informatica/informatica-mappinginoutparameter/)
+- [MappingParameter](https://apis.io/schemas/informatica/informatica-mappingparameter/)
+- [MappingTask](https://apis.io/schemas/informatica/informatica-mappingtask/)
+- [MappingTaskCreateRequest](https://apis.io/schemas/informatica/informatica-mappingtaskcreaterequest/)
+- [MappingTaskUpdateRequest](https://apis.io/schemas/informatica/informatica-mappingtaskupdaterequest/)
+- [ActivityLogEntry](https://apis.io/schemas/informatica/informatica-platform-rest-activity-log-entry/)
+- [Connection](https://apis.io/schemas/informatica/informatica-platform-rest-connection/)
+- [ConnectionCreateRequest](https://apis.io/schemas/informatica/informatica-platform-rest-connection-create-request/)
+- [ConnectionUpdateRequest](https://apis.io/schemas/informatica/informatica-platform-rest-connection-update-request/)
+- [ErrorResponse](https://apis.io/schemas/informatica/informatica-platform-rest-error-response/)
+- [JobStartRequest](https://apis.io/schemas/informatica/informatica-platform-rest-job-start-request/)
+- [JobStartResponse](https://apis.io/schemas/informatica/informatica-platform-rest-job-start-response/)
+- [JobStopRequest](https://apis.io/schemas/informatica/informatica-platform-rest-job-stop-request/)
+- [LoginRequest](https://apis.io/schemas/informatica/informatica-platform-rest-login-request/)
+- …and 11 more published on APIs.io
 
-#### Properties
+#### JSON Structure (19)
 
-- [Documentation](https://docs.informatica.com/integration-cloud/cloud-platform/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html)
-- [Documentation](https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources.html)
-- [Documentation](https://docs.informatica.com/integration-cloud/b2b-gateway/current-version/rest-api-reference/platform-rest-api-version-3-resources/roles.html)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/informatica/refs/heads/main/openapi/informatica-platform-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/informatica-platform-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/informatica-connection-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-login-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-login-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-connection-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-connection-create-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-connection-update-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-parameter-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-in-out-parameter-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-task-create-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-mapping-task-update-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-job-start-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-job-start-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-job-stop-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-activity-log-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-schedule-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-schedule-create-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/informatica-platform-rest-error-response-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/informatica-platform-rest-login-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-login-response-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-connection-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-connection-create-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-connection-update-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-parameter-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-in-out-parameter-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-task-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-task-create-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-mapping-task-update-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-job-start-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-job-start-response-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-job-stop-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-activity-log-entry-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-schedule-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-schedule-create-request-structure.json)
-- [JSON Structure](json-structure/informatica-platform-rest-error-response-structure.json)
-- [Example](examples/informatica-platform-rest-login-request-example.json)
-- [Example](examples/informatica-platform-rest-login-response-example.json)
-- [Example](examples/informatica-platform-rest-connection-example.json)
-- [Example](examples/informatica-platform-rest-connection-create-request-example.json)
-- [Example](examples/informatica-platform-rest-connection-update-request-example.json)
-- [Example](examples/informatica-platform-rest-mapping-example.json)
-- [Example](examples/informatica-platform-rest-mapping-parameter-example.json)
-- [Example](examples/informatica-platform-rest-mapping-in-out-parameter-example.json)
-- [Example](examples/informatica-platform-rest-mapping-task-example.json)
-- [Example](examples/informatica-platform-rest-mapping-task-create-request-example.json)
-- [Example](examples/informatica-platform-rest-mapping-task-update-request-example.json)
-- [Example](examples/informatica-platform-rest-job-start-request-example.json)
-- [Example](examples/informatica-platform-rest-job-start-response-example.json)
-- [Example](examples/informatica-platform-rest-job-stop-request-example.json)
-- [Example](examples/informatica-platform-rest-activity-log-entry-example.json)
-- [Example](examples/informatica-platform-rest-schedule-example.json)
-- [Example](examples/informatica-platform-rest-schedule-create-request-example.json)
-- [Example](examples/informatica-platform-rest-error-response-example.json)
-- [JSON-LD](json-ld/informatica-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON-LD](json-ld/informatica-platform-rest-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Data models expressed in JSON Structure.
 
-### Informatica Data Integration REST API
+- [Informatica Platform Rest Activity Log Entry Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-activity-log-entry-structure/)
+- [Informatica Platform Rest Connection Create Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-connection-create-request-structure/)
+- [Informatica Platform Rest Connection Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-connection-structure/)
+- [Informatica Platform Rest Connection Update Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-connection-update-request-structure/)
+- [Informatica Platform Rest Error Response Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-error-response-structure/)
+- [Informatica Platform Rest Job Start Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-job-start-request-structure/)
+- [Informatica Platform Rest Job Start Response Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-job-start-response-structure/)
+- [Informatica Platform Rest Job Stop Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-job-stop-request-structure/)
+- [Informatica Platform Rest Login Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-login-request-structure/)
+- [Informatica Platform Rest Login Response Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-login-response-structure/)
+- [Informatica Platform Rest Mapping In Out Parameter Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-in-out-parameter-structure/)
+- [Informatica Platform Rest Mapping Parameter Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-parameter-structure/)
+- [Informatica Platform Rest Mapping Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-structure/)
+- [Informatica Platform Rest Mapping Task Create Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-task-create-request-structure/)
+- [Informatica Platform Rest Mapping Task Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-task-structure/)
+- [Informatica Platform Rest Mapping Task Update Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-mapping-task-update-request-structure/)
+- [Informatica Platform Rest Schedule Create Request Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-schedule-create-request-structure/)
+- [Informatica Platform Rest Schedule Structure](https://apis.io/json-structure/informatica/informatica-platform-rest-schedule-structure/)
+- [Informatica Structure](https://apis.io/json-structure/informatica/informatica-structure/)
 
-The Data Integration REST API provides programmatic access to manage data integration assets and operations, including connections, mappings, mapping tasks, dynamic mapping tasks, taskflows, code tasks, connectors, data preview, fields, file listeners, file transfer, and hierarchical mappers. Uses version 2 resources with JSON or XML format.
+#### JSON-LD (2)
 
-- **Human URL:** [https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html](https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Informatica Context](https://apis.io/jsonld/informatica/informatica-context/)
+- [Informatica Platform Rest Context](https://apis.io/jsonld/informatica/informatica-platform-rest-context/)
 
-- Connections
-- Data Integration
-- ETL
-- Mappings
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/data-integration-rest-api.html)
-- [API Reference](https://docs.informatica.com/integration-cloud/data-integration/current-version/rest-api-reference/rest-api-resource-quick-references/data-integration-resource-quick-reference.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Informatica Domain Vocabulary](https://apis.io/vocabularies/informatica/informatica-vocabulary/)
 
-### Informatica Cloud Data Governance and Catalog API
+#### Examples (45)
 
-The Cloud Data Governance and Catalog API enables programmatic creation and management of assets, searching for assets, and viewing asset details within Informatica Data Governance and Catalog. Calls can be made using a REST client, the cURL tool, or a suitable programming interface.
+Example requests and responses.
 
-- **Human URL:** [https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html](https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html)
+- [Informatica Createconnection Example](https://apis.io/examples/informatica/informatica-createconnection-example/)
+- [Informatica Createmappingtask Example](https://apis.io/examples/informatica/informatica-createmappingtask-example/)
+- [Informatica Createschedule Example](https://apis.io/examples/informatica/informatica-createschedule-example/)
+- [Informatica Deleteconnection Example](https://apis.io/examples/informatica/informatica-deleteconnection-example/)
+- [Informatica Deletemappingtask Example](https://apis.io/examples/informatica/informatica-deletemappingtask-example/)
+- [Informatica Getactivitylog Example](https://apis.io/examples/informatica/informatica-getactivitylog-example/)
+- [Informatica Getconnection Example](https://apis.io/examples/informatica/informatica-getconnection-example/)
+- [Informatica Getconnectionbyname Example](https://apis.io/examples/informatica/informatica-getconnectionbyname-example/)
+- [Informatica Getmapping Example](https://apis.io/examples/informatica/informatica-getmapping-example/)
+- [Informatica Getmappingbyname Example](https://apis.io/examples/informatica/informatica-getmappingbyname-example/)
+- [Informatica Getmappingtask Example](https://apis.io/examples/informatica/informatica-getmappingtask-example/)
+- [Informatica Getmappingtaskbyname Example](https://apis.io/examples/informatica/informatica-getmappingtaskbyname-example/)
+- [Informatica Getschedule Example](https://apis.io/examples/informatica/informatica-getschedule-example/)
+- [Informatica Listconnections Example](https://apis.io/examples/informatica/informatica-listconnections-example/)
+- [Informatica Listmappings Example](https://apis.io/examples/informatica/informatica-listmappings-example/)
+- [Informatica Listmappingtasks Example](https://apis.io/examples/informatica/informatica-listmappingtasks-example/)
+- [Informatica Listschedules Example](https://apis.io/examples/informatica/informatica-listschedules-example/)
+- [Informatica Login Example](https://apis.io/examples/informatica/informatica-login-example/)
+- [Informatica Logout Example](https://apis.io/examples/informatica/informatica-logout-example/)
+- [Informatica Platform Rest Activity Log Entry Example](https://apis.io/examples/informatica/informatica-platform-rest-activity-log-entry-example/)
+- [Informatica Platform Rest Connection Create Request Example](https://apis.io/examples/informatica/informatica-platform-rest-connection-create-request-example/)
+- [Informatica Platform Rest Connection Example](https://apis.io/examples/informatica/informatica-platform-rest-connection-example/)
+- [Informatica Platform Rest Connection Update Request Example](https://apis.io/examples/informatica/informatica-platform-rest-connection-update-request-example/)
+- [Informatica Platform Rest Error Response Example](https://apis.io/examples/informatica/informatica-platform-rest-error-response-example/)
+- [Informatica Platform Rest Job Start Request Example](https://apis.io/examples/informatica/informatica-platform-rest-job-start-request-example/)
+- …and 20 more published on APIs.io
 
-#### Tags
+#### Collections (7)
 
-- Data Catalog
-- Data Governance
+Postman and Open Collection request collections.
 
-#### Properties
+- [Informatica IICS Platform REST Authentication API](https://apis.io/collections/informatica/open-informatica-authentication-api/)
+- [Informatica IICS Platform REST Authentication Connections API](https://apis.io/collections/informatica/open-informatica-connections-api/)
+- [Informatica IICS Platform REST Authentication Jobs API](https://apis.io/collections/informatica/open-informatica-jobs-api/)
+- [Informatica IICS Platform REST Authentication Mapping Tasks API](https://apis.io/collections/informatica/open-informatica-mapping-tasks-api/)
+- [Informatica IICS Platform REST Authentication Mappings API](https://apis.io/collections/informatica/open-informatica-mappings-api/)
+- [Informatica IICS Platform REST API](https://apis.io/collections/informatica/open-informatica-platform-rest-api/)
+- [Informatica IICS Platform REST Authentication Schedules API](https://apis.io/collections/informatica/open-informatica-schedules-api/)
 
-- [Documentation](https://docs.informatica.com/data-quality-cloud/cloud-data-governance-and-catalog/current-version.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Overlays (1)
 
-### Informatica Cloud Data Profiling REST API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-The Cloud Data Profiling REST API allows interaction with the Data Profiling Service through API calls to create, delete, update, and run queries and profiles within your organization. Supports platform REST API version 2 and version 3 resources and service-specific resources.
+- [Informatica Authentication Api Overlay](https://apis.io/overlays/informatica/informatica-authentication-api-overlay/)
 
-- **Human URL:** [https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html](https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html)
+#### Governance rules (3)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Data Profiling
-- Data Quality
+- [Informatica — jsonschema rules](https://apis.io/rules/informatica/informatica-jsonschema-spectral-rules/)
+- [Informatica API Rules](https://apis.io/rules/informatica/informatica-rules/)
+- [Informatica API Rules](https://apis.io/rules/informatica/informatica-spectral-rules/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/current-version/data-profiling/data-profiling/data-profiling-rest-api.html)
-- [Getting Started](https://docs.informatica.com/data-governance-and-quality-cloud/cloud-data-profiling/h2l/1547-getting-started-with-cloud-data-profiling-rest-api/getting-started-with-cloud-data-profiling-rest-api/overview.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Informatica Cloud Address Verification API
+- [Informatica Authentication](https://apis.io/security/informatica/informatica-authentication/)
+- [Informatica Domain Security](https://apis.io/security/informatica/informatica-domain-security/)
+- [Informatica Vulnerability Disclosure](https://apis.io/security/informatica/informatica-vulnerability-disclosure/)
 
-The Cloud Address Verification API is a REST API-based solution for verifying and validating postal addresses in real time. You can integrate the Address Verification service API endpoints into your application using a REST client, the cURL tool, or any suitable programming interface.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html](https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html)
+Published plans, tiers and prices.
 
-#### Tags
+- [Informatica Plans Pricing](https://apis.io/plans/informatica/informatica-plans-pricing/)
 
-- Address Verification
-- Data Quality
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://docs.informatica.com/data-governance-and-quality-cloud/data-quality/current-version/cloud-address-verification-api/introduction.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Informatica Rate Limits](https://apis.io/rate-limits/informatica/informatica-rate-limits/)
 
-### Informatica B2B Gateway REST API
+#### FinOps (1)
 
-The B2B Gateway REST APIs enable running inbound and outbound partner flows, querying the status of events, and getting control numbers for outbound EDI X12 and EDIFACT messages through programmatic API calls.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html](https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html)
+- [Informatica Finops](https://apis.io/finops/informatica/informatica-finops/)
 
-#### Tags
+## Where to find this API
 
-- B2B
-- EDI
-- Gateway
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://docs.informatica.com/ipaas/b2b-gateway/current-version/rest-api-reference/informatica-intelligent-cloud-services-rest-api.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Informatica Reference 360 REST API
-
-The Reference 360 REST API enables programmatic management of reference data, including exporting and importing reference data sets, managing code values and value mappings, retrieving asset details, managing code lists, crosswalks, hierarchies, and audit trails. Supports multiple API versions for model import and export operations.
-
-- **Human URL:** [https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html](https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html)
-
-#### Tags
-
-- Master Data Management
-- Reference Data
-
-#### Properties
-
-- [Documentation](https://docs.informatica.com/master-data-management-cloud/reference-360/current-version/reference-360/reference-360-rest-api.html)
-- [Postman Collection](collections/informatica-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/informatica-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/informatica)
-- [LinkedIn](https://www.linkedin.com/company/informatica)
-- [Portal](https://developer.informatica.com/)
+- [Website](https://www.informatica.com/)
 - [Documentation](https://docs.informatica.com/)
-- [Knowledge Center](https://knowledge.informatica.com/)
+- [Getting started](https://apis.io/onboarding/)
+- [API reference](https://apis.io/llms.txt)
 - [Support](https://www.informatica.com/support.html)
-- [Support](https://network.informatica.com/)
-- [Login](https://dm-us.informaticacloud.com/identity-service/home)
-- [Spectral Rules](rules/informatica-spectral-rules.yml)
-- [Vocabulary](vocabulary/informatica-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Blog](https://www.informatica.com/blogs.html)
+- [Trust centre](https://trust.informatica.com/)
+- [GitHub](https://github.com/informatica)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 48.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 69.7 |
+| Contract governance | 31.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 22.4 |
+
+**Agent readiness 53.5** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | conformant |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/informatica/](https://apis.io/providers/informatica/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Informatica: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/informatica/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
